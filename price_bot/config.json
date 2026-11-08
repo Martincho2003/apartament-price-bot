@@ -1,0 +1,166 @@
+{
+  "currency": "EUR",
+  "bgn_to_eur_rate": 1.95583,
+  "check_schedule": {
+    "frequency": "2x daily (08:30 сутрин и 16:30 следобед българско време)",
+    "cron_utc": [
+      "30 6 * * *",
+      "30 14 * * *"
+    ]
+  },
+  "stores_monitored": [
+    "Технополис София (technopolis.bg)",
+    "Техномаркет София (technomarket.bg)",
+    "Зора София (zora.bg)",
+    "Техномикс София - бул. Европа / Околовръстен път (tehnomix.bg)",
+    "Техмарт София - Симеоновско шосе / Люлин (techmart.bg)",
+    "eMAG Шоуруми София - Сердика / Парадайс (emag.bg)",
+    "Практис София МЕГА - Ботевградско шосе 272 (praktis.bg)",
+    "Вимакс София - Младост / Люлин / Каблешков (vimax.bg)",
+    "Technovision София - бул. Черни връх 47 [Транспортни дефекти] (technovision.bg)",
+    "Технохит София - бул. Ботевградско шосе 268 [Транспортни дефекти] (technohit.bg)",
+    "Technowelt София - Люлин 2, бул. Царица Йоана бл. 276 [Транспортни дефекти] (technowelt.bg)",
+    "Бяла Мания София - Младост 1А, бл. 560 [Транспортни дефекти] (bqlamania.eu)",
+    "Tech2Home София [Транспортни дефекти] (tech2home.bg)",
+    "Релакс Техно София [Транспортни дефекти] (relaxbg.org)"
+  ],
+  "appliances": [
+    {
+      "id": "gorenje_bos6737e13x",
+      "category": "Фурна за вграждане",
+      "name": "Gorenje BOS6737E13X (77 л, AquaClean, AirFry, Pizza 300°C)",
+      "step2_baseline": {
+        "october_avg_eur": 334.17,
+        "november_initial_avg_eur": 308.30,
+        "real_regular_price_eur": 331.83,
+        "target_deal_trigger_eur": 299.00,
+        "target_deal_trigger_defect_eur": 270.00,
+        "fake_crossed_out_price_threshold_eur": 345.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Furni-za-vgrazhdane/Furna-za-vgrazhdane-GORENJE-BOS6737E13X/p/702415"
+        },
+        {
+          "store": "Техномаркет (София)",
+          "url": "https://www.technomarket.bg/furni/gorenje-bos6737e13x-09201200"
+        },
+        {
+          "store": "Зора (София)",
+          "url": "https://zora.bg/product/bos6737e13x-77-push-butoni-a-vodno-pochistvane"
+        },
+        {
+          "store": "Техномикс (София)",
+          "url": "https://www.tehnomix.bg/furna-za-vgrazhdane-gorenje-bos6737e13x"
+        },
+        {
+          "store": "Техмарт (София)",
+          "url": "https://techmart.bg/furna-za-vgrazhdane-gorenje-bos6737e13x"
+        },
+        {
+          "store": "eMAG Шоурум (София)",
+          "url": "https://www.emag.bg/furna-za-vgrazhdane-gorenje-elektricheska-airfry-gotvene-s-para-12-funkcii-teleskopichen-raft-77-l-klas-a-inox-bos6737e13x/pd/D61XYSMBM/"
+        },
+        {
+          "store": "Практис МЕГА (София)",
+          "url": "https://praktis.bg/furna-za-vgrazhdane-s-para-gorenje-bos6737e13x-77l"
+        },
+        {
+          "store": "Вимакс (София)",
+          "url": "https://vimax.bg/furna-za-vgrajdane-gorenje-bos6737e13x.html"
+        },
+        {
+          "store": "Технохит София [Транспортен дефект]",
+          "url": "https://www.technohit.bg/products/2025/07/09/multifunkcionalna-furna-za-vgrazhdane-77l-gorenje-bos6737e13x/"
+        }
+      ]
+    },
+    {
+      "id": "gorenje_bps6737e14x",
+      "category": "Фурна за вграждане",
+      "name": "Gorenje BPS6737E14X (77 л, Пиролиза, 4-слойно стъкло, A+)",
+      "step2_baseline": {
+        "october_avg_eur": 407.40,
+        "november_initial_avg_eur": 389.00,
+        "real_regular_price_eur": 409.00,
+        "target_deal_trigger_eur": 379.00,
+        "target_deal_trigger_defect_eur": 355.00,
+        "fake_crossed_out_price_threshold_eur": 420.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Furni-za-vgrazhdane/Furna-za-vgrazhdane-GORENJE-BPS6737E14X/p/651513"
+        },
+        {
+          "store": "Техномаркет (София)",
+          "url": "https://www.technomarket.bg/furni/gorenje-bps6737e14x-09213573"
+        },
+        {
+          "store": "Техномикс (София)",
+          "url": "https://www.tehnomix.bg/furna-za-vgrazhdane-gorenje-bps6737e14x"
+        },
+        {
+          "store": "Практис МЕГА (София)",
+          "url": "https://praktis.bg/furna-za-vgrazhdane-gorenje-bps6737e14x-inoks-77l"
+        },
+        {
+          "store": "Технохит София [Транспортен дефект - BPS6737]",
+          "url": "https://www.technohit.bg/products/2026/07/07/multifunkcionalna-furna-za-vgrazhdane-77l-gorenje-bps6737e04dbg/"
+        },
+        {
+          "store": "Tech2Home София [Транспортен дефект - BPSA6747]",
+          "url": "https://tech2home.bg/product/furna-za-vgrazhdane-gorenje-bpsa6747a08/"
+        }
+      ]
+    },
+    {
+      "id": "aeg_bps33102zm",
+      "category": "Фурна за вграждане",
+      "name": "AEG BPS33102ZM / Серия 6000 Пиролиза (72 л, Pyroluxe®Plus, IsoFront Plus)",
+      "step2_baseline": {
+        "october_avg_eur": 397.40,
+        "november_initial_avg_eur": 381.08,
+        "real_regular_price_eur": 409.00,
+        "target_deal_trigger_eur": 380.00,
+        "target_deal_trigger_defect_eur": 350.00,
+        "fake_crossed_out_price_threshold_eur": 435.00
+      },
+      "urls": [
+        {
+          "store": "Technovision София [Транспортен дефект - AEG BPS33102ZM]",
+          "url": "https://technovision.bg/produkt/biala-tehnika/furni/furna-aeg-bps33102zm/"
+        },
+        {
+          "store": "Technovision София [Транспортен дефект - Electrolux/AEG SurroundCook]",
+          "url": "https://technovision.bg/produkt/biala-tehnika/furni/furna-elektrolux-kofgh40bk-500-surroundcook-aqua-clean-multi-goresht-vuzduh-gril-pica/"
+        },
+        {
+          "store": "Релакс Техно София [Транспортен дефект - AEG BPS33102ZM]",
+          "url": "https://www.relaxbg.org/p/furna-za-vgrazhdane-aeg-bps33102zm/"
+        },
+        {
+          "store": "Technovision София [Транспортен дефект - Siemens iQ300 Пиролиза]",
+          "url": "https://technovision.bg/produkt/biala-tehnika/furni/furna-siemens-iq300-hb571abs3-iq300-s-piroliza-cookcontrol10-3d-goresht-vuzduh/"
+        },
+        {
+          "store": "Технохит София [Транспортен дефект - AEG BPB331061B Пиролиза]",
+          "url": "https://www.technohit.bg/products/2024/03/11/multifunkcionalnaurna-za-vgrazhdane-72l-aeg-bpb331061b/"
+        },
+        {
+          "store": "Технохит София [Транспортен дефект - AEG OU5PB40WSM Пиролиза]",
+          "url": "https://www.technohit.bg/products/2026/02/08/multifunkcionalna-furna-za-vgrazhdane-72l-aeg-ou5pb40wsm/"
+        },
+        {
+          "store": "Technowelt София [Транспортен дефект - AEG]",
+          "url": "https://technowelt.bg/categories/furna-s-plot/eeb230010m"
+        },
+        {
+          "store": "Бяла Мания София [Транспортен дефект - AEG]",
+          "url": "https://bqlamania.eu/furna-za-vgrazhdane-aeg-bco455b2ba"
+        }
+      ]
+    }
+  ]
+}

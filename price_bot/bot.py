@@ -260,19 +260,7 @@ def extract_price_and_old_price(html: str, url: str):
 
     # --- Специализирани парсери за софийските магазини за транспортни дефекти и вериги ---
 
-    # 1. Технохит София (technohit.bg)
-    if "technohit.bg" in url_low:
-        h4 = soup.select_one("h4.price")
-        if h4:
-            txt = h4.get_text(" ", strip=True)
-            m = re.search(r"(\d+[\.,]\d{2})\s*€", txt)
-            m_save = re.search(r"спести\s*(\d+[\.,]\d{2})\s*€", txt, re.IGNORECASE)
-            if m:
-                cur = float(m.group(1).replace(",", "."))
-                old = round(cur + float(m_save.group(1).replace(",", ".")), 2) if m_save else None
-                return round(cur, 2), old, "TECHNOHIT_H4"
-
-    # 2. Technovision София (technovision.bg)
+    # 1. Technovision София (technovision.bg)
     if "technovision.bg" in url_low:
         summary = soup.select_one(".summary.entry-summary") or soup.select_one(".single-product-wrapper") or soup
         out_of_stock = summary.select_one("p.stock.out-of-stock") is not None
@@ -434,7 +422,7 @@ def evaluate_black_friday_status(
 
     is_defect_store = any(
         k in store_name.lower()
-        for k in ("дефект", "technovision", "технохит", "technowelt", "мания", "tech2home", "релакс", "relax")
+        for k in ("дефект", "technovision", "technowelt", "мания", "tech2home", "релакс", "relax")
     )
     deal_trigger = (
         baseline.get("target_deal_trigger_defect_eur", baseline["target_deal_trigger_eur"])

@@ -1,12 +1,12 @@
-# Последен отчет от Ценовия Бот – Магазини в София (2026-11-08 21:52:54)
+# Последен отчет от Ценовия Бот – Магазини в София (2026-11-08 22:07:54)
 
-- **Проверени оферти в София:** 16 магазина (физически вериги + транспортни дефекти в София)
+- **Проверени оферти в София:** 11 магазина (физически вериги + транспортни дефекти в София)
 - **Засечени промени в цените (спрямо предходната проверка):** 0
 
 | Уред | Магазин в София | Текуща цена | Средна Октомври (Т.2) | Статус Черен Петък |
 | :--- | :--- | :--- | :--- | :--- |
 | **Gorenje BOS6737E13X (77 л, AquaClean, AirFry, Pizza 300°C)** | [Техномаркет (София)](https://www.technomarket.bg/furni/gorenje-bos6737e13x-09201200) | **299.00 €** *(584.79 лв.)* | 334.17 € | 🔥 ИСТИНСКА ОФЕРТА! Под прага (299.00 €) и с -35.17 € (-10.5%) спрямо октомври! |
-| **Gorenje BOS6737E13X (77 л, AquaClean, AirFry, Pizza 300°C)** | [Зора (София)](https://zora.bg/product/bos6737e13x-77-push-butoni-a-vodno-pochistvane) | **332.33 €** *(649.98 лв.)* | 334.17 € | ⚠️ ЛЪЖЛИВО НАМАЛЕНИЕ: Обявена стара цена 359.00 €, а средната през октомври беше 334.17 €! |
+| **Gorenje BOS6737E13X (77 л, AquaClean, AirFry, Pizza 300°C)** | [Зора (София)](https://zora.bg/product/bos6737e13x-77-push-butoni-a-vodno-pochistvane) | **332.33 €** *(649.98 лв.)* | 334.17 € | ⚠️ ЛЪЖЛИВО НАМАЛЕНИЕ: Обявена стара цена 389.00 €, а средната през октомври беше 334.17 €! |
 | **Gorenje BOS6737E13X (77 л, AquaClean, AirFry, Pizza 300°C)** | [Техномикс (София)](https://www.tehnomix.bg/furna-za-vgrazhdane-gorenje-bos6737e13x) | **304.52 €** *(595.59 лв.)* | 334.17 € | Нормална цена (-29.65 € / -8.9% спрямо октомври: 334.17 €) |
 | **Gorenje BOS6737E13X (77 л, AquaClean, AirFry, Pizza 300°C)** | [Техмарт (София)](https://techmart.bg/furna-za-vgrazhdane-gorenje-bos6737e13x) | **299.00 €** *(584.79 лв.)* | 334.17 € | 🔥 ИСТИНСКА ОФЕРТА! Под прага (299.00 €) и с -35.17 € (-10.5%) спрямо октомври! |
 | **Gorenje BOS6737E13X (77 л, AquaClean, AirFry, Pizza 300°C)** | [Практис МЕГА (София)](https://praktis.bg/furna-za-vgrazhdane-s-para-gorenje-bos6737e13x-77l) | **331.83 €** *(649.00 лв.)* | 334.17 € | Нормална цена (-2.34 € / -0.7% спрямо октомври: 334.17 €) |
@@ -14,10 +14,5 @@
 | **Gorenje BPS6737E14X (77 л, Пиролиза, 4-слойно стъкло, A+)** | [Техномаркет (София)](https://www.technomarket.bg/furni/gorenje-bps6737e14x-09213573) | **379.00 €** *(741.26 лв.)* | 407.40 € | 🔥 ИСТИНСКА ОФЕРТА! Под прага (379.00 €) и с -28.40 € (-7.0%) спрямо октомври! |
 | **Gorenje BPS6737E14X (77 л, Пиролиза, 4-слойно стъкло, A+)** | [Техномикс (София)](https://www.tehnomix.bg/furna-za-vgrazhdane-gorenje-bps6737e14x) | **376.28 €** *(735.94 лв.)* | 407.40 € | 🔥 ИСТИНСКА ОФЕРТА! Под прага (379.00 €) и с -31.12 € (-7.6%) спрямо октомври! |
 | **Gorenje BPS6737E14X (77 л, Пиролиза, 4-слойно стъкло, A+)** | [Практис МЕГА (София)](https://praktis.bg/furna-za-vgrazhdane-gorenje-bps6737e14x-inoks-77l) | **409.00 €** *(799.93 лв.)* | 407.40 € | Нормална цена (+1.60 € / +0.4% спрямо октомври: 407.40 €) |
-| **Gorenje BPS6737E14X (77 л, Пиролиза, 4-слойно стъкло, A+)** | [Tech2Home София [Транспортен дефект - BPSA6747]](https://tech2home.bg/product/furna-za-vgrazhdane-gorenje-bpsa6747a08/) | **423.86 €** *(829.00 лв.)* | 407.40 € | 📈 Над октомврийската средна с +16.46 € (+4.0% спрямо 407.40 €) |
 | **AEG BPS33102ZM / Серия 6000 Пиролиза (72 л, Pyroluxe®Plus, IsoFront Plus)** | [Technovision София [Транспортен дефект - AEG BPS33102ZM]](https://technovision.bg/produkt/biala-tehnika/furni/furna-aeg-bps33102zm/) | **298.65 €** *(584.11 лв.)* | 397.40 € | ⏸️ Изчерпан в момента (последна цена: 298.65 € / 584.11 лв. – следи се за нова бройка) |
-| **AEG BPS33102ZM / Серия 6000 Пиролиза (72 л, Pyroluxe®Plus, IsoFront Plus)** | [Technovision София [Транспортен дефект - Electrolux/AEG SurroundCook]](https://technovision.bg/produkt/biala-tehnika/furni/furna-elektrolux-kofgh40bk-500-surroundcook-aqua-clean-multi-goresht-vuzduh-gril-pica/) | **324.00 €** *(633.69 лв.)* | 397.40 € | 🔥 ИСТИНСКА ОФЕРТА! Под прага (350.00 €) и с -73.40 € (-18.5%) спрямо октомври! |
 | **AEG BPS33102ZM / Серия 6000 Пиролиза (72 л, Pyroluxe®Plus, IsoFront Plus)** | [Релакс Техно София [Транспортен дефект - AEG BPS33102ZM]](https://www.relaxbg.org/p/furna-za-vgrazhdane-aeg-bps33102zm/) | **485.22 €** *(949.01 лв.)* | 397.40 € | 📈 Над октомврийската средна с +87.82 € (+22.1% спрямо 397.40 €) |
-| **AEG BPS33102ZM / Серия 6000 Пиролиза (72 л, Pyroluxe®Plus, IsoFront Plus)** | [Technovision София [Транспортен дефект - Siemens iQ300 Пиролиза]](https://technovision.bg/produkt/biala-tehnika/furni/furna-siemens-iq300-hb571abs3-iq300-s-piroliza-cookcontrol10-3d-goresht-vuzduh/) | **540.00 €** *(1056.15 лв.)* | 397.40 € | 📈 Над октомврийската средна с +142.60 € (+35.9% спрямо 397.40 €) |
-| **AEG BPS33102ZM / Серия 6000 Пиролиза (72 л, Pyroluxe®Plus, IsoFront Plus)** | [Technowelt София [Транспортен дефект - AEG]](https://technowelt.bg/categories/furna-s-plot/eeb230010m) | **399.00 €** *(780.38 лв.)* | 397.40 € | Нормална цена (+1.60 € / +0.4% спрямо октомври: 397.40 €) |
-| **AEG BPS33102ZM / Серия 6000 Пиролиза (72 л, Pyroluxe®Plus, IsoFront Plus)** | [Бяла Мания София [Транспортен дефект - AEG]](https://bqlamania.eu/furna-za-vgrazhdane-aeg-bco455b2ba) | **560.00 €** *(1095.26 лв.)* | 397.40 € | 📈 Над октомврийската средна с +162.60 € (+40.9% спрямо 397.40 €) |

@@ -141,7 +141,7 @@ async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
     return results
 
 
-def fetch_html_fast(url: str, cf_cache: dict[str, str], timeout: int = 15) -> str:
+def fetch_html_fast(url: str, cf_cache: dict[str, str], timeout: int = 10) -> str:
     """Извлича HTML от кеша на Cloudflare браузъра или директно чрез curl_cffi / requests."""
     if url in cf_cache:
         return cf_cache[url]
@@ -150,8 +150,11 @@ def fetch_html_fast(url: str, cf_cache: dict[str, str], timeout: int = 15) -> st
             resp = cffi_requests.get(url, headers=HEADERS, impersonate="chrome124", timeout=timeout)
             if resp.status_code == 200 and len(resp.text) > 1000:
                 return resp.text
-        except Exception:
-            pass
+            if resp.status_code in (403, 404, 503):
+                resp.raise_for_status()
+        except Exception as exc:
+            if any(d in url.lower() for d in CLOUDFLARE_DOMAINS):
+                raise exc
     resp = requests.get(url, headers=HEADERS, timeout=timeout)
     resp.raise_for_status()
     return resp.text

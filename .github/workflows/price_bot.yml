@@ -45,10 +45,11 @@ jobs:
 
       - name: Install dependencies & Xvfb for Cloudflare Turnstile bypass
         run: |
-          sudo apt-get update && sudo apt-get install -y xvfb
+          which xvfb-run || (sudo apt-get update && sudo apt-get install -y xvfb)
           pip install -r price_bot/requirements.txt
 
       - name: Run Price Bot (Sofia Physical & Transport-Defect Stores)
+        continue-on-error: true
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST || 'smtp.gmail.com' }}
           SMTP_PORT: ${{ secrets.SMTP_PORT || '587' }}
@@ -56,15 +57,12 @@ jobs:
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           NOTIFY_EMAIL: ${{ secrets.NOTIFY_EMAIL }}
         run: |
-          if [ "${{ github.event_name }}" = "push" ] || ( [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force_email }}" = "true" ] ); then
-            xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" python price_bot/bot.py --force-email
-          else
-            xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" python price_bot/bot.py
-          fi
+          xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" python price_bot/bot.py --force-email 2>&1 | tee price_bot/last_cloud_run.log
 
       - name: Save updated price state & history back to repo
+        if: always()
         run: |
           git config user.name "price-bot[bot]"
           git config user.email "price-bot@users.noreply.github.com"
-          git add price_bot/price_state.json price_bot/price_history.csv price_bot/latest_report.md
+          git add price_bot/price_state.json price_bot/price_history.csv price_bot/latest_report.md price_bot/last_cloud_run.log
           git diff --staged --quiet || (git commit -m "chore(prices): update Sofia price state & history [skip ci]" && git pull --rebase origin main && git push origin HEAD:main)

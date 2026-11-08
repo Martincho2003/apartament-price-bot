@@ -79,6 +79,29 @@ def load_dotenv_if_present(env_path: Path) -> None:
             os.environ[k] = v
 
 
+async def _fetch_single_cf_page(browser, u: str) -> str | None:
+    """Отваря единична Cloudflare страница с 25-секунден таймаут."""
+    page = await browser.get(u)
+    for _attempt in range(2):
+        await page.sleep(4)
+        html = await page.get_content()
+        title = await page.evaluate("document.title")
+        if (
+            "just a moment" in str(title).lower()
+            or "security verification" in (html or "").lower()
+            or not title
+        ):
+            try:
+                await asyncio.wait_for(page.verify_cf(), timeout=10)
+                await page.sleep(4)
+                html = await page.get_content()
+            except Exception:
+                pass
+        if html and len(html) > 5000 and "security verification" not in html.lower():
+            return html
+    return None
+
+
 async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
     """Отваря Cloudflare-защитените страници (Technovision, Зора) чрез nodriver + verify_cf()."""
     results = {}
@@ -86,40 +109,33 @@ async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
         return results
     browser = None
     try:
-        browser = await uc.start(
-            headless=False,
-            sandbox=False,
-            browser_args=["--disable-dev-shm-usage", "--disable-gpu", "--window-size=1280,960"],
+        browser = await asyncio.wait_for(
+            uc.start(
+                headless=False,
+                sandbox=False,
+                browser_args=["--disable-dev-shm-usage", "--disable-gpu", "--window-size=1280,960"],
+            ),
+            timeout=20,
         )
         for u in urls:
             try:
-                page = await browser.get(u)
-                for _attempt in range(3):
-                    await page.sleep(4)
-                    html = await page.get_content()
-                    title = await page.evaluate("document.title")
-                    if (
-                        "just a moment" in str(title).lower()
-                        or "security verification" in (html or "").lower()
-                        or not title
-                    ):
-                        try:
-                            await page.verify_cf()
-                            await page.sleep(5)
-                            html = await page.get_content()
-                        except Exception:
-                            pass
-                    if html and len(html) > 5000 and "security verification" not in html.lower():
-                        results[u] = html
-                        break
+                html = await asyncio.wait_for(_fetch_single_cf_page(browser, u), timeout=25)
+                if html:
+                    results[u] = html
             except Exception as exc:
-                print(f"  ⚠️ [Cloudflare Browser] Грешка при {u}: {exc}")
+                print(f"  ⚠️ [Cloudflare Browser] Таймаут/Грешка при {u}: {exc}")
     except Exception as exc:
         print(f"  ⚠️ Неуспешно стартиране на браузър за Cloudflare: {exc}")
     finally:
         if browser:
             try:
                 browser.stop()
+            except Exception:
+                pass
+        if sys.platform.startswith("linux"):
+            try:
+                import subprocess
+                subprocess.run(["pkill", "-9", "-f", "chrome"], check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             except Exception:
                 pass
     return results

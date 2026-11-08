@@ -18,9 +18,6 @@
     "Практис София МЕГА - Ботевградско шосе 272 (praktis.bg)",
     "Вимакс София - Младост / Люлин / Каблешков (vimax.bg)",
     "Technovision София - бул. Черни връх 47 [Транспортни дефекти] (technovision.bg)",
-    "Technowelt София - Люлин 2, бул. Царица Йоана бл. 276 [Транспортни дефекти] (technowelt.bg)",
-    "Бяла Мания София - Младост 1А, бл. 560 [Транспортни дефекти] (bqlamania.eu)",
-    "Tech2Home София [Транспортни дефекти] (tech2home.bg)",
     "Релакс Техно София [Транспортни дефекти] (relaxbg.org)"
   ],
   "appliances": [
@@ -99,10 +96,6 @@
         {
           "store": "Практис МЕГА (София)",
           "url": "https://praktis.bg/furna-za-vgrazhdane-gorenje-bps6737e14x-inoks-77l"
-        },
-        {
-          "store": "Tech2Home София [Транспортен дефект - BPSA6747]",
-          "url": "https://tech2home.bg/product/furna-za-vgrazhdane-gorenje-bpsa6747a08/"
         }
       ]
     },
@@ -124,24 +117,8 @@
           "url": "https://technovision.bg/produkt/biala-tehnika/furni/furna-aeg-bps33102zm/"
         },
         {
-          "store": "Technovision София [Транспортен дефект - Electrolux/AEG SurroundCook]",
-          "url": "https://technovision.bg/produkt/biala-tehnika/furni/furna-elektrolux-kofgh40bk-500-surroundcook-aqua-clean-multi-goresht-vuzduh-gril-pica/"
-        },
-        {
           "store": "Релакс Техно София [Транспортен дефект - AEG BPS33102ZM]",
           "url": "https://www.relaxbg.org/p/furna-za-vgrazhdane-aeg-bps33102zm/"
-        },
-        {
-          "store": "Technovision София [Транспортен дефект - Siemens iQ300 Пиролиза]",
-          "url": "https://technovision.bg/produkt/biala-tehnika/furni/furna-siemens-iq300-hb571abs3-iq300-s-piroliza-cookcontrol10-3d-goresht-vuzduh/"
-        },
-        {
-          "store": "Technowelt София [Транспортен дефект - AEG]",
-          "url": "https://technowelt.bg/categories/furna-s-plot/eeb230010m"
-        },
-        {
-          "store": "Бяла Мания София [Транспортен дефект - AEG]",
-          "url": "https://bqlamania.eu/furna-za-vgrazhdane-aeg-bco455b2ba"
         }
       ]
     }

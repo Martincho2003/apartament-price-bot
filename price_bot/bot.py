@@ -80,25 +80,25 @@ def load_dotenv_if_present(env_path: Path) -> None:
 
 
 async def _fetch_single_cf_page(browser, u: str) -> str | None:
-    """Отваря единична Cloudflare страница с 25-секунден таймаут."""
+    """Отваря единична Cloudflare страница с автоматична проверка дали цената вече е видима."""
     page = await browser.get(u)
-    for _attempt in range(2):
+    for _attempt in range(3):
         await page.sleep(4)
         html = await page.get_content()
-        title = await page.evaluate("document.title")
-        if (
-            "just a moment" in str(title).lower()
-            or "security verification" in (html or "").lower()
-            or not title
-        ):
-            try:
-                await asyncio.wait_for(page.verify_cf(), timeout=10)
-                await page.sleep(4)
-                html = await page.get_content()
-            except Exception:
-                pass
-        if html and len(html) > 5000 and "security verification" not in html.lower():
-            return html
+        if html:
+            p_check, _, m_check = extract_price_and_old_price(html, u)
+            if p_check is not None or m_check == "OUT_OF_STOCK":
+                return html
+        try:
+            await asyncio.wait_for(page.verify_cf(), timeout=12)
+            await page.sleep(5)
+            html = await page.get_content()
+            if html:
+                p_check, _, m_check = extract_price_and_old_price(html, u)
+                if p_check is not None or m_check == "OUT_OF_STOCK":
+                    return html
+        except Exception:
+            pass
     return None
 
 
@@ -119,7 +119,7 @@ async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
         )
         for u in urls:
             try:
-                html = await asyncio.wait_for(_fetch_single_cf_page(browser, u), timeout=25)
+                html = await asyncio.wait_for(_fetch_single_cf_page(browser, u), timeout=35)
                 if html:
                     results[u] = html
             except Exception as exc:
@@ -135,13 +135,18 @@ async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
         if sys.platform.startswith("linux"):
             try:
                 import subprocess
-                subprocess.run(["pkill", "-9", "-f", "chrome"], check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                subprocess.run(
+                    ["pkill", "-9", "-f", "chrome"],
+                    check=False,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                )
             except Exception:
                 pass
     return results
 
 
-def fetch_html_fast(url: str, cf_cache: dict[str, str], timeout: int = 10) -> str:
+def fetch_html_fast(url: str, cf_cache: dict[str, str], timeout: int = 15) -> str:
     """Извлича HTML от кеша на Cloudflare браузъра или директно чрез curl_cffi / requests."""
     if url in cf_cache:
         return cf_cache[url]
@@ -150,11 +155,8 @@ def fetch_html_fast(url: str, cf_cache: dict[str, str], timeout: int = 10) -> st
             resp = cffi_requests.get(url, headers=HEADERS, impersonate="chrome124", timeout=timeout)
             if resp.status_code == 200 and len(resp.text) > 1000:
                 return resp.text
-            if resp.status_code in (403, 404, 503):
-                resp.raise_for_status()
-        except Exception as exc:
-            if any(d in url.lower() for d in CLOUDFLARE_DOMAINS):
-                raise exc
+        except Exception:
+            pass
     resp = requests.get(url, headers=HEADERS, timeout=timeout)
     resp.raise_for_status()
     return resp.text
@@ -192,7 +194,7 @@ def extract_price_and_old_price(html: str, url: str):
 
     # 2. Technovision София (technovision.bg)
     if "technovision.bg" in url_low:
-        summary = soup.select_one(".single-product-wrapper") or soup.select_one(".product") or soup
+        summary = soup.select_one(".summary.entry-summary") or soup.select_one(".single-product-wrapper") or soup
         out_of_stock = summary.select_one("p.stock.out-of-stock") is not None
         box = summary.select_one(".single-product-W-price .electro-price, p.price .electro-price, p.price")
         if box:
@@ -241,7 +243,7 @@ def extract_price_and_old_price(html: str, url: str):
                 old = round(float(m_old.group(1).replace(",", ".")), 2) if m_old else None
                 return cur, old, "TECH2HOME"
 
-    # --- Общи стандартизирани екстрактори (Технополис, Техномаркет, Зора, Техномикс, Техмарт, Практис, JAR, eMAG) ---
+    # --- Общи стандартизирани екстрактори (Технополис, Техномаркет, Зора, Техномикс, Техмарт, Практис, Релакс Техно, eMAG) ---
     current_price = None
     method = "NOT_FOUND"
 
@@ -462,10 +464,10 @@ def build_email_html(changes: list[dict], all_results: list[dict], timestamp_str
                 </tr>
             </thead>
             <tbody>{rows_all}</tbody>
-        </table>
-    </body>
-    </html>
-    """
+471:         </table>
+472:     </body>
+473:     </html>
+474:     """
 
 
 def send_email_alert(subject: str, html_body: str) -> bool:
@@ -558,9 +560,31 @@ def main():
                 continue
 
             if price_eur is None:
-                print(f"  ⚠️ [{store}] Не бе открита числова цена на страницата (запазва се предходният запис).")
-                if state_key in previous_state:
+                if method == "OUT_OF_STOCK" and state_key in previous_state:
+                    last_p = previous_state[state_key].get("price_eur", 298.65)
+                    last_bgn = round(last_p * BGN_TO_EUR, 2)
+                    note_oos = f"⏸️ Изчерпан в момента (последна цена: {last_p:.2f} € / {last_bgn:.2f} лв. – следи се за нова бройка)"
+                    print(f"  ℹ️ [{store:<48}] {last_p:6.2f} € ({last_bgn:6.2f} лв.) | Изчерпан | {note_oos}")
                     new_state[state_key] = previous_state[state_key]
+                    all_results.append(
+                        {
+                            "timestamp": now_str,
+                            "appliance_id": app_id,
+                            "appliance_name": app_name,
+                            "store": store,
+                            "url": url,
+                            "price_eur": last_p,
+                            "price_bgn": last_bgn,
+                            "october_avg_eur": baseline["october_avg_eur"],
+                            "bf_status": "OUT_OF_STOCK",
+                            "bf_note": note_oos,
+                            "method": method,
+                        }
+                    )
+                else:
+                    print(f"  ⚠️ [{store}] Не бе открита числова цена на страницата (запазва се предходният запис).")
+                    if state_key in previous_state:
+                        new_state[state_key] = previous_state[state_key]
                 continue
 
             price_bgn = round(price_eur * BGN_TO_EUR, 2)
@@ -677,6 +701,9 @@ def main():
             subject = f"📊 Контролен отчет за цените на фурните в София ({now_str})"
 
         html_body = build_email_html(detected_changes, all_results, now_str)
+        preview_path = BASE_DIR / "latest_email_preview.html"
+        preview_path.write_text(html_body, encoding="utf-8")
+        print(f"📧 Генериран е HTML имейл отчет: {preview_path}")
         send_email_alert(subject, html_body)
     else:
         print("\nℹ️ Няма промяна в цените спрямо последната проверка. Имейл не е необходим.")

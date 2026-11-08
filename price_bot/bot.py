@@ -108,24 +108,90 @@ async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
     if not urls or not HAS_NODRIVER:
         return results
     browser = None
+    chrome_proc = None
     try:
         linux_chrome = "/usr/bin/google-chrome"
-        exe_path = linux_chrome if sys.platform.startswith("linux") and Path(linux_chrome).exists() else None
-        browser = await asyncio.wait_for(
-            uc.start(
-                headless=False,
-                sandbox=False,
-                browser_executable_path=exe_path,
-                browser_args=[
-                    "--no-sandbox",
-                    "--disable-setuid-sandbox",
-                    "--disable-dev-shm-usage",
-                    "--disable-gpu",
-                    "--window-size=1280,960",
-                ],
-            ),
-            timeout=25,
-        )
+        if sys.platform.startswith("linux") and Path(linux_chrome).exists():
+            import socket
+            import subprocess
+            import tempfile
+            import time
+
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.bind(("127.0.0.1", 0))
+                debug_port = s.getsockname()[1]
+
+            profile_dir = tempfile.mkdtemp(prefix="uc_chrome_")
+            chrome_cmd = [
+                linux_chrome,
+                "--remote-debugging-host=127.0.0.1",
+                f"--remote-debugging-port={debug_port}",
+                f"--user-data-dir={profile_dir}",
+                "--remote-allow-origins=*",
+                "--no-first-run",
+                "--no-service-autorun",
+                "--no-default-browser-check",
+                "--homepage=about:blank",
+                "--no-pings",
+                "--password-store=basic",
+                "--disable-infobars",
+                "--disable-breakpad",
+                "--disable-dev-shm-usage",
+                "--disable-session-crashed-bubble",
+                "--disable-search-engine-choice-screen",
+                "--disable-features=IsolateOrigins,site-per-process",
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-gpu",
+                "--window-size=1280,960",
+                "about:blank",
+            ]
+            chrome_proc = subprocess.Popen(
+                chrome_cmd,
+                stdin=subprocess.DEVNULL,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.PIPE,
+            )
+            ready = False
+            for _ in range(30):
+                if chrome_proc.poll() is not None:
+                    err_out = (
+                        chrome_proc.stderr.read().decode("utf-8", errors="replace")
+                        if chrome_proc.stderr
+                        else ""
+                    )
+                    print(f"  ⚠️ Chrome процесът спря преждевременно: {err_out[:400]}")
+                    break
+                try:
+                    r = requests.get(f"http://127.0.0.1:{debug_port}/json/version", timeout=1)
+                    if r.status_code == 200:
+                        ready = True
+                        break
+                except Exception:
+                    pass
+                time.sleep(0.5)
+            if ready:
+                browser = await asyncio.wait_for(
+                    uc.start(host="127.0.0.1", port=debug_port),
+                    timeout=15,
+                )
+            else:
+                raise RuntimeError("Chrome DevTools портът не стана активен в рамките на 15 сек.")
+        else:
+            browser = await asyncio.wait_for(
+                uc.start(
+                    headless=False,
+                    sandbox=False,
+                    browser_args=[
+                        "--no-sandbox",
+                        "--disable-setuid-sandbox",
+                        "--disable-dev-shm-usage",
+                        "--disable-gpu",
+                        "--window-size=1280,960",
+                    ],
+                ),
+                timeout=25,
+            )
         for u in urls:
             try:
                 html = await asyncio.wait_for(_fetch_single_cf_page(browser, u), timeout=25)
@@ -139,6 +205,11 @@ async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
         if browser:
             try:
                 browser.stop()
+            except Exception:
+                pass
+        if chrome_proc is not None:
+            try:
+                chrome_proc.kill()
             except Exception:
                 pass
         if sys.platform.startswith("linux"):

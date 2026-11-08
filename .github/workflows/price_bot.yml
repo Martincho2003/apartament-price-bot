@@ -55,10 +55,10 @@ jobs:
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           NOTIFY_EMAIL: ${{ secrets.NOTIFY_EMAIL }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force_email }}" = "true" ]; then
-            timeout --kill-after=10s 150s xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" python price_bot/bot.py --force-email > price_bot/last_cloud_run.log 2>&1 || true
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            timeout --kill-after=10s 360s xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" python price_bot/bot.py > price_bot/last_cloud_run.log 2>&1 || true
           else
-            timeout --kill-after=10s 150s xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" python price_bot/bot.py > price_bot/last_cloud_run.log 2>&1 || true
+            timeout --kill-after=10s 360s xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" python price_bot/bot.py --force-email > price_bot/last_cloud_run.log 2>&1 || true
           fi
           cat price_bot/last_cloud_run.log
 

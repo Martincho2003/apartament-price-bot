@@ -82,16 +82,16 @@ def load_dotenv_if_present(env_path: Path) -> None:
 async def _fetch_single_cf_page(browser, u: str) -> str | None:
     """Отваря единична Cloudflare страница с автоматична проверка дали цената вече е видима."""
     page = await browser.get(u)
-    for _attempt in range(3):
-        await page.sleep(4)
+    for _attempt in range(2):
+        await page.sleep(3)
         html = await page.get_content()
         if html:
             p_check, _, m_check = extract_price_and_old_price(html, u)
             if p_check is not None or m_check == "OUT_OF_STOCK":
                 return html
         try:
-            await asyncio.wait_for(page.verify_cf(), timeout=12)
-            await page.sleep(5)
+            await asyncio.wait_for(page.verify_cf(), timeout=10)
+            await page.sleep(4)
             html = await page.get_content()
             if html:
                 p_check, _, m_check = extract_price_and_old_price(html, u)
@@ -103,23 +103,32 @@ async def _fetch_single_cf_page(browser, u: str) -> str | None:
 
 
 async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
-    """Отваря Cloudflare-защитените страници (Technovision, Зора) чрез nodriver + verify_cf()."""
+    """Отваря защитените страници чрез реален Google Chrome (nodriver + verify_cf())."""
     results = {}
     if not urls or not HAS_NODRIVER:
         return results
     browser = None
     try:
+        linux_chrome = "/usr/bin/google-chrome"
+        exe_path = linux_chrome if sys.platform.startswith("linux") and Path(linux_chrome).exists() else None
         browser = await asyncio.wait_for(
             uc.start(
                 headless=False,
                 sandbox=False,
-                browser_args=["--disable-dev-shm-usage", "--disable-gpu", "--window-size=1280,960"],
+                browser_executable_path=exe_path,
+                browser_args=[
+                    "--no-sandbox",
+                    "--disable-setuid-sandbox",
+                    "--disable-dev-shm-usage",
+                    "--disable-gpu",
+                    "--window-size=1280,960",
+                ],
             ),
-            timeout=20,
+            timeout=25,
         )
         for u in urls:
             try:
-                html = await asyncio.wait_for(_fetch_single_cf_page(browser, u), timeout=35)
+                html = await asyncio.wait_for(_fetch_single_cf_page(browser, u), timeout=25)
                 if html:
                     results[u] = html
             except Exception as exc:
@@ -243,7 +252,7 @@ def extract_price_and_old_price(html: str, url: str):
                 old = round(float(m_old.group(1).replace(",", ".")), 2) if m_old else None
                 return cur, old, "TECH2HOME"
 
-    # --- Общи стандартизирани екстрактори (Технополис, Техномаркет, Зора, Техномикс, Техмарт, Практис, Релакс Техно, eMAG) ---
+    # --- Общи стандартизирани екстрактори (Технополис, Техномаркет, Зора, Техномикс, Техмарт, Практис, JAR, eMAG) ---
     current_price = None
     method = "NOT_FOUND"
 
@@ -464,19 +473,19 @@ def build_email_html(changes: list[dict], all_results: list[dict], timestamp_str
                 </tr>
             </thead>
             <tbody>{rows_all}</tbody>
-471:         </table>
-472:     </body>
-473:     </html>
-474:     """
+        </table>
+    </body>
+    </html>
+    """
 
 
 def send_email_alert(subject: str, html_body: str) -> bool:
     """Изпраща имейл чрез SMTP."""
-    smtp_host = os.environ.get("SMTP_HOST", "smtp.gmail.com")
-    smtp_port = int(os.environ.get("SMTP_PORT", "587"))
-    smtp_user = os.environ.get("SMTP_USER", "").strip()
-    smtp_pass = os.environ.get("SMTP_PASS", "").strip()
-    notify_to = os.environ.get("NOTIFY_EMAIL", smtp_user).strip()
+    smtp_host = (os.environ.get("SMTP_HOST") or "smtp.gmail.com").strip()
+    smtp_port = int((os.environ.get("SMTP_PORT") or "587").strip())
+    smtp_user = (os.environ.get("SMTP_USER") or "").strip()
+    smtp_pass = (os.environ.get("SMTP_PASS") or "").strip()
+    notify_to = (os.environ.get("NOTIFY_EMAIL") or smtp_user).strip()
 
     if not smtp_user or not smtp_pass or not notify_to:
         print(
@@ -490,14 +499,23 @@ def send_email_alert(subject: str, html_body: str) -> bool:
     msg["To"] = notify_to
     msg.attach(MIMEText(html_body, "html", "utf-8"))
 
-    with smtplib.SMTP(smtp_host, smtp_port, timeout=20) as server:
-        server.ehlo()
-        server.starttls()
-        server.login(smtp_user, smtp_pass)
-        server.sendmail(smtp_user, [addr.strip() for addr in notify_to.split(",")], msg.as_string())
-
-    print(f"✅ Успешно изпратено имейл известие до {notify_to}!")
-    return True
+    try:
+        with smtplib.SMTP(smtp_host, smtp_port, timeout=20) as server:
+            server.ehlo()
+            server.starttls()
+            try:
+                server.login(smtp_user, smtp_pass)
+            except smtplib.SMTPAuthenticationError:
+                if " " in smtp_pass:
+                    server.login(smtp_user, smtp_pass.replace(" ", ""))
+                else:
+                    raise
+            server.sendmail(smtp_user, [addr.strip() for addr in notify_to.split(",")], msg.as_string())
+        print(f"✅ Успешно изпратено имейл известие до {notify_to}!")
+        return True
+    except Exception as exc:
+        print(f"❌ Грешка при изпращане на имейл чрез {smtp_host}:{smtp_port} за {smtp_user}: {exc}")
+        return False
 
 
 def main():
@@ -523,17 +541,30 @@ def main():
     now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"🚀 Стартиране на проверка на цените в СОФИЯ ({now_str})...")
 
-    # Предварително зареждане на Cloudflare-защитените страници (Technovision и Зора)
-    cf_urls = [
-        entry["url"]
-        for app in config["appliances"]
-        for entry in app["urls"]
-        if any(d in entry["url"].lower() for d in CLOUDFLARE_DOMAINS)
-    ]
+    # Стъпка 1: Бърза проверка с curl_cffi / requests за сайтовете без задължителен Cloudflare Turnstile,
+    # а всички Cloudflare сайтове или върнали 403/511 от чуждестранен облачен IP адрес отиват към реалния Chrome браузър.
     cf_cache = {}
-    if cf_urls and HAS_NODRIVER:
-        print(f"🔓 Отваряне на Cloudflare-защитени сайтове ({len(cf_urls)} линка: Зора, Technovision)...")
-        cf_cache = uc.loop().run_until_complete(fetch_cloudflare_pages_batch(cf_urls))
+    browser_urls = []
+    for app in config["appliances"]:
+        for entry in app["urls"]:
+            u = entry["url"]
+            if any(d in u.lower() for d in CLOUDFLARE_DOMAINS):
+                browser_urls.append(u)
+            else:
+                try:
+                    html = fetch_html_fast(u, {}, timeout=10)
+                    p_test, _, m_test = extract_price_and_old_price(html, u)
+                    if p_test is not None or m_test == "OUT_OF_STOCK":
+                        cf_cache[u] = html
+                    else:
+                        browser_urls.append(u)
+                except Exception:
+                    browser_urls.append(u)
+
+    if browser_urls and HAS_NODRIVER:
+        print(f"🔓 Отваряне на защитени сайтове през реален Chrome браузър ({len(browser_urls)} линка)...")
+        browser_results = uc.loop().run_until_complete(fetch_cloudflare_pages_batch(browser_urls))
+        cf_cache.update(browser_results)
 
     new_state = {}
     all_results = []

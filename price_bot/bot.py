@@ -222,7 +222,7 @@ def extract_price_and_old_price(html: str, url: str):
                 old = round(float(m_old.group(1).replace(",", ".")), 2) if m_old else None
                 return cur, old, "TECH2HOME"
 
-    # --- Общи стандартизирани екстрактори (Технополис, Техномаркет, Зора, Техномикс, Техмарт, Практис, Релакс Техно, eMAG) ---
+    # --- Общи стандартизирани екстрактори (Технополис, Техномаркет, Зора, Техномикс, Техмарт, Практис, JAR, eMAG) ---
     current_price = None
     method = "NOT_FOUND"
 

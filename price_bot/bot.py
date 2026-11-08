@@ -86,7 +86,11 @@ async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
         return results
     browser = None
     try:
-        browser = await uc.start(headless=False)
+        browser = await uc.start(
+            headless=False,
+            sandbox=False,
+            browser_args=["--disable-dev-shm-usage", "--disable-gpu", "--window-size=1280,960"],
+        )
         for u in urls:
             try:
                 page = await browser.get(u)
@@ -169,7 +173,7 @@ def extract_price_and_old_price(html: str, url: str):
 
     # 2. Technovision София (technovision.bg)
     if "technovision.bg" in url_low:
-        summary = soup.select_one(".summary.entry-summary") or soup.select_one(".single-product-wrapper") or soup
+        summary = soup.select_one(".single-product-wrapper") or soup.select_one(".product") or soup
         out_of_stock = summary.select_one("p.stock.out-of-stock") is not None
         box = summary.select_one(".single-product-W-price .electro-price, p.price .electro-price, p.price")
         if box:
@@ -529,7 +533,9 @@ def main():
                 html = fetch_html_fast(url, cf_cache)
                 price_eur, claimed_old_eur, method = extract_price_and_old_price(html, url)
             except Exception as exc:
-                print(f"  ❌ [{store}] Грешка при достъп: {exc}")
+                print(f"  ❌ [{store}] Грешка при достъп: {exc} (запазва се предходният запис).")
+                if state_key in previous_state:
+                    new_state[state_key] = previous_state[state_key]
                 continue
 
             if price_eur is None:

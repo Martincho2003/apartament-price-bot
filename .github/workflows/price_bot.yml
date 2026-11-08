@@ -6,6 +6,13 @@ on:
     - cron: "30 6 * * *"
     # Следобед в 16:30 ч. българско време (14:30 UTC)
     - cron: "30 14 * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/price_bot.yml"
+      - "price_bot/bot.py"
+      - "price_bot/config.json"
   workflow_dispatch:
     inputs:
       force_email:
@@ -47,7 +54,7 @@ jobs:
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           NOTIFY_EMAIL: ${{ secrets.NOTIFY_EMAIL }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force_email }}" = "true" ]; then
+          if [ "${{ github.event_name }}" = "push" ] || ( [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force_email }}" = "true" ] ); then
             xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" python price_bot/bot.py --force-email
           else
             xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" python price_bot/bot.py

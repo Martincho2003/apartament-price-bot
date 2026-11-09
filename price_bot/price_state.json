@@ -19,7 +19,7 @@
     "price_bgn": 584.79,
     "claimed_old_eur": 331.83,
     "bf_status": "REAL_DEAL",
-    "last_checked": "2026-11-09 08:24:53"
+    "last_checked": "2026-11-09 16:42:33"
   },
   "gorenje_bos6737e13x::Зора (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -28,9 +28,9 @@
     "url": "https://zora.bg/product/bos6737e13x-77-push-butoni-a-vodno-pochistvane",
     "price_eur": 332.33,
     "price_bgn": 649.98,
-    "claimed_old_eur": 432.04,
-    "bf_status": "FAKE_DISCOUNT",
-    "last_checked": "2026-11-09 08:24:53"
+    "claimed_old_eur": null,
+    "bf_status": "NORMAL",
+    "last_checked": "2026-11-09 16:42:33"
   },
   "gorenje_bos6737e13x::Техномикс (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -41,7 +41,7 @@
     "price_bgn": 595.59,
     "claimed_old_eur": null,
     "bf_status": "NORMAL",
-    "last_checked": "2026-11-09 08:24:53"
+    "last_checked": "2026-11-09 16:42:33"
   },
   "gorenje_bos6737e13x::Техмарт (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -52,7 +52,7 @@
     "price_bgn": 584.79,
     "claimed_old_eur": null,
     "bf_status": "REAL_DEAL",
-    "last_checked": "2026-11-09 08:24:53"
+    "last_checked": "2026-11-09 16:42:33"
   },
   "gorenje_bos6737e13x::eMAG Шоурум (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -74,7 +74,7 @@
     "price_bgn": 649.0,
     "claimed_old_eur": null,
     "bf_status": "NORMAL",
-    "last_checked": "2026-11-09 08:24:53"
+    "last_checked": "2026-11-09 16:42:33"
   },
   "gorenje_bos6737e13x::Вимакс (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -85,7 +85,7 @@
     "price_bgn": 649.34,
     "claimed_old_eur": null,
     "bf_status": "NORMAL",
-    "last_checked": "2026-11-09 08:24:53"
+    "last_checked": "2026-11-09 16:42:33"
   },
   "gorenje_bps6737e14x::Технополис (София)": {
     "appliance_id": "gorenje_bps6737e14x",
@@ -107,7 +107,7 @@
     "price_bgn": 741.26,
     "claimed_old_eur": null,
     "bf_status": "REAL_DEAL",
-    "last_checked": "2026-11-09 08:24:53"
+    "last_checked": "2026-11-09 16:42:33"
   },
   "gorenje_bps6737e14x::Техномикс (София)": {
     "appliance_id": "gorenje_bps6737e14x",
@@ -118,7 +118,7 @@
     "price_bgn": 735.94,
     "claimed_old_eur": null,
     "bf_status": "REAL_DEAL",
-    "last_checked": "2026-11-09 08:24:53"
+    "last_checked": "2026-11-09 16:42:33"
   },
   "gorenje_bps6737e14x::Практис МЕГА (София)": {
     "appliance_id": "gorenje_bps6737e14x",
@@ -129,7 +129,7 @@
     "price_bgn": 799.93,
     "claimed_old_eur": null,
     "bf_status": "NORMAL",
-    "last_checked": "2026-11-09 08:24:53"
+    "last_checked": "2026-11-09 16:42:33"
   },
   "aeg_bps33102zm::Technovision София [Транспортен дефект - AEG BPS33102ZM]": {
     "appliance_id": "aeg_bps33102zm",
@@ -151,6 +151,6 @@
     "price_bgn": 949.01,
     "claimed_old_eur": null,
     "bf_status": "ABOVE_OCTOBER",
-    "last_checked": "2026-11-09 08:24:53"
+    "last_checked": "2026-11-09 16:42:33"
   }
 }

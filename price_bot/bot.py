@@ -251,7 +251,7 @@ def normalize_to_eur(val: float, currency_hint: str = "EUR") -> float:
     return round(val, 2)
 
 
-def check_stock_status(soup: BeautifulSoup, url: str) -> tuple[bool, str]:
+def check_stock_status(soup: BeautifulSoup, url: str, raw_html: str = "") -> tuple[bool, str]:
     """
     Проверява дали продуктът е в наличност или изчерпан.
     Връща (is_in_stock: bool, stock_reason: str).
@@ -330,7 +330,27 @@ def check_stock_status(soup: BeautifulSoup, url: str) -> tuple[bool, str]:
             if any(w in txt for w in ["изчерпан", "изчерпано", "няма наличност", "не е наличен", "неналичен"]):
                 return False, f"DOM ({txt[:30]})"
 
+    # 6. eMAG проверки: Строго 'Предлаган и с доставка от: eMAG', отхвърляне на външни маркетплейс търговци
     if "emag.bg" in url_low:
+        seller = None
+        for el in soup.select(".highlight-content, .product-highlight, .product-page-pricing, .product-page-vendor-details, .fs-14"):
+            txt = el.get_text(" ", strip=True)
+            m = re.search(r"Предлаган и с доставка от:?\s*([A-Za-z0-9_.\s-]+?)(?:\s+В наличност|\s+Няма наличност|\s+Гаранция|\s+Други|$)", txt, re.I)
+            if m:
+                seller = m.group(1).strip()
+                break
+        if not seller:
+            vendor_link = soup.select_one('a[href*="/v?ref=see_vendor_page"], a.dotted-link[href*="/v?"]')
+            if vendor_link:
+                seller = vendor_link.get_text(strip=True)
+        if not seller and raw_html:
+            m2 = re.search(r"Предлаган и с доставка от:?\s*(?:<[^>]+>\s*)*([A-Za-z0-9_.\s-]+?)(?:\s*<|\s+В наличност)", raw_html, re.I)
+            if m2:
+                seller = m2.group(1).strip()
+
+        if seller and seller.lower() != "emag":
+            return False, f"eMAG (Маркетплейс търговец: {seller}, игнориран - следи се само директно от eMAG)"
+
         if soup.select_one(".label-out_of_stock") or soup.select_one(".label-out-of-stock"):
             return False, "eMAG (Изчерпана наличност)"
         pricing_block = soup.select_one(".product-page-pricing") or soup.select_one(".pricing-block")
@@ -349,7 +369,7 @@ def extract_price_and_old_price(html: str, url: str) -> tuple[float | None, floa
     """
     soup = BeautifulSoup(html, "html.parser")
     url_low = url.lower()
-    is_in_stock, stock_reason = check_stock_status(soup, url)
+    is_in_stock, stock_reason = check_stock_status(soup, url, raw_html=html)
 
     # --- Специализирани парсери за софийските магазини за транспортни дефекти и вериги ---
 

@@ -14,7 +14,7 @@
     "Зора София (zora.bg)",
     "Техномикс София - бул. Европа / Околовръстен път (tehnomix.bg)",
     "Техмарт София - Симеоновско шосе / Люлин (techmart.bg)",
-    "eMAG Шоуруми София - Сердика / Парадайс (emag.bg)",
+    "eMAG Шоуруми София - Сердика / Парадайс (emag.bg) [Само оферти директно от eMAG]",
     "Практис София МЕГА - Ботевградско шосе 272 (praktis.bg)",
     "Вимакс София - Младост / Люлин / Каблешков (vimax.bg)",
     "Technovision София - бул. Черни връх 47 [Транспортни дефекти] (technovision.bg)",
@@ -22,15 +22,85 @@
   ],
   "appliances": [
     {
+      "id": "gorenje_bps6747a06x",
+      "category": "Фурна за вграждане",
+      "name": "Gorenje BPS6747A06X (77 л, IconTouch, BakeSensor термосонда, 22 AutoBake програми, Пиролиза, A+)",
+      "step2_baseline": {
+        "october_avg_eur": 369.00,
+        "november_initial_avg_eur": 349.00,
+        "real_regular_price_eur": 379.00,
+        "target_deal_trigger_eur": 349.00,
+        "target_deal_trigger_defect_eur": 310.00,
+        "fake_crossed_out_price_threshold_eur": 399.00
+      },
+      "urls": [
+        {
+          "store": "Техномаркет (София)",
+          "url": "https://www.technomarket.bg/furni/gorenje-bps6747a06x-09201197"
+        },
+        {
+          "store": "Практис МЕГА (София)",
+          "url": "https://praktis.bg/furna-za-vgrazhdane-gorenje-bps6747a06x-icontouch-77l"
+        },
+        {
+          "store": "Техномикс (София)",
+          "url": "https://www.tehnomix.bg/furna-za-vgrazhdane-gorenje-bps6747a06x"
+        },
+        {
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Furni-za-vgrazhdane/Furna-za-vgrazhdane-GORENJE-BPS6747A06X/p/651512"
+        },
+        {
+          "store": "eMAG Шоурум (София)",
+          "url": "https://www.emag.bg/furna-za-vgrazhdane-gorenje-pirolitichno-pochistvane-77-l-energien-klas-c-inox-bps6747a06x/pd/DV1XYSMBM/"
+        }
+      ]
+    },
+    {
+      "id": "gorenje_bps6737e14x",
+      "category": "Фурна за вграждане",
+      "name": "Gorenje BPS6737E14X / BPS6737E04DBG (77 л, Пиролиза, Push-Pull, 4-слойно стъкло, A+)",
+      "step2_baseline": {
+        "october_avg_eur": 407.40,
+        "november_initial_avg_eur": 389.00,
+        "real_regular_price_eur": 409.00,
+        "target_deal_trigger_eur": 379.00,
+        "target_deal_trigger_defect_eur": 340.00,
+        "fake_crossed_out_price_threshold_eur": 420.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Furni-za-vgrazhdane/Furna-za-vgrazhdane-GORENJE-BPS6737E14X/p/651513"
+        },
+        {
+          "store": "Техномаркет (София)",
+          "url": "https://www.technomarket.bg/furni/gorenje-bps6737e14x-09213573"
+        },
+        {
+          "store": "Техномикс (София)",
+          "url": "https://www.tehnomix.bg/furna-za-vgrazhdane-gorenje-bps6737e14x"
+        },
+        {
+          "store": "Практис МЕГА (София) [Инокс 14X]",
+          "url": "https://praktis.bg/furna-za-vgrazhdane-gorenje-bps6737e14x-inoks-77l"
+        },
+        {
+          "store": "Практис МЕГА (София) [Черна E04DBG]",
+          "url": "https://praktis.bg/furna-za-vgrazhdane-gorenje-bps6737e04dbg"
+        }
+      ]
+    },
+    {
       "id": "gorenje_bos6737e13x",
       "category": "Фурна за вграждане",
-      "name": "Gorenje BOS6737E13X (77 л, AquaClean, AirFry, Pizza 300°C)",
+      "name": "Gorenje BOS6737E13X / BOS6737E06FBG (77 л, AquaClean, AirFry, Pizza 300°C)",
       "step2_baseline": {
         "october_avg_eur": 334.17,
         "november_initial_avg_eur": 308.30,
         "real_regular_price_eur": 331.83,
         "target_deal_trigger_eur": 299.00,
-        "target_deal_trigger_defect_eur": 270.00,
+        "target_deal_trigger_defect_eur": 260.00,
         "fake_crossed_out_price_threshold_eur": 345.00
       },
       "urls": [
@@ -55,54 +125,27 @@
           "url": "https://techmart.bg/furna-za-vgrazhdane-gorenje-bos6737e13x"
         },
         {
-          "store": "eMAG Шоурум (София)",
-          "url": "https://www.emag.bg/furna-za-vgrazhdane-gorenje-elektricheska-airfry-gotvene-s-para-12-funkcii-teleskopichen-raft-77-l-klas-a-inox-bos6737e13x/pd/D61XYSMBM/"
+          "store": "Практис МЕГА (София) [Инокс 13X]",
+          "url": "https://praktis.bg/furna-za-vgrazhdane-s-para-gorenje-bos6737e13x-77l"
         },
         {
-          "store": "Практис МЕГА (София)",
-          "url": "https://praktis.bg/furna-za-vgrazhdane-s-para-gorenje-bos6737e13x-77l"
+          "store": "Практис МЕГА (София) [Черна E06FBG]",
+          "url": "https://praktis.bg/furna-za-vgrazhdane-gorenje-bos6737e06fbg"
         },
         {
           "store": "Вимакс (София)",
           "url": "https://vimax.bg/furna-za-vgrajdane-gorenje-bos6737e13x.html"
-        }
-      ]
-    },
-    {
-      "id": "gorenje_bps6737e14x",
-      "category": "Фурна за вграждане",
-      "name": "Gorenje BPS6737E14X (77 л, Пиролиза, 4-слойно стъкло, A+)",
-      "step2_baseline": {
-        "october_avg_eur": 407.40,
-        "november_initial_avg_eur": 389.00,
-        "real_regular_price_eur": 409.00,
-        "target_deal_trigger_eur": 379.00,
-        "target_deal_trigger_defect_eur": 355.00,
-        "fake_crossed_out_price_threshold_eur": 420.00
-      },
-      "urls": [
-        {
-          "store": "Технополис (София)",
-          "url": "https://www.technopolis.bg/bg/Furni-za-vgrazhdane/Furna-za-vgrazhdane-GORENJE-BPS6737E14X/p/651513"
         },
         {
-          "store": "Техномаркет (София)",
-          "url": "https://www.technomarket.bg/furni/gorenje-bps6737e14x-09213573"
-        },
-        {
-          "store": "Техномикс (София)",
-          "url": "https://www.tehnomix.bg/furna-za-vgrazhdane-gorenje-bps6737e14x"
-        },
-        {
-          "store": "Практис МЕГА (София)",
-          "url": "https://praktis.bg/furna-za-vgrazhdane-gorenje-bps6737e14x-inoks-77l"
+          "store": "eMAG Шоурум (София)",
+          "url": "https://www.emag.bg/furna-za-vgrazhdane-gorenje-elektricheska-airfry-gotvene-s-para-12-funkcii-teleskopichen-raft-77-l-klas-a-inox-bos6737e13x/pd/D61XYSMBM/"
         }
       ]
     },
     {
       "id": "aeg_bps33102zm",
       "category": "Фурна за вграждане",
-      "name": "AEG Серия 6000 / BPS33102ZM (72 л, Пиролиза Pyroluxe®Plus)",
+      "name": "AEG BPS33102ZM (72 л, Пиролиза Pyroluxe®Plus, SurroundCook, Anti-Fingerprint)",
       "step2_baseline": {
         "october_avg_eur": 397.40,
         "november_initial_avg_eur": 391.94,
@@ -123,212 +166,214 @@
       ]
     },
     {
-      "id": "gorenje_gs541d10x",
-      "category": "Миялна машина (45 см)",
-      "name": "Gorenje GS541D10X / GS541D10W (45 см, 11 комплекта, инвертор, TotalDry)",
+      "id": "siemens_hb571abs3",
+      "category": "Фурна за вграждане",
+      "name": "Siemens iQ300 HB571ABS3 (71 л, activeClean пиролиза, 3D въздух, Stiftung Warentest GUT 2.0)",
       "step2_baseline": {
-        "october_avg_eur": 359.00,
-        "november_initial_avg_eur": 344.00,
-        "real_regular_price_eur": 355.00,
-        "target_deal_trigger_eur": 310.00,
-        "target_deal_trigger_defect_eur": 270.00,
-        "fake_crossed_out_price_threshold_eur": 370.00
+        "october_avg_eur": 700.00,
+        "november_initial_avg_eur": 540.00,
+        "real_regular_price_eur": 700.00,
+        "target_deal_trigger_eur": 590.00,
+        "target_deal_trigger_defect_eur": 540.00,
+        "fake_crossed_out_price_threshold_eur": 720.00
+      },
+      "urls": [
+        {
+          "store": "Technovision София [Транспортен дефект]",
+          "url": "https://technovision.bg/produkt/biala-tehnika/furni/furna-siemens-iq300-hb571abs3-iq300-s-piroliza-cookcontrol10-3d-goresht-vuzduh/"
+        }
+      ]
+    },
+    {
+      "id": "aeg_ffb73527zm",
+      "category": "Миялна машина (45 см)",
+      "name": "AEG FFB73527ZM (45 см, Inox, 3-та въртяща се таванна перка Deckensprüharm, AirDry, SatelliteClean)",
+      "step2_baseline": {
+        "october_avg_eur": 589.00,
+        "november_initial_avg_eur": 559.00,
+        "real_regular_price_eur": 589.00,
+        "target_deal_trigger_eur": 529.00,
+        "target_deal_trigger_defect_eur": 470.00,
+        "fake_crossed_out_price_threshold_eur": 620.00
       },
       "urls": [
         {
           "store": "Технополис (София)",
-          "url": "https://www.technopolis.bg/bg/Svobodnostoyashti-sadomiyalni/Sadomiyalna-GORENJE-GS541D10X/p/651886"
+          "url": "https://www.technopolis.bg/bg/Svobodnostoyashti-sadomiyalni/Sadomiyalna-AEG-FFB73527ZM/p/652144"
         },
         {
           "store": "Техномаркет (София)",
-          "url": "https://www.technomarket.bg/mialni/gorenje-gs541d10x-09189721"
-        },
-        {
-          "store": "Техмарт (София)",
-          "url": "https://techmart.bg/sydomiqlna-45sm-gorenje-gs541d10x"
+          "url": "https://www.technomarket.bg/mialni/aeg-ffb73527zm-s-avtomatichno-otvarqne-na-vratata-09213249"
         },
         {
           "store": "Зора (София)",
-          "url": "https://zora.bg/product/gs541d10x"
+          "url": "https://zora.bg/product/ffb73527zm"
         },
         {
-          "store": "Техномикс (София)",
-          "url": "https://www.tehnomix.bg/sadomiyalna-gorenje-gs541d10x"
+          "store": "Техмарт (София)",
+          "url": "https://techmart.bg/sydomiqlna-45sm-aeg-ffb73527zm"
         },
         {
           "store": "eMAG Шоурум (София)",
-          "url": "https://www.emag.bg/sydomijalna-gorenje-gs541d10x-11-komplekta-klas-d-45-sm-neryzhdaema-stomana-737489/pd/DRP52KMBM/"
-        },
-        {
-          "store": "Практис МЕГА (София)",
-          "url": "https://praktis.bg/svobodnostoyashta-sadomiyalna-gorenje-gs541d10x-45sm"
+          "url": "https://www.emag.bg/sydomijalna-aeg-10-komplekta-9-programi-invertoren-motor-klas-d-airdry-pro-clean-digitalen-displej-neryzhdaema-stomana-ffb73527zm/pd/D5VQGRMBM/"
         }
       ]
     },
     {
-      "id": "beko_bdfs26120xq",
+      "id": "haier_xf_1c3tb1",
       "category": "Миялна машина (45 см)",
-      "name": "Beko BDFS26120XQ / BDFS26120WQ / BDFS26046XQ (45 см, 11 комплекта, AquaIntense)",
+      "name": "Haier XF 1C3TB1 FW / FX (45 см, Клас C, Auto Open Door, 11 компл., 43 dB, Wi-Fi hOn)",
       "step2_baseline": {
-        "october_avg_eur": 415.00,
-        "november_initial_avg_eur": 409.00,
-        "real_regular_price_eur": 415.00,
-        "target_deal_trigger_eur": 370.00,
-        "target_deal_trigger_defect_eur": 330.00,
-        "fake_crossed_out_price_threshold_eur": 440.00
+        "october_avg_eur": 449.00,
+        "november_initial_avg_eur": 429.00,
+        "real_regular_price_eur": 449.00,
+        "target_deal_trigger_eur": 399.00,
+        "target_deal_trigger_defect_eur": 350.00,
+        "fake_crossed_out_price_threshold_eur": 470.00
       },
       "urls": [
         {
-          "store": "Технополис (София) [Инокс]",
-          "url": "https://www.technopolis.bg/bg/Svobodnostoyashti-sadomiyalni/Sadomiyalna-BEKO-BDFS-26120-XQ/p/680792"
+          "store": "Технополис (София) [Бяла FW]",
+          "url": "https://www.technopolis.bg/bg/Svobodnostoyashti-sadomiyalni/Sadomiyalna-HAIER-XF-1C3TB1-FW/p/654484"
         },
         {
-          "store": "Технополис (София) [Бяла]",
-          "url": "https://www.technopolis.bg/bg/Svobodnostoyashti-sadomiyalni/Sadomiyalna-BEKO-BDFS-26120-WQ/p/680786"
+          "store": "Технополис (София) [Инокс FX]",
+          "url": "https://www.technopolis.bg/bg/Svobodnostoyashti-sadomiyalni/Sadomiyalna-HAIER-XF-1-C3TB1-FX/p/652944"
         },
         {
-          "store": "eMAG Шоурум (София) [Бяла BDFS26120WQ]",
-          "url": "https://www.emag.bg/sydomijalna-beko-11-komplekta-klas-e-aquaintense-45-sm-bjal-bdfs26120wq/pd/D5VRQXYBM/"
-        },
-        {
-          "store": "eMAG Шоурум (София) [Инокс BDFS26046XQ]",
-          "url": "https://www.emag.bg/sydomijalna-beko-10-komplekta-6-programi-klas-c-prosmart-inverter-motor-timedelay-aquaintense-45-sm-inox-bdfs26046xq/pd/D7W1FQMBM/"
+          "store": "eMAG Шоурум (София) [Бяла FW]",
+          "url": "https://www.emag.bg/sydomijalna-mashina-haier-i-pro-shine-5-xf1c3tb1fw-11-komplekta-bjala-44-8x84-6x60-5sm-6925777875054/pd/D3YR143BM/"
         }
       ]
     },
     {
-      "id": "bosch_sps4hmw49e",
-      "category": "Миялна машина (45 см)",
-      "name": "Bosch Serie 4 SPS4HMW49E / SPS4HMI49E (45 см, Silence Plus, Home Connect)",
+      "id": "bosch_kge49aica",
+      "category": "Хладилник с фризер (70 см)",
+      "name": "Bosch Serie 6 KGE49AICA (70.0 x 65.0 x 201.0 см, 419 л, LowFrost, VitaFresh 0°C, Клас C)",
       "step2_baseline": {
-        "october_avg_eur": 489.00,
-        "november_initial_avg_eur": 454.00,
-        "real_regular_price_eur": 479.00,
-        "target_deal_trigger_eur": 430.00,
-        "target_deal_trigger_defect_eur": 390.00,
-        "fake_crossed_out_price_threshold_eur": 520.00
+        "october_avg_eur": 827.00,
+        "november_initial_avg_eur": 800.00,
+        "real_regular_price_eur": 827.00,
+        "target_deal_trigger_eur": 769.00,
+        "target_deal_trigger_defect_eur": 680.00,
+        "fake_crossed_out_price_threshold_eur": 870.00
       },
       "urls": [
         {
           "store": "Технополис (София)",
-          "url": "https://www.technopolis.bg/bg/Svobodnostoyashti-sadomiyalni/Sadomiyalna-BOSCH-SPS4HMW49E/p/653358"
+          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-BOSCH-KGE49AICA/p/662866"
+        },
+        {
+          "store": "Зора (София)",
+          "url": "https://zora.bg/product/kge49aica"
+        },
+        {
+          "store": "Техномикс (София)",
+          "url": "https://www.tehnomix.bg/hladilnik-s-frizer-bosch-kge49aica"
         },
         {
           "store": "eMAG Шоурум (София)",
-          "url": "https://www.emag.bg/sydomijalna-bosch-10-komplekta-6-programi-home-connect-ecosilence-drive-extradry-tab-count-silence-plus-rackmatic-sistema-klas-e-45-sm-bjal-sps4hmw49e/pd/DRXMY5YBM/"
+          "url": "https://www.emag.bg/hladilnik-s-frizer-bosch-419-l-klas-c-low-frost-vitafresh-h-201-sm-inox-s-pokritie-protiv-otpechatyci-kge49aica/pd/DFYKW2MBM/"
+        }
+      ]
+    },
+    {
+      "id": "bosch_kgn49xlea",
+      "category": "Хладилник с фризер (70 см)",
+      "name": "Bosch Serie 4 KGN49XLEA (70.0 x 66.7 x 203.0 см, 438 л, NoFrost, VitaFresh XXL, Клас E)",
+      "step2_baseline": {
+        "october_avg_eur": 879.00,
+        "november_initial_avg_eur": 849.00,
+        "real_regular_price_eur": 879.00,
+        "target_deal_trigger_eur": 829.00,
+        "target_deal_trigger_defect_eur": 740.00,
+        "fake_crossed_out_price_threshold_eur": 920.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-BOSCH-KGN49XLEA/p/662825"
+        },
+        {
+          "store": "Зора (София)",
+          "url": "https://zora.bg/product/kgn49xlea-438-l-e-no-frost-inoks"
+        },
+        {
+          "store": "Техномикс (София)",
+          "url": "https://www.tehnomix.bg/hladilnik-s-frizer-bosch-kgn49xlea"
+        },
+        {
+          "store": "eMAG Шоурум (София)",
+          "url": "https://www.emag.bg/hladilnik-s-frizer-bosch-435-l-klas-e-nofrost-vitafresh-h-203-sm-srebrist-kgn49xlea/pd/D9F772MBM/"
+        }
+      ]
+    },
+    {
+      "id": "haier_hfr7720dwmp",
+      "category": "Хладилник с фризер (70 см)",
+      "name": "Haier FD 70 Series 7 HFR 7720 DWMP (French Door 4 нива, 70.0 x 67.5 x 200.6 см, 477 л, Total No Frost)",
+      "step2_baseline": {
+        "october_avg_eur": 1022.00,
+        "november_initial_avg_eur": 949.00,
+        "real_regular_price_eur": 1022.00,
+        "target_deal_trigger_eur": 899.00,
+        "target_deal_trigger_defect_eur": 800.00,
+        "fake_crossed_out_price_threshold_eur": 1080.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-HAIER-HFR-7720-DWMP/p/651876"
+        },
+        {
+          "store": "eMAG Шоурум (София)",
+          "url": "https://www.emag.bg/hladilnik-s-frizer-haier-477-l-no-frost-air-surround-humidity-zone-my-zone-dispensyr-za-voda-supercooling-superfreezing-raft-za-butilki-klas-d-h-201-sm-stainless-steel-hfr7720dwmp/pd/DXJHG3YBM/"
+        }
+      ]
+    },
+    {
+      "id": "lg_gbbw726cev",
+      "category": "Хладилник с фризер (70 см)",
+      "name": "LG GBBW726CEV (Черен мат, 69.7 x 70.4 x 203.0 см, 465 л, DoorCooling+, 35 dB, Клас C)",
+      "step2_baseline": {
+        "october_avg_eur": 999.00,
+        "november_initial_avg_eur": 949.00,
+        "real_regular_price_eur": 999.00,
+        "target_deal_trigger_eur": 910.00,
+        "target_deal_trigger_defect_eur": 820.00,
+        "fake_crossed_out_price_threshold_eur": 1050.00
+      },
+      "urls": [
+        {
+          "store": "Техномаркет (София)",
+          "url": "https://www.technomarket.bg/hladilnitzi/lg-gbbw726cev-09240403"
         },
         {
           "store": "Техмарт (София)",
-          "url": "https://techmart.bg/sydomiqlna-45sm-bosch-sps4hmw49e"
-        },
-        {
-          "store": "Техномикс (София) [Бяла]",
-          "url": "https://www.tehnomix.bg/sadomiyalna-bosch-sps4hmw49e-45-sm"
-        },
-        {
-          "store": "Техномикс (София) [Инокс]",
-          "url": "https://www.tehnomix.bg/sadomiyalna-bosch-sps4hmi49e"
-        },
-        {
-          "store": "Релакс Техно София [Транспортен дефект - Бяла]",
-          "url": "https://www.relaxbg.org/p/sadomialna-bosch-sps4hmw13e/"
-        },
-        {
-          "store": "Релакс Техно София [Транспортен дефект - Инокс]",
-          "url": "https://www.relaxbg.org/p/sadomialna-bosch-sps4hmi13e/"
+          "url": "https://techmart.bg/hladilnik-s-frizer-lg-gbbw726cev"
         }
       ]
     },
     {
-      "id": "midea_mdrb424fge02oe",
-      "category": "Хладилник с фризер",
-      "name": "Midea MDRB424FGE02OE / MDRB424FGE01OE (188 см, NoFrost, Дълбочина 63.0 см)",
+      "id": "beko_b3rcne564hdxb1",
+      "category": "Хладилник с фризер (70 см)",
+      "name": "Beko Beyond B3RCNE564HDXB1 / B3RCNE564HXBR (70.0 x 74.5 x 192.0 см, 490 л, AeroFlow Total No Frost, HarvestFresh)",
       "step2_baseline": {
-        "october_avg_eur": 379.00,
-        "november_initial_avg_eur": 378.00,
-        "real_regular_price_eur": 379.00,
-        "target_deal_trigger_eur": 350.00,
-        "target_deal_trigger_defect_eur": 310.00,
-        "fake_crossed_out_price_threshold_eur": 410.00
+        "october_avg_eur": 779.00,
+        "november_initial_avg_eur": 715.00,
+        "real_regular_price_eur": 779.00,
+        "target_deal_trigger_eur": 650.00,
+        "target_deal_trigger_defect_eur": 580.00,
+        "fake_crossed_out_price_threshold_eur": 820.00
       },
       "urls": [
         {
-          "store": "Технополис (София) [Инокс]",
-          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-MIDEA-MDRB424FGE02OE/p/653264"
-        },
-        {
-          "store": "Технополис (София) [Бял]",
-          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-MIDEA-MDRB424FGE01OE/p/653263"
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-BEKO-B3RCNE-564-HDXB1/p/654251"
         },
         {
           "store": "eMAG Шоурум (София)",
-          "url": "https://www.emag.bg/hladilnik-s-frizer-midea-energien-klas-e-kapacitet-310-l-ledogenerator-nofrost-m-188-sm-inoks-mdrb424fge02i/pd/DP9X2MYBM/"
-        }
-      ]
-    },
-    {
-      "id": "gorenje_nrk619epxl4",
-      "category": "Хладилник с фризер",
-      "name": "Gorenje NRK619EPXL4 / NRK619EABXL4 / NRK6192AXL4 (185 см, Дълбочина 59.2 см SlotIn)",
-      "step2_baseline": {
-        "october_avg_eur": 495.00,
-        "november_initial_avg_eur": 450.00,
-        "real_regular_price_eur": 495.00,
-        "target_deal_trigger_eur": 430.00,
-        "target_deal_trigger_defect_eur": 380.00,
-        "fake_crossed_out_price_threshold_eur": 550.00
-      },
-      "urls": [
-        {
-          "store": "Техномикс (София) [Инокс]",
-          "url": "https://www.tehnomix.bg/hladilnik-s-frizer-gorenje-nrk619epxl4"
-        },
-        {
-          "store": "Техномаркет (София) [Инокс]",
-          "url": "https://www.technomarket.bg/hladilnitzi/gorenje-nrk619epxl4-09221321"
-        },
-        {
-          "store": "Техномикс (София) [Черен]",
-          "url": "https://www.tehnomix.bg/hladilnik-s-frizer-gorenje-nrk619eabxl4"
-        },
-        {
-          "store": "Техномаркет (София) [Черен]",
-          "url": "https://www.technomarket.bg/hladilnitzi/gorenje-nrk619eabxl4-09206479"
-        },
-        {
-          "store": "Технополис (София) [Черен]",
-          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-GORENJE-NRK619EABXL4/p/702454"
-        },
-        {
-          "store": "Технополис (София) [Инокс]",
-          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-GORENJE-NRK6192AXL4/p/651494"
-        },
-        {
-          "store": "Зора (София) [Инокс с диспенсър]",
-          "url": "https://zora.bg/product/nrk619eaxl4wd"
-        }
-      ]
-    },
-    {
-      "id": "aeg_rcb736e5mx",
-      "category": "Хладилник с фризер",
-      "name": "AEG RCB736E5MX / Bosch KGV36VBEAS (Дълбочина ≤ 65.0 см, TwinTech NoFrost / LowFrost)",
-      "step2_baseline": {
-        "october_avg_eur": 780.00,
-        "november_initial_avg_eur": 788.00,
-        "real_regular_price_eur": 780.00,
-        "target_deal_trigger_eur": 720.00,
-        "target_deal_trigger_defect_eur": 580.00,
-        "fake_crossed_out_price_threshold_eur": 850.00
-      },
-      "urls": [
-        {
-          "store": "Technovision София [Транспортен дефект - Bosch Serie 4 KGV36VBEAS]",
-          "url": "https://technovision.bg/produkt/hladilnik-s-frizer-bosch-kgv36vbeas/"
-        },
-        {
-          "store": "Техномикс (София) [AEG TwinTech NoFrost RCB736E5MX]",
-          "url": "https://www.tehnomix.bg/hladilnik-s-frizer-aeg-rcb736e5mx"
+          "url": "https://www.emag.bg/hladilnik-beko-b3rcne564hxbr-490-l-no-frost-v-192-sm-senzorno-upravlenie-obryshtashti-se-vrati-klas-e-tymen-inoks-271328/pd/DCSYCN3BM/"
         }
       ]
     }

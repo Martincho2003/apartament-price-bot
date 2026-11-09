@@ -8,7 +8,9 @@
     "price_bgn": 586.55,
     "claimed_old_eur": null,
     "bf_status": "NORMAL",
-    "last_checked": "2026-11-08 23:21:54"
+    "is_in_stock": true,
+    "stock_reason": "JSON-LD (instock)",
+    "last_checked": "2026-11-09 20:56:45"
   },
   "gorenje_bos6737e13x::Техномаркет (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -19,7 +21,9 @@
     "price_bgn": 584.79,
     "claimed_old_eur": 331.83,
     "bf_status": "REAL_DEAL",
-    "last_checked": "2026-11-09 16:42:33"
+    "is_in_stock": true,
+    "stock_reason": "IN_STOCK",
+    "last_checked": "2026-11-09 20:56:45"
   },
   "gorenje_bos6737e13x::Зора (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -29,8 +33,10 @@
     "price_eur": 332.33,
     "price_bgn": 649.98,
     "claimed_old_eur": null,
-    "bf_status": "NORMAL",
-    "last_checked": "2026-11-09 16:42:33"
+    "bf_status": "OUT_OF_STOCK",
+    "is_in_stock": false,
+    "stock_reason": "JSON-LD (outofstock)",
+    "last_checked": "2026-11-09 20:56:01"
   },
   "gorenje_bos6737e13x::Техномикс (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -41,7 +47,9 @@
     "price_bgn": 595.59,
     "claimed_old_eur": null,
     "bf_status": "NORMAL",
-    "last_checked": "2026-11-09 16:42:33"
+    "is_in_stock": true,
+    "stock_reason": "JSON-LD (instock)",
+    "last_checked": "2026-11-09 20:56:45"
   },
   "gorenje_bos6737e13x::Техмарт (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -52,7 +60,9 @@
     "price_bgn": 584.79,
     "claimed_old_eur": null,
     "bf_status": "REAL_DEAL",
-    "last_checked": "2026-11-09 16:42:33"
+    "is_in_stock": true,
+    "stock_reason": "JSON-LD (instock)",
+    "last_checked": "2026-11-09 20:56:45"
   },
   "gorenje_bos6737e13x::eMAG Шоурум (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -63,7 +73,9 @@
     "price_bgn": 627.0,
     "claimed_old_eur": null,
     "bf_status": "NORMAL",
-    "last_checked": "2026-11-08 23:21:54"
+    "is_in_stock": true,
+    "stock_reason": "IN_STOCK",
+    "last_checked": "2026-11-09 20:56:45"
   },
   "gorenje_bos6737e13x::Практис МЕГА (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -74,7 +86,9 @@
     "price_bgn": 649.0,
     "claimed_old_eur": null,
     "bf_status": "NORMAL",
-    "last_checked": "2026-11-09 16:42:33"
+    "is_in_stock": true,
+    "stock_reason": "JSON-LD (instock)",
+    "last_checked": "2026-11-09 20:56:45"
   },
   "gorenje_bos6737e13x::Вимакс (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -85,7 +99,9 @@
     "price_bgn": 649.34,
     "claimed_old_eur": null,
     "bf_status": "NORMAL",
-    "last_checked": "2026-11-09 16:42:33"
+    "is_in_stock": true,
+    "stock_reason": "IN_STOCK",
+    "last_checked": "2026-11-09 20:56:45"
   },
   "gorenje_bps6737e14x::Технополис (София)": {
     "appliance_id": "gorenje_bps6737e14x",
@@ -96,7 +112,9 @@
     "price_bgn": 778.42,
     "claimed_old_eur": null,
     "bf_status": "NORMAL",
-    "last_checked": "2026-11-08 23:21:54"
+    "is_in_stock": true,
+    "stock_reason": "JSON-LD (instock)",
+    "last_checked": "2026-11-09 20:56:45"
   },
   "gorenje_bps6737e14x::Техномаркет (София)": {
     "appliance_id": "gorenje_bps6737e14x",
@@ -107,7 +125,9 @@
     "price_bgn": 741.26,
     "claimed_old_eur": null,
     "bf_status": "REAL_DEAL",
-    "last_checked": "2026-11-09 16:42:33"
+    "is_in_stock": true,
+    "stock_reason": "IN_STOCK",
+    "last_checked": "2026-11-09 20:56:45"
   },
   "gorenje_bps6737e14x::Техномикс (София)": {
     "appliance_id": "gorenje_bps6737e14x",
@@ -117,8 +137,10 @@
     "price_eur": 376.28,
     "price_bgn": 735.94,
     "claimed_old_eur": null,
-    "bf_status": "REAL_DEAL",
-    "last_checked": "2026-11-09 16:42:33"
+    "bf_status": "OUT_OF_STOCK",
+    "is_in_stock": false,
+    "stock_reason": "JSON-LD (outofstock)",
+    "last_checked": "2026-11-09 20:56:45"
   },
   "gorenje_bps6737e14x::Практис МЕГА (София)": {
     "appliance_id": "gorenje_bps6737e14x",
@@ -128,8 +150,10 @@
     "price_eur": 409.0,
     "price_bgn": 799.93,
     "claimed_old_eur": null,
-    "bf_status": "NORMAL",
-    "last_checked": "2026-11-09 16:42:33"
+    "bf_status": "OUT_OF_STOCK",
+    "is_in_stock": false,
+    "stock_reason": "JSON-LD (outofstock)",
+    "last_checked": "2026-11-09 20:56:45"
   },
   "aeg_bps33102zm::Technovision София [Транспортен дефект - AEG BPS33102ZM]": {
     "appliance_id": "aeg_bps33102zm",
@@ -138,9 +162,11 @@
     "url": "https://technovision.bg/produkt/biala-tehnika/furni/furna-aeg-bps33102zm/",
     "price_eur": 298.65,
     "price_bgn": 584.11,
-    "claimed_old_eur": 398.2,
+    "claimed_old_eur": null,
     "bf_status": "OUT_OF_STOCK",
-    "last_checked": "2026-11-08 23:19:50"
+    "is_in_stock": false,
+    "stock_reason": "Technovision (Изчерпано количество)",
+    "last_checked": "2026-11-09 20:56:45"
   },
   "aeg_bps33102zm::Релакс Техно София [Транспортен дефект - AEG BPS33102ZM]": {
     "appliance_id": "aeg_bps33102zm",
@@ -150,7 +176,9 @@
     "price_eur": 485.22,
     "price_bgn": 949.01,
     "claimed_old_eur": null,
-    "bf_status": "ABOVE_OCTOBER",
-    "last_checked": "2026-11-09 16:42:33"
+    "bf_status": "OUT_OF_STOCK",
+    "is_in_stock": false,
+    "stock_reason": "Релакс Техно (Изчерпан)",
+    "last_checked": "2026-11-09 20:56:45"
   }
 }

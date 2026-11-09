@@ -80,26 +80,27 @@ def load_dotenv_if_present(env_path: Path) -> None:
 
 
 async def _fetch_single_cf_page(browser, u: str) -> str | None:
-    """Отваря единична Cloudflare страница с автоматична проверка дали цената вече е видима."""
+    """Отваря единична Cloudflare страница с автоматична проверка дали цената или статусът за наличност вече са видими."""
     page = await browser.get(u)
-    for _attempt in range(2):
+    last_html = None
+    for _attempt in range(3):
         await page.sleep(3)
-        html = await page.get_content()
-        if html:
-            p_check, _, m_check = extract_price_and_old_price(html, u)
-            if p_check is not None or m_check == "OUT_OF_STOCK":
-                return html
+        last_html = await page.get_content()
+        if last_html:
+            p_check, _, _, in_stock, _ = extract_price_and_old_price(last_html, u)
+            if p_check is not None or not in_stock:
+                return last_html
         try:
-            await asyncio.wait_for(page.verify_cf(), timeout=10)
+            await asyncio.wait_for(page.verify_cf(), timeout=12)
             await page.sleep(4)
-            html = await page.get_content()
-            if html:
-                p_check, _, m_check = extract_price_and_old_price(html, u)
-                if p_check is not None or m_check == "OUT_OF_STOCK":
-                    return html
+            last_html = await page.get_content()
+            if last_html:
+                p_check, _, _, in_stock, _ = extract_price_and_old_price(last_html, u)
+                if p_check is not None or not in_stock:
+                    return last_html
         except Exception:
             pass
-    return None
+    return last_html
 
 
 async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
@@ -250,36 +251,109 @@ def normalize_to_eur(val: float, currency_hint: str = "EUR") -> float:
     return round(val, 2)
 
 
-def extract_price_and_old_price(html: str, url: str):
+def check_stock_status(soup: BeautifulSoup, url: str) -> tuple[bool, str]:
     """
-    Връща (current_price_eur, claimed_old_price_eur, extraction_method).
+    Проверява дали продуктът е в наличност или изчерпан.
+    Връща (is_in_stock: bool, stock_reason: str).
+    """
+    url_low = url.lower()
+
+    # 1. Technovision София (technovision.bg)
+    if "technovision.bg" in url_low:
+        summary = soup.select_one(".summary.entry-summary") or soup.select_one(".single-product-wrapper") or soup
+        if summary.select_one("p.stock.out-of-stock") or summary.select_one(".out-of-stock"):
+            return False, "Technovision (Изчерпано количество)"
+
+    # 2. Релакс Техно София (relaxbg.org)
+    if "relaxbg.org" in url_low:
+        if soup.select_one("p.stock.out-of-stock") or soup.select_one(".stock.out-of-stock"):
+            return False, "Релакс Техно (Изчерпан)"
+
+    # 3. Schema.org JSON-LD наличност (Зора, Техномикс, Практис, Релакс и др.)
+    for script in soup.find_all("script", type="application/ld+json"):
+        if not script.string:
+            continue
+        try:
+            data = json.loads(script.string.strip())
+        except Exception:
+            continue
+        items = data if isinstance(data, list) else [data]
+        for it in list(items):
+            if isinstance(it, dict) and "@graph" in it and isinstance(it["@graph"], list):
+                items.extend(it["@graph"])
+        for it in items:
+            if not isinstance(it, dict):
+                continue
+            offers = it.get("offers")
+            if not offers:
+                continue
+            offer_list = offers if isinstance(offers, list) else [offers]
+            for off in offer_list:
+                if not isinstance(off, dict):
+                    continue
+                avail = str(off.get("availability", "")).lower()
+                if any(w in avail for w in ["outofstock", "discontinued", "soldout"]):
+                    tag = avail.split("/")[-1]
+                    return False, f"JSON-LD ({tag})"
+                if any(w in avail for w in ["instock", "in_stock", "preorder"]):
+                    tag = avail.split("/")[-1]
+                    return True, f"JSON-LD ({tag})"
+
+    # 4. Meta тагове за наличност
+    for meta in soup.find_all("meta"):
+        prop = (meta.get("property", "") or meta.get("name", "") or meta.get("itemprop", "")).lower()
+        if prop in ("product:availability", "og:availability", "availability"):
+            val = (meta.get("content") or "").lower()
+            if any(w in val for w in ["oos", "out of stock", "outofstock", "изчерпан"]):
+                return False, f"META ({val})"
+            if any(w in val for w in ["instock", "in stock", "наличен"]):
+                return True, f"META ({val})"
+
+    # 5. DOM селектори за изчерпана наличност (Tehnomix, Praktis и др.)
+    for sel in (
+        ".stock.unavailable",
+        ".stock.out-of-stock",
+        "p.stock.out-of-stock",
+        ".product-info-stock-sku",
+        ".product-unavailable",
+        ".badge-out-of-stock",
+        ".product-out-of-stock",
+    ):
+        for el in soup.select(sel):
+            txt = el.get_text(" ", strip=True).lower()
+            if any(w in txt for w in ["изчерпан", "изчерпано", "няма наличност", "не е наличен", "неналичен"]):
+                return False, f"DOM ({txt[:30]})"
+
+    return True, "IN_STOCK"
+
+
+def extract_price_and_old_price(html: str, url: str) -> tuple[float | None, float | None, str, bool, str]:
+    """
+    Връща (current_price_eur, claimed_old_price_eur, extraction_method, is_in_stock, stock_reason).
     Поддържа всички големи вериги в София + софийските сайтове за транспортни дефекти.
     """
     soup = BeautifulSoup(html, "html.parser")
     url_low = url.lower()
+    is_in_stock, stock_reason = check_stock_status(soup, url)
 
     # --- Специализирани парсери за софийските магазини за транспортни дефекти и вериги ---
 
     # 1. Technovision София (technovision.bg)
     if "technovision.bg" in url_low:
         summary = soup.select_one(".summary.entry-summary") or soup.select_one(".single-product-wrapper") or soup
-        out_of_stock = summary.select_one("p.stock.out-of-stock") is not None
         box = summary.select_one(".single-product-W-price .electro-price, p.price .electro-price, p.price")
+        amounts = []
         if box:
-            amounts = []
             for a_el in box.select(".woocommerce-Price-amount"):
                 m = re.search(r"(\d+[\.,]\d{2})", a_el.get_text(" ", strip=True).replace(" ", ""))
                 if m:
                     amounts.append(float(m.group(1).replace(",", ".")))
-            if amounts:
-                cur = round(amounts[0], 2)
-                old = round(amounts[1], 2) if len(amounts) > 1 and amounts[1] > cur else None
-                tag = "TECHNOVISION (Изчерпан)" if out_of_stock else "TECHNOVISION"
-                return cur, old, tag
-        if out_of_stock:
-            return None, None, "OUT_OF_STOCK"
+        cur = round(amounts[0], 2) if amounts else None
+        old = round(amounts[1], 2) if len(amounts) > 1 and amounts[1] > cur else None
+        tag = "TECHNOVISION" if is_in_stock else "TECHNOVISION (Изчерпан)"
+        return cur, old, tag, is_in_stock, stock_reason
 
-    # 3. Technowelt София (technowelt.bg)
+    # 2. Technowelt София (technowelt.bg)
     if "technowelt.bg" in url_low:
         wrap = soup.select_one(".price-wrapper")
         if wrap:
@@ -288,18 +362,18 @@ def extract_price_and_old_price(html: str, url: str):
             if euros:
                 cur = min(euros)
                 old = max(euros) if len(euros) > 1 and max(euros) > cur else None
-                return round(cur, 2), old, "TECHNOWELT"
+                return round(cur, 2), old, "TECHNOWELT", is_in_stock, stock_reason
 
-    # 4. Бяла Мания София (bqlamania.eu) и Вимакс София (vimax.bg)
+    # 3. Бяла Мания София (bqlamania.eu) и Вимакс София (vimax.bg)
     if "bqlamania.eu" in url_low or "vimax.bg" in url_low:
         p_el = soup.select_one(".product-price-group .product-price")
         if p_el:
             txt = p_el.get_text(" ", strip=True).replace(" ", "")
             m = re.search(r"(\d+[\.,]\d{2})", txt)
             if m:
-                return round(float(m.group(1).replace(",", ".")), 2), None, "PRODUCT_PRICE_GROUP"
+                return round(float(m.group(1).replace(",", ".")), 2), None, "PRODUCT_PRICE_GROUP", is_in_stock, stock_reason
 
-    # 5. Tech2Home София (tech2home.bg)
+    # 4. Tech2Home София (tech2home.bg)
     if "tech2home.bg" in url_low:
         ins_el = soup.select_one("ins .woocommerce-Price-amount")
         del_el = soup.select_one("del .woocommerce-Price-amount")
@@ -309,9 +383,9 @@ def extract_price_and_old_price(html: str, url: str):
             if m_cur:
                 cur = round(float(m_cur.group(1).replace(",", ".")), 2)
                 old = round(float(m_old.group(1).replace(",", ".")), 2) if m_old else None
-                return cur, old, "TECH2HOME"
+                return cur, old, "TECH2HOME", is_in_stock, stock_reason
 
-    # --- Общи стандартизирани екстрактори (Технополис, Техномаркет, Зора, Техномикс, Техмарт, Практис, JAR, eMAG) ---
+    # --- Общи стандартизирани екстрактори (Технополис, Техномаркет, Зора, Техномикс, Техмарт, Практис, JAR, eMAG, Релакс Техно) ---
     current_price = None
     method = "NOT_FOUND"
 
@@ -404,7 +478,7 @@ def extract_price_and_old_price(html: str, url: str):
                         claimed_old_price = norm_old
                         break
 
-    return current_price, claimed_old_price, method
+    return current_price, claimed_old_price, method, is_in_stock, stock_reason
 
 
 def evaluate_black_friday_status(
@@ -413,10 +487,19 @@ def evaluate_black_friday_status(
     baseline: dict,
     store_name: str,
     method: str = "",
+    is_in_stock: bool = True,
 ) -> tuple[str, str]:
     """
     Оценява текущата цена спрямо таблицата от Точка 2 (средна цена от октомври и реална базова цена).
+    Ако продуктът е изчерпан, връща състояние OUT_OF_STOCK.
     """
+    price_bgn = round(current_eur * BGN_TO_EUR, 2)
+    if not is_in_stock:
+        return (
+            "OUT_OF_STOCK",
+            f"⏸️ Изчерпан в момента (последна цена: {current_eur:.2f} € / {price_bgn:.2f} лв. – следи се за наличност)",
+        )
+
     oct_avg = baseline["october_avg_eur"]
     fake_thresh = baseline.get("fake_crossed_out_price_threshold_eur", oct_avg * 1.05)
 
@@ -432,49 +515,58 @@ def evaluate_black_friday_status(
 
     diff_vs_oct = round(current_eur - oct_avg, 2)
     pct_vs_oct = round((diff_vs_oct / oct_avg) * 100, 1)
-    stock_suffix = " [Изчерпан в момента]" if "Изчерпан" in method else ""
 
     if claimed_old_eur and claimed_old_eur >= fake_thresh and not is_defect_store:
         return (
             "FAKE_DISCOUNT",
             f"⚠️ ЛЪЖЛИВО НАМАЛЕНИЕ: Обявена стара цена {claimed_old_eur:.2f} €, "
-            f"а средната през октомври беше {oct_avg:.2f} €!{stock_suffix}",
+            f"а средната през октомври беше {oct_avg:.2f} €!",
         )
 
     if current_eur > oct_avg + 3.0:
         return (
             "ABOVE_OCTOBER",
-            f"📈 Над октомврийската средна с +{diff_vs_oct:.2f} € (+{pct_vs_oct}% спрямо {oct_avg:.2f} €){stock_suffix}",
+            f"📈 Над октомврийската средна с +{diff_vs_oct:.2f} € (+{pct_vs_oct}% спрямо {oct_avg:.2f} €)",
         )
 
     if current_eur <= deal_trigger:
         return (
             "REAL_DEAL",
-            f"🔥 ИСТИНСКА ОФЕРТА! Под прага ({deal_trigger:.2f} €) и с {diff_vs_oct:.2f} € ({pct_vs_oct}%) спрямо октомври!{stock_suffix}",
+            f"🔥 ИСТИНСКА ОФЕРТА! Под прага ({deal_trigger:.2f} €) и с {diff_vs_oct:.2f} € ({pct_vs_oct}%) спрямо октомври!",
         )
 
     return (
         "NORMAL",
-        f"Нормална цена ({diff_vs_oct:+.2f} € / {pct_vs_oct:+.1f}% спрямо октомври: {oct_avg:.2f} €){stock_suffix}",
+        f"Нормална цена ({diff_vs_oct:+.2f} € / {pct_vs_oct:+.1f}% спрямо октомври: {oct_avg:.2f} €)",
     )
 
 
 def build_email_html(changes: list[dict], all_results: list[dict], timestamp_str: str) -> str:
-    """Генерира HTML имейл с всички засечени промени (поевтиняване ↓ и поскъпване ↑) + пълна таблица."""
+    """Генерира HTML имейл с всички засечени промени (поевтиняване ↓, поскъпване ↑, наличности 🟢 / ⏸️) + пълна таблица."""
     rows_changes = ""
     for ch in changes:
-        direction_badge = (
-            '<span style="color:#15803d;font-weight:bold;">↓ ПОЕВТИНЯВАНЕ</span>'
-            if ch["diff_eur"] < 0
-            else '<span style="color:#b91c1c;font-weight:bold;">↑ ПОСКЪПВАНЕ</span>'
-        )
+        ch_type = ch.get("change_type", "PRICE_CHANGE")
+        if ch_type == "BACK_IN_STOCK":
+            badge = '<span style="color:#16a34a;font-weight:bold;">🟢 ОТНОВО В НАЛИЧНОСТ!</span>'
+            diff_text = f"<b>{ch['new_eur']:.2f} € ({ch['new_bgn']:.2f} лв.)</b>"
+        elif ch_type == "OUT_OF_STOCK":
+            badge = '<span style="color:#d97706;font-weight:bold;">⏸️ ИЗЧЕРПАНО</span>'
+            diff_text = '<span style="color:#64748b;">(Следи се за нова бройка)</span>'
+        else:
+            badge = (
+                '<span style="color:#15803d;font-weight:bold;">↓ ПОЕВТИНЯВАНЕ</span>'
+                if ch.get("diff_eur", 0) < 0
+                else '<span style="color:#b91c1c;font-weight:bold;">↑ ПОСКЪПВАНЕ</span>'
+            )
+            diff_text = f"{ch['diff_eur']:+.2f} € ({ch['diff_bgn']:+.2f} лв. / {ch['diff_pct']:+.1f}%)"
+
         rows_changes += f"""
         <tr>
             <td style="padding:8px;border:1px solid #cbd5e1;"><b>{ch['appliance_name']}</b></td>
             <td style="padding:8px;border:1px solid #cbd5e1;"><a href="{ch['url']}">{ch['store']}</a></td>
             <td style="padding:8px;border:1px solid #cbd5e1;">{ch['old_eur']:.2f} € ({ch['old_bgn']:.2f} лв.)</td>
             <td style="padding:8px;border:1px solid #cbd5e1;"><b>{ch['new_eur']:.2f} € ({ch['new_bgn']:.2f} лв.)</b></td>
-            <td style="padding:8px;border:1px solid #cbd5e1;">{direction_badge}<br>{ch['diff_eur']:+.2f} € ({ch['diff_bgn']:+.2f} лв. / {ch['diff_pct']:+.1f}%)</td>
+            <td style="padding:8px;border:1px solid #cbd5e1;">{badge}<br>{diff_text}</td>
             <td style="padding:8px;border:1px solid #cbd5e1;">{ch['bf_note']}</td>
         </tr>
         """
@@ -483,11 +575,14 @@ def build_email_html(changes: list[dict], all_results: list[dict], timestamp_str
     for r in all_results:
         if r["price_eur"] is None:
             continue
+        stock_badge = ""
+        if not r.get("is_in_stock", True):
+            stock_badge = '<br><span style="color:#b45309;font-size:11px;font-weight:bold;">⏸️ Изчерпан в магазина</span>'
         rows_all += f"""
         <tr>
             <td style="padding:6px;border:1px solid #e2e8f0;">{r['appliance_name']}</td>
             <td style="padding:6px;border:1px solid #e2e8f0;"><a href="{r['url']}">{r['store']}</a></td>
-            <td style="padding:6px;border:1px solid #e2e8f0;"><b>{r['price_eur']:.2f} €</b> ({r['price_bgn']:.2f} лв.)</td>
+            <td style="padding:6px;border:1px solid #e2e8f0;"><b>{r['price_eur']:.2f} €</b> ({r['price_bgn']:.2f} лв.){stock_badge}</td>
             <td style="padding:6px;border:1px solid #e2e8f0;">{r['october_avg_eur']:.2f} €</td>
             <td style="padding:6px;border:1px solid #e2e8f0;">{r['bf_note']}</td>
         </tr>
@@ -612,8 +707,8 @@ def main():
             else:
                 try:
                     html = fetch_html_fast(u, {}, timeout=10)
-                    p_test, _, m_test = extract_price_and_old_price(html, u)
-                    if p_test is not None or m_test == "OUT_OF_STOCK":
+                    p_test, _, _, in_stock_test, _ = extract_price_and_old_price(html, u)
+                    if p_test is not None or not in_stock_test:
                         cf_cache[u] = html
                     else:
                         browser_urls.append(u)
@@ -642,7 +737,7 @@ def main():
 
             try:
                 html = fetch_html_fast(url, cf_cache)
-                price_eur, claimed_old_eur, method = extract_price_and_old_price(html, url)
+                price_eur, claimed_old_eur, method, is_in_stock, stock_reason = extract_price_and_old_price(html, url)
             except Exception as exc:
                 print(f"  ❌ [{store}] Грешка при достъп: {exc} (запазва се предходният запис).")
                 if state_key in previous_state:
@@ -650,71 +745,112 @@ def main():
                 continue
 
             if price_eur is None:
-                if method == "OUT_OF_STOCK" and state_key in previous_state:
-                    last_p = previous_state[state_key].get("price_eur", 298.65)
-                    last_bgn = round(last_p * BGN_TO_EUR, 2)
-                    note_oos = f"⏸️ Изчерпан в момента (последна цена: {last_p:.2f} € / {last_bgn:.2f} лв. – следи се за нова бройка)"
-                    print(f"  ℹ️ [{store:<48}] {last_p:6.2f} € ({last_bgn:6.2f} лв.) | Изчерпан | {note_oos}")
-                    new_state[state_key] = previous_state[state_key]
-                    all_results.append(
-                        {
-                            "timestamp": now_str,
-                            "appliance_id": app_id,
-                            "appliance_name": app_name,
-                            "store": store,
-                            "url": url,
-                            "price_eur": last_p,
-                            "price_bgn": last_bgn,
-                            "october_avg_eur": baseline["october_avg_eur"],
-                            "bf_status": "OUT_OF_STOCK",
-                            "bf_note": note_oos,
-                            "method": method,
-                        }
-                    )
+                if not is_in_stock and state_key in previous_state:
+                    price_eur = previous_state[state_key].get("price_eur", 298.65)
+                elif not is_in_stock:
+                    price_eur = baseline.get("target_deal_trigger_defect_eur", baseline["target_deal_trigger_eur"])
                 else:
                     print(f"  ⚠️ [{store}] Не бе открита числова цена на страницата (запазва се предходният запис).")
                     if state_key in previous_state:
                         new_state[state_key] = previous_state[state_key]
-                continue
+                    continue
 
             price_bgn = round(price_eur * BGN_TO_EUR, 2)
-            bf_status, bf_note = evaluate_black_friday_status(price_eur, claimed_old_eur, baseline, store, method)
+            bf_status, bf_note = evaluate_black_friday_status(
+                price_eur, claimed_old_eur, baseline, store, method, is_in_stock=is_in_stock
+            )
 
-            old_record = previous_state.get(state_key)
-            prev_eur = old_record.get("price_eur") if isinstance(old_record, dict) else None
+            old_record = previous_state.get(state_key) if isinstance(previous_state.get(state_key), dict) else {}
+            prev_eur = old_record.get("price_eur")
+            if "is_in_stock" in old_record:
+                prev_in_stock = bool(old_record["is_in_stock"])
+            elif old_record.get("bf_status") == "OUT_OF_STOCK":
+                prev_in_stock = False
+            else:
+                prev_in_stock = True
 
             if args.simulate_change and prev_eur is not None and not detected_changes:
                 prev_eur = round(price_eur + 15.00, 2)
 
-            change_str = "Първо записване"
-            if prev_eur is not None:
-                diff_eur = round(price_eur - prev_eur, 2)
-                if abs(diff_eur) >= 0.05:
-                    diff_bgn = round(diff_eur * BGN_TO_EUR, 2)
-                    diff_pct = round((diff_eur / prev_eur) * 100, 2)
-                    arrow = "↓ НАМАЛЕНИЕ" if diff_eur < 0 else "↑ ПОКАЧВАНЕ"
-                    change_str = f"{arrow} ({diff_eur:+.2f} € / {diff_bgn:+.2f} лв.)"
-                    detected_changes.append(
-                        {
-                            "appliance_id": app_id,
-                            "appliance_name": app_name,
-                            "store": store,
-                            "url": url,
-                            "old_eur": prev_eur,
-                            "old_bgn": round(prev_eur * BGN_TO_EUR, 2),
-                            "new_eur": price_eur,
-                            "new_bgn": price_bgn,
-                            "diff_eur": diff_eur,
-                            "diff_bgn": diff_bgn,
-                            "diff_pct": diff_pct,
-                            "bf_status": bf_status,
-                            "bf_note": bf_note,
-                        }
-                    )
+            if prev_in_stock and not is_in_stock:
+                change_str = "⏸️ ИЗЧЕРПАНО КОЛИЧЕСТВО"
+                detected_changes.append(
+                    {
+                        "appliance_id": app_id,
+                        "appliance_name": app_name,
+                        "store": store,
+                        "url": url,
+                        "change_type": "OUT_OF_STOCK",
+                        "old_eur": prev_eur or price_eur,
+                        "old_bgn": round((prev_eur or price_eur) * BGN_TO_EUR, 2),
+                        "new_eur": price_eur,
+                        "new_bgn": price_bgn,
+                        "diff_eur": 0.0,
+                        "diff_bgn": 0.0,
+                        "diff_pct": 0.0,
+                        "bf_status": "OUT_OF_STOCK",
+                        "bf_note": f"⏸️ ИЗЧЕРПАНО КОЛИЧЕСТВО (Последна цена: {price_eur:.2f} € / {price_bgn:.2f} лв.)",
+                    }
+                )
+                print(f"  ⏸️ [{store:<48}] {price_eur:6.2f} € ({price_bgn:6.2f} лв.) | {change_str} | {bf_note}")
+            elif not prev_in_stock and is_in_stock:
+                change_str = "🟢 ОТНОВО В НАЛИЧНОСТ!"
+                diff_eur = round(price_eur - prev_eur, 2) if prev_eur else 0.0
+                diff_bgn = round(diff_eur * BGN_TO_EUR, 2)
+                diff_pct = round((diff_eur / prev_eur) * 100, 2) if prev_eur else 0.0
+                detected_changes.append(
+                    {
+                        "appliance_id": app_id,
+                        "appliance_name": app_name,
+                        "store": store,
+                        "url": url,
+                        "change_type": "BACK_IN_STOCK",
+                        "old_eur": prev_eur or price_eur,
+                        "old_bgn": round((prev_eur or price_eur) * BGN_TO_EUR, 2),
+                        "new_eur": price_eur,
+                        "new_bgn": price_bgn,
+                        "diff_eur": diff_eur,
+                        "diff_bgn": diff_bgn,
+                        "diff_pct": diff_pct,
+                        "bf_status": bf_status,
+                        "bf_note": f"🟢 ОТНОВО В НАЛИЧНОСТ! ({price_eur:.2f} € / {price_bgn:.2f} лв.)",
+                    }
+                )
+                print(f"  🟢 [{store:<48}] {price_eur:6.2f} € ({price_bgn:6.2f} лв.) | {change_str} | {bf_note}")
+            elif is_in_stock:
+                if prev_eur is not None:
+                    diff_eur = round(price_eur - prev_eur, 2)
+                    if abs(diff_eur) >= 0.05:
+                        diff_bgn = round(diff_eur * BGN_TO_EUR, 2)
+                        diff_pct = round((diff_eur / prev_eur) * 100, 2)
+                        arrow = "↓ НАМАЛЕНИЕ" if diff_eur < 0 else "↑ ПОКАЧВАНЕ"
+                        change_str = f"{arrow} ({diff_eur:+.2f} € / {diff_bgn:+.2f} лв.)"
+                        detected_changes.append(
+                            {
+                                "appliance_id": app_id,
+                                "appliance_name": app_name,
+                                "store": store,
+                                "url": url,
+                                "change_type": "PRICE_CHANGE",
+                                "old_eur": prev_eur,
+                                "old_bgn": round(prev_eur * BGN_TO_EUR, 2),
+                                "new_eur": price_eur,
+                                "new_bgn": price_bgn,
+                                "diff_eur": diff_eur,
+                                "diff_bgn": diff_bgn,
+                                "diff_pct": diff_pct,
+                                "bf_status": bf_status,
+                                "bf_note": bf_note,
+                            }
+                        )
+                    else:
+                        change_str = "Без промяна"
                 else:
-                    change_str = "Без промяна"
-
-            print(f"  ✅ [{store:<48}] {price_eur:6.2f} € ({price_bgn:6.2f} лв.) | {change_str} | {bf_note}")
+                    change_str = "Първо записване"
+                print(f"  ✅ [{store:<48}] {price_eur:6.2f} € ({price_bgn:6.2f} лв.) | {change_str} | {bf_note}")
+            else:
+                change_str = "Изчерпан (следи се)"
+                print(f"  ⏸️ [{store:<48}] {price_eur:6.2f} € ({price_bgn:6.2f} лв.) | {change_str} | {bf_note}")
 
             new_state[state_key] = {
                 "appliance_id": app_id,
@@ -725,6 +861,8 @@ def main():
                 "price_bgn": price_bgn,
                 "claimed_old_eur": claimed_old_eur,
                 "bf_status": bf_status,
+                "is_in_stock": is_in_stock,
+                "stock_reason": stock_reason,
                 "last_checked": now_str,
             }
 
@@ -740,6 +878,7 @@ def main():
                     "october_avg_eur": baseline["october_avg_eur"],
                     "bf_status": bf_status,
                     "bf_note": bf_note,
+                    "is_in_stock": is_in_stock,
                     "method": method,
                 }
             )
@@ -771,22 +910,35 @@ def main():
         f"# Последен отчет от Ценовия Бот – Магазини в София ({now_str})",
         "",
         f"- **Проверени оферти в София:** {len(all_results)} магазина (физически вериги + транспортни дефекти в София)",
-        f"- **Засечени промени в цените (спрямо предходната проверка):** {len(detected_changes)}",
+        f"- **Засечени промени в цените / наличностите (спрямо предходната проверка):** {len(detected_changes)}",
         "",
-        "| Уред | Магазин в София | Текуща цена | Средна Октомври (Т.2) | Статус Черен Петък |",
+        "| Уред | Магазин в София | Текуща цена | Средна Октомври (Т.2) | Статус / Наличност (Черен Петък) |",
         "| :--- | :--- | :--- | :--- | :--- |",
     ]
     for r in all_results:
+        stock_tag = " <br>*(⏸️ Изчерпан в магазина)*" if not r.get("is_in_stock", True) else ""
         md_lines.append(
-            f"| **{r['appliance_name']}** | [{r['store']}]({r['url']}) | **{r['price_eur']:.2f} €** *({r['price_bgn']:.2f} лв.)* | {r['october_avg_eur']:.2f} € | {r['bf_note']} |"
+            f"| **{r['appliance_name']}** | [{r['store']}]({r['url']}) | **{r['price_eur']:.2f} €** *({r['price_bgn']:.2f} лв.)*{stock_tag} | {r['october_avg_eur']:.2f} € | {r['bf_note']} |"
         )
     REPORT_MD_PATH.write_text("\n".join(md_lines) + "\n", encoding="utf-8")
 
     if detected_changes or args.force_email:
         if detected_changes:
-            drops = sum(1 for c in detected_changes if c["diff_eur"] < 0)
-            jumps = sum(1 for c in detected_changes if c["diff_eur"] > 0)
-            subject = f"🔔 Промяна в цените на фурните в София ({drops} намаления ↓, {jumps} покачвания ↑) - {now_str}"
+            drops = sum(1 for c in detected_changes if c.get("diff_eur", 0) < 0 and c.get("change_type") == "PRICE_CHANGE")
+            jumps = sum(1 for c in detected_changes if c.get("diff_eur", 0) > 0 and c.get("change_type") == "PRICE_CHANGE")
+            back_stock = sum(1 for c in detected_changes if c.get("change_type") == "BACK_IN_STOCK")
+            oos = sum(1 for c in detected_changes if c.get("change_type") == "OUT_OF_STOCK")
+
+            parts = []
+            if back_stock:
+                parts.append(f"{back_stock} отново налични 🟢")
+            if drops:
+                parts.append(f"{drops} намаления ↓")
+            if jumps:
+                parts.append(f"{jumps} покачвания ↑")
+            if oos:
+                parts.append(f"{oos} изчерпани ⏸️")
+            subject = f"🔔 Промяна в цените/наличностите на фурните в София ({', '.join(parts)}) - {now_str}"
         else:
             subject = f"📊 Контролен отчет за цените на фурните в София ({now_str})"
 

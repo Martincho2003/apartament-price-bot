@@ -246,7 +246,7 @@ def fetch_html_fast(url: str, cf_cache: dict[str, str], timeout: int = 15) -> st
 def normalize_to_eur(val: float, currency_hint: str = "EUR") -> float:
     """Нормализира цена в евро (ако е в лева, конвертира по фиксинга 1.95583)."""
     curr = (currency_hint or "EUR").upper()
-    if curr in ("BGN", "ЛВ", "ЛВ.") or val > 620.0:
+    if curr in ("BGN", "ЛВ", "ЛВ.") or (curr == "EUR" and val > 2200.0):
         return round(val / BGN_TO_EUR, 2)
     return round(val, 2)
 
@@ -260,6 +260,12 @@ def check_stock_status(soup: BeautifulSoup, url: str) -> tuple[bool, str]:
 
     # 1. Technovision София (technovision.bg)
     if "technovision.bg" in url_low:
+        h1 = soup.find("h1")
+        h1_text = h1.get_text(" ", strip=True).lower() if h1 else ""
+        url_slug = url.strip("/").split("/")[-1].lower()
+        slug_tokens = [t for t in re.split(r"[-_]", url_slug) if len(t) > 2 and t not in ("produkt", "hladilnik", "furna", "uredi", "biala", "tehnika", "mashini", "sadomiyalni")]
+        if slug_tokens and not any(t in h1_text for t in slug_tokens):
+            return False, "Technovision (Пренасочване към друг модел / Изчерпан)"
         summary = soup.select_one(".summary.entry-summary") or soup.select_one(".single-product-wrapper") or soup
         if summary.select_one("p.stock.out-of-stock") or summary.select_one(".out-of-stock"):
             return False, "Technovision (Изчерпано количество)"
@@ -323,6 +329,15 @@ def check_stock_status(soup: BeautifulSoup, url: str) -> tuple[bool, str]:
             txt = el.get_text(" ", strip=True).lower()
             if any(w in txt for w in ["изчерпан", "изчерпано", "няма наличност", "не е наличен", "неналичен"]):
                 return False, f"DOM ({txt[:30]})"
+
+    if "emag.bg" in url_low:
+        if soup.select_one(".label-out_of_stock") or soup.select_one(".label-out-of-stock"):
+            return False, "eMAG (Изчерпана наличност)"
+        pricing_block = soup.select_one(".product-page-pricing") or soup.select_one(".pricing-block")
+        if pricing_block and "изчерпана наличност" in pricing_block.get_text(" ", strip=True).lower():
+            return False, "eMAG (Изчерпана наличност)"
+        if not soup.select_one(".product-new-price") and not soup.select_one(".product-highlight"):
+            return False, "eMAG (няма цена/бутон за купуване)"
 
     return True, "IN_STOCK"
 

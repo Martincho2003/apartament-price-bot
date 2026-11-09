@@ -1,3 +1,4 @@
 price_bot/.env
+price_bot/latest_email_preview.html
 __pycache__/
 *.pyc

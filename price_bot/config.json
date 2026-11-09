@@ -102,23 +102,233 @@
     {
       "id": "aeg_bps33102zm",
       "category": "Фурна за вграждане",
-      "name": "AEG BPS33102ZM / Серия 6000 Пиролиза (72 л, Pyroluxe®Plus, IsoFront Plus)",
+      "name": "AEG Серия 6000 / BPS33102ZM (72 л, Пиролиза Pyroluxe®Plus)",
       "step2_baseline": {
         "october_avg_eur": 397.40,
-        "november_initial_avg_eur": 381.08,
-        "real_regular_price_eur": 409.00,
-        "target_deal_trigger_eur": 380.00,
-        "target_deal_trigger_defect_eur": 350.00,
-        "fake_crossed_out_price_threshold_eur": 435.00
+        "november_initial_avg_eur": 391.94,
+        "real_regular_price_eur": 400.00,
+        "target_deal_trigger_eur": 360.00,
+        "target_deal_trigger_defect_eur": 320.00,
+        "fake_crossed_out_price_threshold_eur": 410.00
       },
       "urls": [
         {
-          "store": "Technovision София [Транспортен дефект - AEG BPS33102ZM]",
-          "url": "https://technovision.bg/produkt/biala-tehnika/furni/furna-aeg-bps33102zm/"
+          "store": "Technovision София [Транспортен дефект]",
+          "url": "https://technovision.bg/produkt/furna-za-vgrazhdane-aeg-bps33102zm/"
         },
         {
-          "store": "Релакс Техно София [Транспортен дефект - AEG BPS33102ZM]",
-          "url": "https://www.relaxbg.org/p/furna-za-vgrazhdane-aeg-bps33102zm/"
+          "store": "Релакс Техно София [Транспортен дефект]",
+          "url": "https://www.relaxbg.org/p/furna-aeg-bps33102zm/"
+        }
+      ]
+    },
+    {
+      "id": "gorenje_gs541d10x",
+      "category": "Миялна машина (45 см)",
+      "name": "Gorenje GS541D10X / GS541D10W (45 см, 11 комплекта, инвертор, TotalDry)",
+      "step2_baseline": {
+        "october_avg_eur": 359.00,
+        "november_initial_avg_eur": 344.00,
+        "real_regular_price_eur": 355.00,
+        "target_deal_trigger_eur": 310.00,
+        "target_deal_trigger_defect_eur": 270.00,
+        "fake_crossed_out_price_threshold_eur": 370.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Svobodnostoyashti-sadomiyalni/Sadomiyalna-GORENJE-GS541D10X/p/651886"
+        },
+        {
+          "store": "Техномаркет (София)",
+          "url": "https://www.technomarket.bg/mialni/gorenje-gs541d10x-09189721"
+        },
+        {
+          "store": "Техмарт (София)",
+          "url": "https://techmart.bg/sydomiqlna-45sm-gorenje-gs541d10x"
+        },
+        {
+          "store": "Зора (София)",
+          "url": "https://zora.bg/product/gs541d10x"
+        },
+        {
+          "store": "Техномикс (София)",
+          "url": "https://www.tehnomix.bg/sadomiyalna-gorenje-gs541d10x"
+        },
+        {
+          "store": "eMAG Шоурум (София)",
+          "url": "https://www.emag.bg/sydomijalna-gorenje-gs541d10x-11-komplekta-klas-d-45-sm-neryzhdaema-stomana-737489/pd/DRP52KMBM/"
+        },
+        {
+          "store": "Практис МЕГА (София)",
+          "url": "https://praktis.bg/svobodnostoyashta-sadomiyalna-gorenje-gs541d10x-45sm"
+        }
+      ]
+    },
+    {
+      "id": "beko_bdfs26120xq",
+      "category": "Миялна машина (45 см)",
+      "name": "Beko BDFS26120XQ / BDFS26120WQ / BDFS26046XQ (45 см, 11 комплекта, AquaIntense)",
+      "step2_baseline": {
+        "october_avg_eur": 415.00,
+        "november_initial_avg_eur": 409.00,
+        "real_regular_price_eur": 415.00,
+        "target_deal_trigger_eur": 370.00,
+        "target_deal_trigger_defect_eur": 330.00,
+        "fake_crossed_out_price_threshold_eur": 440.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София) [Инокс]",
+          "url": "https://www.technopolis.bg/bg/Svobodnostoyashti-sadomiyalni/Sadomiyalna-BEKO-BDFS-26120-XQ/p/680792"
+        },
+        {
+          "store": "Технополис (София) [Бяла]",
+          "url": "https://www.technopolis.bg/bg/Svobodnostoyashti-sadomiyalni/Sadomiyalna-BEKO-BDFS-26120-WQ/p/680786"
+        },
+        {
+          "store": "eMAG Шоурум (София) [Бяла BDFS26120WQ]",
+          "url": "https://www.emag.bg/sydomijalna-beko-11-komplekta-klas-e-aquaintense-45-sm-bjal-bdfs26120wq/pd/D5VRQXYBM/"
+        },
+        {
+          "store": "eMAG Шоурум (София) [Инокс BDFS26046XQ]",
+          "url": "https://www.emag.bg/sydomijalna-beko-10-komplekta-6-programi-klas-c-prosmart-inverter-motor-timedelay-aquaintense-45-sm-inox-bdfs26046xq/pd/D7W1FQMBM/"
+        }
+      ]
+    },
+    {
+      "id": "bosch_sps4hmw49e",
+      "category": "Миялна машина (45 см)",
+      "name": "Bosch Serie 4 SPS4HMW49E / SPS4HMI49E (45 см, Silence Plus, Home Connect)",
+      "step2_baseline": {
+        "october_avg_eur": 489.00,
+        "november_initial_avg_eur": 454.00,
+        "real_regular_price_eur": 479.00,
+        "target_deal_trigger_eur": 430.00,
+        "target_deal_trigger_defect_eur": 390.00,
+        "fake_crossed_out_price_threshold_eur": 520.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Svobodnostoyashti-sadomiyalni/Sadomiyalna-BOSCH-SPS4HMW49E/p/653358"
+        },
+        {
+          "store": "eMAG Шоурум (София)",
+          "url": "https://www.emag.bg/sydomijalna-bosch-10-komplekta-6-programi-home-connect-ecosilence-drive-extradry-tab-count-silence-plus-rackmatic-sistema-klas-e-45-sm-bjal-sps4hmw49e/pd/DRXMY5YBM/"
+        },
+        {
+          "store": "Техмарт (София)",
+          "url": "https://techmart.bg/sydomiqlna-45sm-bosch-sps4hmw49e"
+        },
+        {
+          "store": "Техномикс (София) [Бяла]",
+          "url": "https://www.tehnomix.bg/sadomiyalna-bosch-sps4hmw49e-45-sm"
+        },
+        {
+          "store": "Техномикс (София) [Инокс]",
+          "url": "https://www.tehnomix.bg/sadomiyalna-bosch-sps4hmi49e"
+        },
+        {
+          "store": "Релакс Техно София [Транспортен дефект - Бяла]",
+          "url": "https://www.relaxbg.org/p/sadomialna-bosch-sps4hmw13e/"
+        },
+        {
+          "store": "Релакс Техно София [Транспортен дефект - Инокс]",
+          "url": "https://www.relaxbg.org/p/sadomialna-bosch-sps4hmi13e/"
+        }
+      ]
+    },
+    {
+      "id": "midea_mdrb424fge02oe",
+      "category": "Хладилник с фризер",
+      "name": "Midea MDRB424FGE02OE / MDRB424FGE01OE (188 см, NoFrost, Дълбочина 63.0 см)",
+      "step2_baseline": {
+        "october_avg_eur": 379.00,
+        "november_initial_avg_eur": 378.00,
+        "real_regular_price_eur": 379.00,
+        "target_deal_trigger_eur": 350.00,
+        "target_deal_trigger_defect_eur": 310.00,
+        "fake_crossed_out_price_threshold_eur": 410.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София) [Инокс]",
+          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-MIDEA-MDRB424FGE02OE/p/653264"
+        },
+        {
+          "store": "Технополис (София) [Бял]",
+          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-MIDEA-MDRB424FGE01OE/p/653263"
+        },
+        {
+          "store": "eMAG Шоурум (София)",
+          "url": "https://www.emag.bg/hladilnik-s-frizer-midea-energien-klas-e-kapacitet-310-l-ledogenerator-nofrost-m-188-sm-inoks-mdrb424fge02i/pd/DP9X2MYBM/"
+        }
+      ]
+    },
+    {
+      "id": "gorenje_nrk619epxl4",
+      "category": "Хладилник с фризер",
+      "name": "Gorenje NRK619EPXL4 / NRK619EABXL4 / NRK6192AXL4 (185 см, Дълбочина 59.2 см SlotIn)",
+      "step2_baseline": {
+        "october_avg_eur": 495.00,
+        "november_initial_avg_eur": 450.00,
+        "real_regular_price_eur": 495.00,
+        "target_deal_trigger_eur": 430.00,
+        "target_deal_trigger_defect_eur": 380.00,
+        "fake_crossed_out_price_threshold_eur": 550.00
+      },
+      "urls": [
+        {
+          "store": "Техномикс (София) [Инокс]",
+          "url": "https://www.tehnomix.bg/hladilnik-s-frizer-gorenje-nrk619epxl4"
+        },
+        {
+          "store": "Техномаркет (София) [Инокс]",
+          "url": "https://www.technomarket.bg/hladilnitzi/gorenje-nrk619epxl4-09221321"
+        },
+        {
+          "store": "Техномикс (София) [Черен]",
+          "url": "https://www.tehnomix.bg/hladilnik-s-frizer-gorenje-nrk619eabxl4"
+        },
+        {
+          "store": "Техномаркет (София) [Черен]",
+          "url": "https://www.technomarket.bg/hladilnitzi/gorenje-nrk619eabxl4-09206479"
+        },
+        {
+          "store": "Технополис (София) [Черен]",
+          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-GORENJE-NRK619EABXL4/p/702454"
+        },
+        {
+          "store": "Технополис (София) [Инокс]",
+          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-GORENJE-NRK6192AXL4/p/651494"
+        },
+        {
+          "store": "Зора (София) [Инокс с диспенсър]",
+          "url": "https://zora.bg/product/nrk619eaxl4wd"
+        }
+      ]
+    },
+    {
+      "id": "aeg_rcb736e5mx",
+      "category": "Хладилник с фризер",
+      "name": "AEG RCB736E5MX / Bosch KGV36VBEAS (Дълбочина ≤ 65.0 см, TwinTech NoFrost / LowFrost)",
+      "step2_baseline": {
+        "october_avg_eur": 780.00,
+        "november_initial_avg_eur": 788.00,
+        "real_regular_price_eur": 780.00,
+        "target_deal_trigger_eur": 720.00,
+        "target_deal_trigger_defect_eur": 580.00,
+        "fake_crossed_out_price_threshold_eur": 850.00
+      },
+      "urls": [
+        {
+          "store": "Technovision София [Транспортен дефект - Bosch Serie 4 KGV36VBEAS]",
+          "url": "https://technovision.bg/produkt/hladilnik-s-frizer-bosch-kgv36vbeas/"
+        },
+        {
+          "store": "Техномикс (София) [AEG TwinTech NoFrost RCB736E5MX]",
+          "url": "https://www.tehnomix.bg/hladilnik-s-frizer-aeg-rcb736e5mx"
         }
       ]
     }

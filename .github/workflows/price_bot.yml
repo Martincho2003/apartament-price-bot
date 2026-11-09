@@ -1,28 +1,19 @@
-name: Price Monitor Bot Sofia (2x Daily)
+name: Sofia Appliance Price Monitor
 
 on:
   schedule:
-    # Сутрин в 08:30 ч. българско време (06:30 UTC)
-    - cron: "30 6 * * *"
-    # Следобед в 16:30 ч. българско време (14:30 UTC)
-    - cron: "30 14 * * *"
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/price_bot.yml"
-      - "price_bot/bot.py"
-      - "price_bot/config.json"
+    # Работи 2 пъти на ден:
+    # 06:30 UTC = 08:30 сутрин българско време
+    # 14:30 UTC = 16:30 следобед българско време
+    - cron: '30 6 * * *'
+    - cron: '30 14 * * *'
   workflow_dispatch:
     inputs:
       force_email:
-        description: "Изпрати тестови имейл отчет дори да няма промяна в цената"
+        description: 'Принудително изпращане на контролен имейл (дори без промяна в цената)'
         required: false
-        default: "true"
-        type: choice
-        options:
-          - "true"
-          - "false"
+        default: 'true'
+        type: boolean
 
 permissions:
   contents: write
@@ -33,24 +24,30 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
-      - name: Set up Python 3.12
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-          cache: "pip"
-          cache-dependency-path: "price_bot/requirements.txt"
+          python-version: '3.11'
+          cache: 'pip'
 
-      - name: Install dependencies & Xvfb for Cloudflare Turnstile bypass
+      - name: Install dependencies & Google Chrome
         run: |
-          which xvfb-run || (sudo apt-get update && sudo apt-get install -y xvfb)
+          python -m pip install --upgrade pip
           pip install -r price_bot/requirements.txt
+          sudo apt-get install -y xvfb libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2
+          if ! command -v google-chrome &> /dev/null; then
+            wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
+            rm -f google-chrome-stable_current_amd64.deb
+          fi
 
-      - name: Run Price Bot (Sofia Physical & Transport-Defect Stores)
-        continue-on-error: true
+      - name: Run Price Monitor Bot
         env:
-          SMTP_HOST: ${{ secrets.SMTP_HOST || 'smtp.gmail.com' }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT || '587' }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           NOTIFY_EMAIL: ${{ secrets.NOTIFY_EMAIL }}
@@ -62,10 +59,14 @@ jobs:
           fi
           cat price_bot/last_cloud_run.log
 
-      - name: Save updated price state & history back to repo
-        if: always()
+      - name: Commit and push updated price state
         run: |
-          git config user.name "price-bot[bot]"
-          git config user.email "price-bot@users.noreply.github.com"
-          git add price_bot/price_state.json price_bot/price_history.csv price_bot/latest_report.md price_bot/last_cloud_run.log
-          git diff --staged --quiet || (git commit -m "chore(prices): update Sofia price state & history [skip ci]" && git pull --rebase origin main && git push origin HEAD:main)
+          git config --local user.name "price-bot[bot]"
+          git config --local user.email "price-bot@users.noreply.github.com"
+          git add price_bot/price_state.json price_bot/price_history.csv price_bot/latest_report.md
+          if git diff --staged --quiet; then
+            echo "Няма промени в историята на цените за запис."
+          else
+            git commit -m "chore(prices): update Sofia price state & history [skip ci]"
+            git push
+          fi

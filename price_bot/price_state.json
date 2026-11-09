@@ -10,7 +10,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "gorenje_bps6747a06x::Практис МЕГА (София)": {
     "appliance_id": "gorenje_bps6747a06x",
@@ -23,7 +23,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "gorenje_bps6747a06x::Техномикс (София)": {
     "appliance_id": "gorenje_bps6747a06x",
@@ -36,7 +36,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "gorenje_bps6747a06x::Технополис (София)": {
     "appliance_id": "gorenje_bps6747a06x",
@@ -61,8 +61,8 @@
     "claimed_old_eur": null,
     "bf_status": "OUT_OF_STOCK",
     "is_in_stock": false,
-    "stock_reason": "eMAG (Маркетплейс търговец: Technika bg, игнориран - следи се само директно от eMAG)",
-    "last_checked": "2026-11-09 22:44:55"
+    "stock_reason": "eMAG (няма цена/бутон за купуване)",
+    "last_checked": "2026-11-09 20:47:40"
   },
   "gorenje_bps6737e14x::Технополис (София)": {
     "appliance_id": "gorenje_bps6737e14x",
@@ -88,7 +88,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "gorenje_bps6737e14x::Техномикс (София)": {
     "appliance_id": "gorenje_bps6737e14x",
@@ -101,7 +101,7 @@
     "bf_status": "OUT_OF_STOCK",
     "is_in_stock": false,
     "stock_reason": "JSON-LD (outofstock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "gorenje_bps6737e14x::Практис МЕГА (София) [Инокс 14X]": {
     "appliance_id": "gorenje_bps6737e14x",
@@ -114,7 +114,7 @@
     "bf_status": "OUT_OF_STOCK",
     "is_in_stock": false,
     "stock_reason": "JSON-LD (outofstock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "gorenje_bps6737e14x::Практис МЕГА (София) [Черна E04DBG]": {
     "appliance_id": "gorenje_bps6737e14x",
@@ -127,7 +127,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "gorenje_bos6737e13x::Технополис (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -153,7 +153,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "gorenje_bos6737e13x::Зора (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -166,7 +166,7 @@
     "bf_status": "OUT_OF_STOCK",
     "is_in_stock": false,
     "stock_reason": "JSON-LD (outofstock)",
-    "last_checked": "2026-11-09 22:42:14"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "gorenje_bos6737e13x::Техномикс (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -179,7 +179,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "gorenje_bos6737e13x::Техмарт (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -192,7 +192,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "gorenje_bos6737e13x::Практис МЕГА (София) [Инокс 13X]": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -205,7 +205,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "gorenje_bos6737e13x::Практис МЕГА (София) [Черна E06FBG]": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -218,7 +218,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "gorenje_bos6737e13x::Вимакс (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -231,7 +231,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "gorenje_bos6737e13x::eMAG Шоурум (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -243,8 +243,8 @@
     "claimed_old_eur": null,
     "bf_status": "OUT_OF_STOCK",
     "is_in_stock": false,
-    "stock_reason": "eMAG (Маркетплейс търговец: Technika bg, игнориран - следи се само директно от eMAG)",
-    "last_checked": "2026-11-09 22:44:55"
+    "stock_reason": "eMAG (няма цена/бутон за купуване)",
+    "last_checked": "2026-11-09 20:47:40"
   },
   "aeg_bps33102zm::Technovision София [Транспортен дефект]": {
     "appliance_id": "aeg_bps33102zm",
@@ -257,7 +257,7 @@
     "bf_status": "OUT_OF_STOCK",
     "is_in_stock": false,
     "stock_reason": "Technovision (Пренасочване към друг модел / Изчерпан)",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "siemens_hb571abs3::Technovision София [Транспортен дефект]": {
     "appliance_id": "siemens_hb571abs3",
@@ -266,11 +266,11 @@
     "url": "https://technovision.bg/produkt/biala-tehnika/furni/furna-siemens-iq300-hb571abs3-iq300-s-piroliza-cookcontrol10-3d-goresht-vuzduh/",
     "price_eur": 540.0,
     "price_bgn": 1056.15,
-    "claimed_old_eur": 700.0,
-    "bf_status": "REAL_DEAL",
-    "is_in_stock": true,
-    "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "claimed_old_eur": null,
+    "bf_status": "OUT_OF_STOCK",
+    "is_in_stock": false,
+    "stock_reason": "Technovision (Пренасочване към друг модел / Изчерпан)",
+    "last_checked": "2026-11-09 20:47:40"
   },
   "aeg_ffb73527zm::Технополис (София)": {
     "appliance_id": "aeg_ffb73527zm",
@@ -296,7 +296,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "aeg_ffb73527zm::Зора (София)": {
     "appliance_id": "aeg_ffb73527zm",
@@ -309,7 +309,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "aeg_ffb73527zm::Техмарт (София)": {
     "appliance_id": "aeg_ffb73527zm",
@@ -322,7 +322,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "aeg_ffb73527zm::eMAG Шоурум (София)": {
     "appliance_id": "aeg_ffb73527zm",
@@ -334,8 +334,8 @@
     "claimed_old_eur": null,
     "bf_status": "OUT_OF_STOCK",
     "is_in_stock": false,
-    "stock_reason": "eMAG (Маркетплейс търговец: Smartx bg, игнориран - следи се само директно от eMAG)",
-    "last_checked": "2026-11-09 22:44:55"
+    "stock_reason": "eMAG (няма цена/бутон за купуване)",
+    "last_checked": "2026-11-09 20:47:40"
   },
   "haier_xf_1c3tb1::Технополис (София) [Бяла FW]": {
     "appliance_id": "haier_xf_1c3tb1",
@@ -373,8 +373,8 @@
     "claimed_old_eur": null,
     "bf_status": "OUT_OF_STOCK",
     "is_in_stock": false,
-    "stock_reason": "JSON-LD (outofstock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "stock_reason": "eMAG (няма цена/бутон за купуване)",
+    "last_checked": "2026-11-09 20:47:40"
   },
   "bosch_kge49aica::Технополис (София)": {
     "appliance_id": "bosch_kge49aica",
@@ -396,11 +396,11 @@
     "url": "https://zora.bg/product/kge49aica",
     "price_eur": 827.78,
     "price_bgn": 1619.0,
-    "claimed_old_eur": 884.02,
-    "bf_status": "FAKE_DISCOUNT",
+    "claimed_old_eur": null,
+    "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "bosch_kge49aica::Техномикс (София)": {
     "appliance_id": "bosch_kge49aica",
@@ -413,7 +413,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "bosch_kge49aica::eMAG Шоурум (София)": {
     "appliance_id": "bosch_kge49aica",
@@ -423,10 +423,10 @@
     "price_eur": 827.0,
     "price_bgn": 1617.47,
     "claimed_old_eur": null,
-    "bf_status": "NORMAL",
-    "is_in_stock": true,
-    "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "bf_status": "OUT_OF_STOCK",
+    "is_in_stock": false,
+    "stock_reason": "eMAG (няма цена/бутон за купуване)",
+    "last_checked": "2026-11-09 20:47:40"
   },
   "bosch_kgn49xlea::Технополис (София)": {
     "appliance_id": "bosch_kgn49xlea",
@@ -452,7 +452,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "bosch_kgn49xlea::Техномикс (София)": {
     "appliance_id": "bosch_kgn49xlea",
@@ -465,7 +465,7 @@
     "bf_status": "OUT_OF_STOCK",
     "is_in_stock": false,
     "stock_reason": "DOM (изчерпан онлайн)",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "bosch_kgn49xlea::eMAG Шоурум (София)": {
     "appliance_id": "bosch_kgn49xlea",
@@ -475,10 +475,10 @@
     "price_eur": 829.99,
     "price_bgn": 1623.32,
     "claimed_old_eur": null,
-    "bf_status": "NORMAL",
-    "is_in_stock": true,
-    "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "bf_status": "OUT_OF_STOCK",
+    "is_in_stock": false,
+    "stock_reason": "eMAG (няма цена/бутон за купуване)",
+    "last_checked": "2026-11-09 20:47:40"
   },
   "haier_hfr7720dwmp::Технополис (София)": {
     "appliance_id": "haier_hfr7720dwmp",
@@ -503,8 +503,8 @@
     "claimed_old_eur": null,
     "bf_status": "OUT_OF_STOCK",
     "is_in_stock": false,
-    "stock_reason": "eMAG (Маркетплейс търговец: Smartx bg, игнориран - следи се само директно от eMAG)",
-    "last_checked": "2026-11-09 22:44:55"
+    "stock_reason": "eMAG (няма цена/бутон за купуване)",
+    "last_checked": "2026-11-09 20:47:40"
   },
   "lg_gbbw726cev::Техномаркет (София)": {
     "appliance_id": "lg_gbbw726cev",
@@ -517,7 +517,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "lg_gbbw726cev::Техмарт (София)": {
     "appliance_id": "lg_gbbw726cev",
@@ -530,7 +530,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "last_checked": "2026-11-09 20:47:40"
   },
   "beko_b3rcne564hdxb1::Технополис (София)": {
     "appliance_id": "beko_b3rcne564hdxb1",
@@ -553,9 +553,9 @@
     "price_eur": 669.99,
     "price_bgn": 1310.39,
     "claimed_old_eur": null,
-    "bf_status": "NORMAL",
-    "is_in_stock": true,
-    "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-09 22:44:55"
+    "bf_status": "OUT_OF_STOCK",
+    "is_in_stock": false,
+    "stock_reason": "eMAG (няма цена/бутон за купуване)",
+    "last_checked": "2026-11-09 20:47:40"
   }
 }

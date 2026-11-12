@@ -185,6 +185,33 @@
       ]
     },
     {
+      "id": "gorenje_gk5c64wf",
+      "category": "Готварска печка (комбинирана)",
+      "name": "Gorenje GK5C64WF (50 см, Комбинирана 2 газ + 2 ток, 70 л HomeMade фурна, Pizza 275°C, AirFry, A)",
+      "step2_baseline": {
+        "october_avg_eur": 365.00,
+        "november_initial_avg_eur": 344.70,
+        "real_regular_price_eur": 382.96,
+        "target_deal_trigger_eur": 330.00,
+        "target_deal_trigger_defect_eur": 290.00,
+        "fake_crossed_out_price_threshold_eur": 390.00
+      },
+      "urls": [
+        {
+          "store": "Техномаркет (София)",
+          "url": "https://www.technomarket.bg/pechka/gorenje-gk5c64wf-09229767"
+        },
+        {
+          "store": "Техномикс (София)",
+          "url": "https://www.tehnomix.bg/kombinirana-gotvarska-pechka-gorenje-gk5c64wf"
+        },
+        {
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Kombinirani-gotvarski-pechki/Kombinirana-pechka-GORENJE-GK5C64WF/p/653842"
+        }
+      ]
+    },
+    {
       "id": "aeg_ffb73527zm",
       "category": "Миялна машина (45 см)",
       "name": "AEG FFB73527ZM (45 см, Inox, 3-та въртяща се таванна перка Deckensprüharm, AirDry, SatelliteClean)",

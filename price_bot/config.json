@@ -166,25 +166,6 @@
       ]
     },
     {
-      "id": "siemens_hb571abs3",
-      "category": "Фурна за вграждане",
-      "name": "Siemens iQ300 HB571ABS3 (71 л, activeClean пиролиза, 3D въздух, Stiftung Warentest GUT 2.0)",
-      "step2_baseline": {
-        "october_avg_eur": 700.00,
-        "november_initial_avg_eur": 540.00,
-        "real_regular_price_eur": 700.00,
-        "target_deal_trigger_eur": 590.00,
-        "target_deal_trigger_defect_eur": 540.00,
-        "fake_crossed_out_price_threshold_eur": 720.00
-      },
-      "urls": [
-        {
-          "store": "Technovision София [Транспортен дефект]",
-          "url": "https://technovision.bg/produkt/biala-tehnika/furni/furna-siemens-iq300-hb571abs3-iq300-s-piroliza-cookcontrol10-3d-goresht-vuzduh/"
-        }
-      ]
-    },
-    {
       "id": "gorenje_gk5c64wf",
       "category": "Готварска печка (комбинирана)",
       "name": "Gorenje GK5C64WF (50 см, Комбинирана 2 газ + 2 ток, 70 л HomeMade фурна, Pizza 275°C, AirFry, A)",

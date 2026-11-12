@@ -101,13 +101,39 @@ def _interleave_by_host(urls: list[str]) -> list[str]:
     return ordered
 
 
-def is_hard_waf_block(html: str) -> bool:
-    """Разпознава твърд HTTP/WAF отказ (403/Access Denied) без интерактивен Cloudflare Turnstile."""
+def is_cf_challenge(html: str) -> bool:
+    """Проверява дали HTML съдържанието все още е Cloudflare / Turnstile междинна проверка."""
     if not html:
         return False
     low = html.lower()
-    if any(m in low for m in ("just a moment", "challenge-platform", "cf-browser-verification", "turnstile")):
+    return any(
+        m in low
+        for m in (
+            "<title>just a moment",
+            "challenge-platform",
+            "cf-browser-verification",
+            "enable javascript and cookies to continue",
+        )
+    )
+
+
+def _extract_title_snippet(html: str) -> str:
+    """Връща съкратеното заглавие (<title>) от HTML за диагностика в логовете."""
+    if not html:
+        return ""
+    m = re.search(r"<title[^>]*>(.*?)</title>", html, re.I | re.S)
+    if not m:
+        return ""
+    return re.sub(r"\s+", " ", m.group(1)).strip()[:70]
+
+
+def is_hard_waf_block(html: str) -> bool:
+    """Разпознава твърд HTTP/WAF отказ (403/Access Denied/503) без интерактивен Cloudflare Turnstile."""
+    if not html:
         return False
+    if is_cf_challenge(html):
+        return False
+    low = html.lower()
     return any(
         marker in low
         for marker in (
@@ -118,6 +144,7 @@ def is_hard_waf_block(html: str) -> bool:
             "sorry, you have been blocked",
             "you don't have permission to access",
             "error 1020",
+            "black friday 2026 в emag.bg и шоурум започва сутринта",
         )
     )
 
@@ -132,21 +159,26 @@ async def _fetch_single_cf_page(browser, u: str) -> str | None:
         if last_html:
             if is_hard_waf_block(last_html):
                 return last_html
-            p_check, _, _, in_stock, _ = extract_price_and_old_price(last_html, u)
-            if p_check is not None or not in_stock:
-                return last_html
+            if not is_cf_challenge(last_html):
+                p_check, _, _, in_stock, stock_reason = extract_price_and_old_price(last_html, u)
+                if (p_check is not None or not in_stock) and stock_reason != "EMAG_PAGE_INCOMPLETE":
+                    return last_html
         try:
             await asyncio.wait_for(page.verify_cf(), timeout=10)
-            await page.sleep(3)
-            last_html = await page.get_content()
-            if last_html:
-                if is_hard_waf_block(last_html):
-                    return last_html
-                p_check, _, _, in_stock, _ = extract_price_and_old_price(last_html, u)
-                if p_check is not None or not in_stock:
-                    return last_html
+            for _ in range(4):
+                await page.sleep(1.5)
+                last_html = await page.get_content()
+                if last_html:
+                    if is_hard_waf_block(last_html):
+                        return last_html
+                    if not is_cf_challenge(last_html):
+                        p_check, _, _, in_stock, stock_reason = extract_price_and_old_price(last_html, u)
+                        if (p_check is not None or not in_stock) and stock_reason != "EMAG_PAGE_INCOMPLETE":
+                            return last_html
         except Exception:
             pass
+    if last_html and is_cf_challenge(last_html):
+        return None
     return last_html
 
 
@@ -241,33 +273,55 @@ async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
                 timeout=25,
             )
         domain_failures: dict[str, int] = defaultdict(int)
+        domain_successes: set[str] = set()
         skipped_domains: set[str] = set()
+        cf_retry_candidates: list[str] = []
+
+        async def _try_cf_fetch(target_u: str, timeout_s: int) -> bool:
+            host_u = urlparse(target_u).netloc.lower()
+            try:
+                html = await asyncio.wait_for(_fetch_single_cf_page(browser, target_u), timeout=timeout_s)
+                if html:
+                    if is_hard_waf_block(html):
+                        domain_failures[host_u] += 1
+                        snip = _extract_title_snippet(html)
+                        print(f"  ⚠️ [Cloudflare Browser] Отказан достъп/профилактика при {target_u} ({snip})")
+                        return False
+                    p_chk, _, _, stock_chk, stock_reason_chk = extract_price_and_old_price(html, target_u)
+                    if (p_chk is None and stock_chk) or stock_reason_chk == "EMAG_PAGE_INCOMPLETE":
+                        domain_failures[host_u] += 1
+                        snip = _extract_title_snippet(html)
+                        print(f"  ⚠️ [Cloudflare Browser] Непълна страница без цена при {target_u} ({snip})")
+                        return False
+                    results[target_u] = html
+                    domain_failures[host_u] = 0
+                    domain_successes.add(host_u)
+                    return True
+                domain_failures[host_u] += 1
+            except Exception as exc:
+                domain_failures[host_u] += 1
+                print(f"  ⚠️ [Cloudflare Browser] Таймаут/Грешка при {target_u}: {exc}")
+            return False
+
         for u in _interleave_by_host(urls):
             host = urlparse(u).netloc.lower()
             if host in skipped_domains:
                 print(f"  ⏭️ [Cloudflare Browser] Пропускане на {u} ({host} блокира достъпа от този сървър)")
                 continue
-            per_page_timeout = 22 if any(d in host for d in CLOUDFLARE_DOMAINS) else 16
-            try:
-                html = await asyncio.wait_for(_fetch_single_cf_page(browser, u), timeout=per_page_timeout)
-                if html:
-                    results[u] = html
-                    if is_hard_waf_block(html):
-                        domain_failures[host] += 1
-                    else:
-                        p_chk, _, _, stock_chk, _ = extract_price_and_old_price(html, u)
-                        if p_chk is None and stock_chk:
-                            domain_failures[host] += 1
-                        else:
-                            domain_failures[host] = 0
-                else:
-                    domain_failures[host] += 1
-            except Exception as exc:
-                domain_failures[host] += 1
-                print(f"  ⚠️ [Cloudflare Browser] Таймаут/Грешка при {u}: {exc}")
+            is_cf_dom = any(d in host for d in CLOUDFLARE_DOMAINS)
+            per_page_timeout = 22 if is_cf_dom else 16
+            ok = await _try_cf_fetch(u, per_page_timeout)
+            if not ok and is_cf_dom:
+                cf_retry_candidates.append(u)
             if domain_failures[host] >= 2:
                 skipped_domains.add(host)
                 print(f"  🛑 [Cloudflare Browser] Домейнът {host} отказа достъп 2 пъти поред; прескачане на останалите му линкове.")
+
+        for u in cf_retry_candidates:
+            host = urlparse(u).netloc.lower()
+            if host in domain_successes and u not in results:
+                print(f"  🔄 [Cloudflare Browser] Повторен опит след успешно Cloudflare потвърждение: {u}")
+                await _try_cf_fetch(u, 15)
     except Exception as exc:
         print(f"  ⚠️ Неуспешно стартиране на браузър за Cloudflare: {exc}")
     finally:
@@ -807,6 +861,24 @@ def send_email_alert(subject: str, html_body: str) -> bool:
         return False
 
 
+def classify_carryover_reason(err_msg: str, in_ci: bool | None = None) -> str:
+    """Формулира ясна причина защо офертата пази предходната цена в отчета."""
+    if in_ci is None:
+        in_ci = os.environ.get("GITHUB_ACTIONS", "").lower() == "true"
+    low_msg = (err_msg or "").lower()
+    if "503" in low_msg or "black friday" in low_msg or "emag_page_incomplete" in low_msg:
+        return "сайтът временно връща 503 / профилактика"
+    if any(tok in low_msg for tok in ("403", "511", "waf", "forbidden", "denied")):
+        if in_ci:
+            return "сайтът блокира облачния сървър на GitHub – от България се отваря нормално"
+        return "сайтът блокира автоматичната заявка (403/511)"
+    if "404" in low_msg:
+        return "страницата не е намерена (404)"
+    if "no_price" in low_msg:
+        return "страницата не върна цена (възможен временен блок/промяна)"
+    return "временен проблем с достъпа от този сървър"
+
+
 def main():
     parser = argparse.ArgumentParser(description="Ценови бот за магазини в София (Точка 3 от task.txt)")
     parser.add_argument("--force-email", action="store_true", help="Изпраща имейл дори да няма промяна в цената")
@@ -893,7 +965,13 @@ def main():
         cf_cache.update(browser_results)
 
     def _append_carried_over_if_exists(
-        state_key: str, app_id: str, app_name: str, store: str, url: str, baseline: dict
+        state_key: str,
+        app_id: str,
+        app_name: str,
+        store: str,
+        url: str,
+        baseline: dict,
+        reason_note: str = "временен проблем с достъпа от този сървър",
     ) -> None:
         if state_key not in previous_state or not isinstance(previous_state[state_key], dict):
             return
@@ -913,7 +991,7 @@ def main():
                 "price_bgn": prev.get("price_bgn", round(prev["price_eur"] * BGN_TO_EUR, 2)),
                 "october_avg_eur": baseline["october_avg_eur"],
                 "bf_status": prev.get("bf_status", "NORMAL"),
-                "bf_note": f"⏳ Последна проверка от {prev_ts} (временен отказ на достъп от сървъра)",
+                "bf_note": f"⏳ Последна проверка от {prev_ts} ({reason_note})",
                 "is_in_stock": prev.get("is_in_stock", True),
                 "method": "CACHED_PREVIOUS",
                 "carried_over": True,
@@ -940,7 +1018,9 @@ def main():
                 price_eur, claimed_old_eur, method, is_in_stock, stock_reason = extract_price_and_old_price(html, url)
             except Exception as exc:
                 print(f"  ❌ [{store}] Грешка при достъп: {exc} (запазва се предходният запис).")
-                _append_carried_over_if_exists(state_key, app_id, app_name, store, url, baseline)
+                _append_carried_over_if_exists(
+                    state_key, app_id, app_name, store, url, baseline, reason_note=classify_carryover_reason(str(exc))
+                )
                 continue
 
             if price_eur is None:
@@ -950,7 +1030,15 @@ def main():
                     price_eur = baseline.get("target_deal_trigger_defect_eur", baseline["target_deal_trigger_eur"])
                 else:
                     print(f"  ⚠️ [{store}] Не бе открита числова цена на страницата (запазва се предходният запис).")
-                    _append_carried_over_if_exists(state_key, app_id, app_name, store, url, baseline)
+                    _append_carried_over_if_exists(
+                        state_key,
+                        app_id,
+                        app_name,
+                        store,
+                        url,
+                        baseline,
+                        reason_note=classify_carryover_reason(stock_reason if stock_reason == "EMAG_PAGE_INCOMPLETE" else "NO_PRICE"),
+                    )
                     continue
 
             price_bgn = round(price_eur * BGN_TO_EUR, 2)

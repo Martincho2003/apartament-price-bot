@@ -21,6 +21,7 @@ permissions:
 jobs:
   check-prices:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -47,18 +48,19 @@ jobs:
 
       - name: Run Price Monitor Bot
         env:
+          PYTHONUNBUFFERED: "1"
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           NOTIFY_EMAIL: ${{ secrets.NOTIFY_EMAIL }}
         run: |
+          set -o pipefail
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force_email }}" != "false" ]; then
-            timeout --kill-after=10s 480s xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" python price_bot/bot.py --force-email > price_bot/last_cloud_run.log 2>&1 || true
+            timeout --kill-after=10s 720s xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" python -u price_bot/bot.py --force-email 2>&1 | tee price_bot/last_cloud_run.log
           else
-            timeout --kill-after=10s 480s xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" python price_bot/bot.py > price_bot/last_cloud_run.log 2>&1 || true
+            timeout --kill-after=10s 720s xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" python -u price_bot/bot.py 2>&1 | tee price_bot/last_cloud_run.log
           fi
-          cat price_bot/last_cloud_run.log
 
       - name: Commit and push updated price state
         run: |

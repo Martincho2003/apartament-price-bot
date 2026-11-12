@@ -20,9 +20,13 @@ import os
 import re
 import smtplib
 import sys
+import time
+from collections import defaultdict, deque
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
+from urllib.parse import urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -79,22 +83,65 @@ def load_dotenv_if_present(env_path: Path) -> None:
             os.environ[k] = v
 
 
+def _interleave_by_host(urls: list[str]) -> list[str]:
+    """Пренарежда URL-ите round-robin по домейн, за да не се натоварва един магазин с поредни/паралелни заявки."""
+    buckets: dict[str, deque[str]] = defaultdict(deque)
+    seen: set[str] = set()
+    for u in urls:
+        if u in seen:
+            continue
+        seen.add(u)
+        host = urlparse(u).netloc.lower()
+        buckets[host].append(u)
+    ordered: list[str] = []
+    while any(buckets.values()):
+        for host in list(buckets.keys()):
+            if buckets[host]:
+                ordered.append(buckets[host].popleft())
+    return ordered
+
+
+def is_hard_waf_block(html: str) -> bool:
+    """Разпознава твърд HTTP/WAF отказ (403/Access Denied) без интерактивен Cloudflare Turnstile."""
+    if not html:
+        return False
+    low = html.lower()
+    if any(m in low for m in ("just a moment", "challenge-platform", "cf-browser-verification", "turnstile")):
+        return False
+    return any(
+        marker in low
+        for marker in (
+            "<title>403 forbidden</title>",
+            "<title>access denied</title>",
+            "<title>attention required! | cloudflare</title>",
+            "access to this page has been denied",
+            "sorry, you have been blocked",
+            "you don't have permission to access",
+            "error 1020",
+        )
+    )
+
+
 async def _fetch_single_cf_page(browser, u: str) -> str | None:
     """Отваря единична Cloudflare страница с автоматична проверка дали цената или статусът за наличност вече са видими."""
     page = await browser.get(u)
     last_html = None
-    for _attempt in range(3):
-        await page.sleep(3)
+    for attempt in range(3):
+        await page.sleep(1.5 if attempt == 0 else 2.5)
         last_html = await page.get_content()
         if last_html:
+            if is_hard_waf_block(last_html):
+                return last_html
             p_check, _, _, in_stock, _ = extract_price_and_old_price(last_html, u)
             if p_check is not None or not in_stock:
                 return last_html
         try:
-            await asyncio.wait_for(page.verify_cf(), timeout=12)
-            await page.sleep(4)
+            await asyncio.wait_for(page.verify_cf(), timeout=10)
+            await page.sleep(3)
             last_html = await page.get_content()
             if last_html:
+                if is_hard_waf_block(last_html):
+                    return last_html
                 p_check, _, _, in_stock, _ = extract_price_and_old_price(last_html, u)
                 if p_check is not None or not in_stock:
                     return last_html
@@ -154,7 +201,7 @@ async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
                 stderr=subprocess.PIPE,
             )
             ready = False
-            for _ in range(30):
+            for _ in range(60):
                 if chrome_proc.poll() is not None:
                     err_out = (
                         chrome_proc.stderr.read().decode("utf-8", errors="replace")
@@ -174,10 +221,10 @@ async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
             if ready:
                 browser = await asyncio.wait_for(
                     uc.start(host="127.0.0.1", port=debug_port),
-                    timeout=15,
+                    timeout=20,
                 )
             else:
-                raise RuntimeError("Chrome DevTools портът не стана активен в рамките на 15 сек.")
+                raise RuntimeError("Chrome DevTools портът не стана активен в рамките на 30 сек.")
         else:
             browser = await asyncio.wait_for(
                 uc.start(
@@ -193,13 +240,34 @@ async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
                 ),
                 timeout=25,
             )
-        for u in urls:
+        domain_failures: dict[str, int] = defaultdict(int)
+        skipped_domains: set[str] = set()
+        for u in _interleave_by_host(urls):
+            host = urlparse(u).netloc.lower()
+            if host in skipped_domains:
+                print(f"  ⏭️ [Cloudflare Browser] Пропускане на {u} ({host} блокира достъпа от този сървър)")
+                continue
+            per_page_timeout = 22 if any(d in host for d in CLOUDFLARE_DOMAINS) else 16
             try:
-                html = await asyncio.wait_for(_fetch_single_cf_page(browser, u), timeout=25)
+                html = await asyncio.wait_for(_fetch_single_cf_page(browser, u), timeout=per_page_timeout)
                 if html:
                     results[u] = html
+                    if is_hard_waf_block(html):
+                        domain_failures[host] += 1
+                    else:
+                        p_chk, _, _, stock_chk, _ = extract_price_and_old_price(html, u)
+                        if p_chk is None and stock_chk:
+                            domain_failures[host] += 1
+                        else:
+                            domain_failures[host] = 0
+                else:
+                    domain_failures[host] += 1
             except Exception as exc:
+                domain_failures[host] += 1
                 print(f"  ⚠️ [Cloudflare Browser] Таймаут/Грешка при {u}: {exc}")
+            if domain_failures[host] >= 2:
+                skipped_domains.add(host)
+                print(f"  🛑 [Cloudflare Browser] Домейнът {host} отказа достъп 2 пъти поред; прескачане на останалите му линкове.")
     except Exception as exc:
         print(f"  ⚠️ Неуспешно стартиране на браузър за Cloudflare: {exc}")
     finally:
@@ -373,6 +441,8 @@ def check_stock_status(soup: BeautifulSoup, url: str, raw_html: str = "") -> tup
 
     # 6. eMAG проверки: Строго 'Предлаган и с доставка от: eMAG', отхвърляне на външни маркетплейс търговци
     if "emag.bg" in url_low:
+        if not soup.select_one("h1.page-title") and not soup.select_one(".product-page-pricing, .pricing-block"):
+            return True, "EMAG_PAGE_INCOMPLETE"
         seller = None
         for el in soup.select(".highlight-content, .product-highlight, .product-page-pricing, .product-page-vendor-details, .fs-14"):
             txt = el.get_text(" ", strip=True)
@@ -763,27 +833,92 @@ def main():
     # Стъпка 1: Бърза проверка с curl_cffi / requests за сайтовете без задължителен Cloudflare Turnstile,
     # а всички Cloudflare сайтове или върнали 403/511 от чуждестранен облачен IP адрес отиват към реалния Chrome браузър.
     cf_cache = {}
-    browser_urls = []
+    cf_domain_urls = []
+    non_cf_urls = []
+    seen_non_cf = set()
     for app in config["appliances"]:
         for entry in app["urls"]:
             u = entry["url"]
             if any(d in u.lower() for d in CLOUDFLARE_DOMAINS):
-                browser_urls.append(u)
+                if u not in cf_domain_urls:
+                    cf_domain_urls.append(u)
+            elif u not in seen_non_cf:
+                seen_non_cf.add(u)
+                non_cf_urls.append(u)
+
+    def _fast_probe_host(host_urls: list[str]) -> dict[str, str | None]:
+        out: dict[str, str | None] = {}
+        consecutive_http_blocks = 0
+        for idx, target_url in enumerate(host_urls):
+            if consecutive_http_blocks >= 2:
+                out[target_url] = None
+                continue
+            if idx > 0:
+                time.sleep(0.45)
+            try:
+                probe_html = fetch_html_fast(target_url, {}, timeout=8)
+                p_test, _, _, in_stock_test, stock_reason_test = extract_price_and_old_price(probe_html, target_url)
+                if (p_test is not None or not in_stock_test) and stock_reason_test != "EMAG_PAGE_INCOMPLETE":
+                    out[target_url] = probe_html
+                    consecutive_http_blocks = 0
+                    continue
+            except Exception as exc:
+                msg = str(exc)
+                if any(code in msg for code in ("403", "511", "503")):
+                    consecutive_http_blocks += 1
+            out[target_url] = None
+        return out
+
+    browser_fallback_urls = []
+    if non_cf_urls:
+        host_groups: dict[str, list[str]] = defaultdict(list)
+        for u in non_cf_urls:
+            host_groups[urlparse(u).netloc.lower()].append(u)
+        fast_results: dict[str, str | None] = {}
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            futures = [pool.submit(_fast_probe_host, urls_for_host) for urls_for_host in host_groups.values()]
+            for fut in as_completed(futures):
+                fast_results.update(fut.result())
+        for u in non_cf_urls:
+            if fast_results.get(u):
+                cf_cache[u] = fast_results[u]
             else:
-                try:
-                    html = fetch_html_fast(u, {}, timeout=10)
-                    p_test, _, _, in_stock_test, _ = extract_price_and_old_price(html, u)
-                    if p_test is not None or not in_stock_test:
-                        cf_cache[u] = html
-                    else:
-                        browser_urls.append(u)
-                except Exception:
-                    browser_urls.append(u)
+                browser_fallback_urls.append(u)
+
+    browser_urls = cf_domain_urls + browser_fallback_urls
 
     if browser_urls and HAS_NODRIVER:
         print(f"🔓 Отваряне на защитени сайтове през реален Chrome браузър ({len(browser_urls)} линка)...")
         browser_results = uc.loop().run_until_complete(fetch_cloudflare_pages_batch(browser_urls))
         cf_cache.update(browser_results)
+
+    def _append_carried_over_if_exists(
+        state_key: str, app_id: str, app_name: str, store: str, url: str, baseline: dict
+    ) -> None:
+        if state_key not in previous_state or not isinstance(previous_state[state_key], dict):
+            return
+        prev = previous_state[state_key]
+        new_state[state_key] = prev
+        if prev.get("price_eur") is None:
+            return
+        prev_ts = prev.get("last_checked", "предишна проверка")
+        all_results.append(
+            {
+                "timestamp": now_str,
+                "appliance_id": app_id,
+                "appliance_name": app_name,
+                "store": store,
+                "url": url,
+                "price_eur": prev["price_eur"],
+                "price_bgn": prev.get("price_bgn", round(prev["price_eur"] * BGN_TO_EUR, 2)),
+                "october_avg_eur": baseline["october_avg_eur"],
+                "bf_status": prev.get("bf_status", "NORMAL"),
+                "bf_note": f"⏳ Последна проверка от {prev_ts} (временен отказ на достъп от сървъра)",
+                "is_in_stock": prev.get("is_in_stock", True),
+                "method": "CACHED_PREVIOUS",
+                "carried_over": True,
+            }
+        )
 
     new_state = {}
     all_results = []
@@ -805,8 +940,7 @@ def main():
                 price_eur, claimed_old_eur, method, is_in_stock, stock_reason = extract_price_and_old_price(html, url)
             except Exception as exc:
                 print(f"  ❌ [{store}] Грешка при достъп: {exc} (запазва се предходният запис).")
-                if state_key in previous_state:
-                    new_state[state_key] = previous_state[state_key]
+                _append_carried_over_if_exists(state_key, app_id, app_name, store, url, baseline)
                 continue
 
             if price_eur is None:
@@ -816,8 +950,7 @@ def main():
                     price_eur = baseline.get("target_deal_trigger_defect_eur", baseline["target_deal_trigger_eur"])
                 else:
                     print(f"  ⚠️ [{store}] Не бе открита числова цена на страницата (запазва се предходният запис).")
-                    if state_key in previous_state:
-                        new_state[state_key] = previous_state[state_key]
+                    _append_carried_over_if_exists(state_key, app_id, app_name, store, url, baseline)
                     continue
 
             price_bgn = round(price_eur * BGN_TO_EUR, 2)
@@ -958,6 +1091,8 @@ def main():
                 ["Timestamp", "Appliance", "Store", "Price_EUR", "Price_BGN", "October_Avg_EUR", "BF_Status", "URL"]
             )
         for r in all_results:
+            if r.get("carried_over"):
+                continue
             writer.writerow(
                 [
                     r["timestamp"],
@@ -971,10 +1106,18 @@ def main():
                 ]
             )
 
+    fresh_count = sum(1 for r in all_results if not r.get("carried_over"))
+    carried_count = len(all_results) - fresh_count
+    scope_note = (
+        f"{fresh_count} актуални + {carried_count} запазени от предходна проверка"
+        if carried_count
+        else f"{len(all_results)} магазина (физически вериги + транспортни дефекти в София)"
+    )
+
     md_lines = [
         f"# Последен отчет от Ценовия Бот – Магазини в София ({now_str})",
         "",
-        f"- **Проверени оферти в София:** {len(all_results)} магазина (физически вериги + транспортни дефекти в София)",
+        f"- **Проверени оферти в София:** {scope_note}",
         f"- **Засечени промени в цените / наличностите (спрямо предходната проверка):** {len(detected_changes)}",
         "",
         "| Уред | Магазин в София | Текуща цена | Средна Октомври (Т.2) | Статус / Наличност (Черен Петък) |",
@@ -1011,7 +1154,10 @@ def main():
         preview_path = BASE_DIR / "latest_email_preview.html"
         preview_path.write_text(html_body, encoding="utf-8")
         print(f"📧 Генериран е HTML имейл отчет: {preview_path}")
-        send_email_alert(subject, html_body)
+        sent = send_email_alert(subject, html_body)
+        if not sent and args.force_email:
+            print("❌ Неуспешно принудително изпращане на имейл (--force-email).")
+            sys.exit(1)
     else:
         print("\nℹ️ Няма промяна в цените спрямо последната проверка. Имейл не е необходим.")
 

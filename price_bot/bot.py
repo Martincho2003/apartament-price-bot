@@ -251,6 +251,37 @@ def normalize_to_eur(val: float, currency_hint: str = "EUR") -> float:
     return round(val, 2)
 
 
+def parse_eur_amount_from_text(raw_txt: str, default_curr: str = "EUR", min_val: float = 50.0) -> float | None:
+    """Извлича и нормализира към EUR цена от текст (поддържа хиляди с точка/интервал и split <sup> стотинки)."""
+    if not raw_txt:
+        return None
+    patterns = (
+        (r"(\d{1,2})[\.\s\u00a0\u202f](\d{3})\s*[,\.]\s*(\d{2})(?!\d)", True),
+        (r"(\d{2,4})\s*[,\.]\s*(\d{2})(?!\d)", False),
+        (r"(\d{1,2})[\.\s\u00a0\u202f](\d{3})\s+(\d{2})(?!\d)", True),
+        (r"(\d{2,4})\s+(\d{2})(?!\d)", False),
+    )
+    p_val = None
+    for pat, has_thousands in patterns:
+        m = re.search(pat, raw_txt)
+        if m:
+            if has_thousands:
+                p_val = float(f"{m.group(1)}{m.group(2)}.{m.group(3)}")
+            else:
+                p_val = float(f"{m.group(1)}.{m.group(2)}")
+            break
+    if p_val is None or p_val <= min_val:
+        return None
+    low = raw_txt.lower()
+    if "лв" in low or "bgn" in low:
+        curr = "BGN"
+    elif "€" in raw_txt or "eur" in low:
+        curr = "EUR"
+    else:
+        curr = default_curr
+    return normalize_to_eur(p_val, curr)
+
+
 def check_stock_status(soup: BeautifulSoup, url: str, raw_html: str = "") -> tuple[bool, str]:
     """
     Проверява дали продуктът е в наличност или изчерпан.
@@ -260,12 +291,22 @@ def check_stock_status(soup: BeautifulSoup, url: str, raw_html: str = "") -> tup
 
     # 1. Technovision София (technovision.bg)
     if "technovision.bg" in url_low:
+        title_txt = (soup.title.get_text(strip=True).lower() if soup.title else "")
         h1 = soup.find("h1")
         h1_text = h1.get_text(" ", strip=True).lower() if h1 else ""
-        url_slug = url.strip("/").split("/")[-1].lower()
-        slug_tokens = [t for t in re.split(r"[-_]", url_slug) if len(t) > 2 and t not in ("produkt", "hladilnik", "furna", "uredi", "biala", "tehnika", "mashini", "sadomiyalni")]
-        if slug_tokens and not any(t in h1_text for t in slug_tokens):
-            return False, "Technovision (Пренасочване към друг модел / Изчерпан)"
+        if "just a moment" not in title_txt and h1_text not in ("", "technovision.bg"):
+            url_slug = url.strip("/").split("/")[-1].lower()
+            generic_tokens = {
+                "produkt", "hladilnik", "furna", "pechka", "gotvarska", "kombinirana",
+                "uredi", "biala", "tehnika", "mashini", "sadomiyalni", "peralnya",
+                "peralnia", "peralnq", "sushilnya", "sushilnia", "sushilnq",
+                "sas", "sus", "series", "termopompa",
+            }
+            slug_tokens = [t for t in re.split(r"[-_]", url_slug) if len(t) > 2 and t not in generic_tokens]
+            model_tokens = [t for t in slug_tokens if any(c.isalpha() for c in t) and any(c.isdigit() for c in t) and len(t) >= 5]
+            check_tokens = model_tokens or slug_tokens
+            if check_tokens and not any(t in h1_text for t in check_tokens):
+                return False, "Technovision (Пренасочване към друг модел / Изчерпан)"
         summary = soup.select_one(".summary.entry-summary") or soup.select_one(".single-product-wrapper") or soup
         if summary.select_one("p.stock.out-of-stock") or summary.select_one(".out-of-stock"):
             return False, "Technovision (Изчерпано количество)"
@@ -380,11 +421,11 @@ def extract_price_and_old_price(html: str, url: str) -> tuple[float | None, floa
         amounts = []
         if box:
             for a_el in box.select(".woocommerce-Price-amount"):
-                m = re.search(r"(\d+[\.,]\d{2})", a_el.get_text(" ", strip=True).replace(" ", ""))
-                if m:
-                    amounts.append(float(m.group(1).replace(",", ".")))
-        cur = round(amounts[0], 2) if amounts else None
-        old = round(amounts[1], 2) if len(amounts) > 1 and amounts[1] > cur else None
+                amt = parse_eur_amount_from_text(a_el.get_text(" ", strip=True), default_curr="EUR", min_val=50.0)
+                if amt is not None:
+                    amounts.append(amt)
+        cur = amounts[0] if amounts else None
+        old = amounts[1] if len(amounts) > 1 and amounts[1] > cur else None
         tag = "TECHNOVISION" if is_in_stock else "TECHNOVISION (Изчерпан)"
         return cur, old, tag, is_in_stock, stock_reason
 
@@ -392,8 +433,8 @@ def extract_price_and_old_price(html: str, url: str) -> tuple[float | None, floa
     if "technowelt.bg" in url_low:
         wrap = soup.select_one(".price-wrapper")
         if wrap:
-            txt = wrap.get_text(" ", strip=True)
-            euros = [float(x.replace(",", ".")) for x in re.findall(r"€\s*(\d+[\.,]\d{2})", txt)]
+            txt = re.sub(r"[\s\u00a0\u202f]+", "", wrap.get_text(" ", strip=True))
+            euros = [float(x.replace(",", ".")) for x in re.findall(r"€(\d+[\.,]\d{2})", txt)]
             if euros:
                 cur = min(euros)
                 old = max(euros) if len(euros) > 1 and max(euros) > cur else None
@@ -403,21 +444,18 @@ def extract_price_and_old_price(html: str, url: str) -> tuple[float | None, floa
     if "bqlamania.eu" in url_low or "vimax.bg" in url_low:
         p_el = soup.select_one(".product-price-group .product-price")
         if p_el:
-            txt = p_el.get_text(" ", strip=True).replace(" ", "")
-            m = re.search(r"(\d+[\.,]\d{2})", txt)
-            if m:
-                return round(float(m.group(1).replace(",", ".")), 2), None, "PRODUCT_PRICE_GROUP", is_in_stock, stock_reason
+            amt = parse_eur_amount_from_text(p_el.get_text(" ", strip=True), default_curr="EUR", min_val=50.0)
+            if amt is not None:
+                return amt, None, "PRODUCT_PRICE_GROUP", is_in_stock, stock_reason
 
     # 4. Tech2Home София (tech2home.bg)
     if "tech2home.bg" in url_low:
         ins_el = soup.select_one("ins .woocommerce-Price-amount")
         del_el = soup.select_one("del .woocommerce-Price-amount")
         if ins_el:
-            m_cur = re.search(r"(\d+[\.,]\d{2})", ins_el.get_text(" ", strip=True).replace(" ", ""))
-            m_old = re.search(r"(\d+[\.,]\d{2})", del_el.get_text(" ", strip=True).replace(" ", "")) if del_el else None
-            if m_cur:
-                cur = round(float(m_cur.group(1).replace(",", ".")), 2)
-                old = round(float(m_old.group(1).replace(",", ".")), 2) if m_old else None
+            cur = parse_eur_amount_from_text(ins_el.get_text(" ", strip=True), default_curr="EUR", min_val=50.0)
+            old = parse_eur_amount_from_text(del_el.get_text(" ", strip=True), default_curr="EUR", min_val=50.0) if del_el else None
+            if cur is not None:
                 return cur, old, "TECH2HOME", is_in_stock, stock_reason
 
     # --- Общи стандартизирани екстрактори (Технополис, Техномаркет, Зора, Техномикс, Техмарт, Практис, JAR, eMAG, Релакс Техно) ---
@@ -433,7 +471,7 @@ def extract_price_and_old_price(html: str, url: str) -> tuple[float | None, floa
             val = (meta.get("content") or "").strip()
             if val:
                 try:
-                    meta_price = float(val.replace(",", ".").replace(" ", ""))
+                    meta_price = float(re.sub(r"[\s\u00a0\u202f]+", "", val).replace(",", "."))
                 except ValueError:
                     pass
         elif prop in ("product:price:currency", "og:price:currency", "pricecurrency"):
@@ -489,29 +527,21 @@ def extract_price_and_old_price(html: str, url: str) -> tuple[float | None, floa
         for sel in (".product-new-price", "._product-details-price-new", ".special-price .price"):
             el = soup.select_one(sel)
             if el:
-                raw_txt = el.get_text(" ", strip=True)
-                m = re.search(r"(\d{3})\s*[\.,\s]\s*(\d{2})", raw_txt)
-                if m:
-                    p_val = float(f"{m.group(1)}.{m.group(2)}")
-                    if p_val > 50:
-                        current_price = normalize_to_eur(p_val, "EUR" if "€" in raw_txt else "BGN")
-                        method = f"CSS ({sel})"
-                        break
+                amt = parse_eur_amount_from_text(el.get_text(" ", strip=True), default_curr="EUR", min_val=50.0)
+                if amt is not None:
+                    current_price = amt
+                    method = f"CSS ({sel})"
+                    break
 
     # D. Търсене на зачеркната "стара" цена за детекция на лъжливи намаления
     claimed_old_price = None
     for old_sel in (".product-old-price", ".old-price", ".price_old", "del", "s.price"):
         el = soup.select_one(old_sel)
         if el:
-            raw_old = el.get_text(" ", strip=True)
-            m = re.search(r"(\d{3,4})\s*[\.,\s]\s*(\d{2})", raw_old)
-            if m:
-                old_val = float(f"{m.group(1)}.{m.group(2)}")
-                if old_val > 100:
-                    norm_old = normalize_to_eur(old_val, "EUR" if "€" in raw_old else "EUR")
-                    if current_price and norm_old > current_price:
-                        claimed_old_price = norm_old
-                        break
+            norm_old = parse_eur_amount_from_text(el.get_text(" ", strip=True), default_curr="EUR", min_val=100.0)
+            if norm_old is not None and current_price and norm_old > current_price:
+                claimed_old_price = norm_old
+                break
 
     return current_price, claimed_old_price, method, is_in_stock, stock_reason
 
@@ -973,9 +1003,9 @@ def main():
                 parts.append(f"{jumps} покачвания ↑")
             if oos:
                 parts.append(f"{oos} изчерпани ⏸️")
-            subject = f"🔔 Промяна в цените/наличностите на фурните в София ({', '.join(parts)}) - {now_str}"
+            subject = f"🔔 Промяна в цените/наличностите на уредите в София ({', '.join(parts)}) - {now_str}"
         else:
-            subject = f"📊 Контролен отчет за цените на фурните в София ({now_str})"
+            subject = f"📊 Контролен отчет за цените на уредите в София ({now_str})"
 
         html_body = build_email_html(detected_changes, all_results, now_str)
         preview_path = BASE_DIR / "latest_email_preview.html"

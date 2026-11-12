@@ -403,6 +403,57 @@
           "url": "https://www.emag.bg/hladilnik-beko-b3rcne564hxbr-490-l-no-frost-v-192-sm-senzorno-upravlenie-obryshtashti-se-vrati-klas-e-tymen-inoks-271328/pd/DCSYCN3BM/"
         }
       ]
+    },
+    {
+      "id": "aeg_lwr98165nxe",
+      "category": "Пералня със сушилня (Термопомпа)",
+      "name": "AEG Series 9000 LWR98165NXE (10/6 кг, 1600 об/мин, SensiDry термопомпа, Клас A/B, Wi-Fi)",
+      "step2_baseline": {
+        "october_avg_eur": 1543.00,
+        "november_initial_avg_eur": 1299.00,
+        "real_regular_price_eur": 1549.00,
+        "target_deal_trigger_eur": 1349.00,
+        "target_deal_trigger_defect_eur": 1190.00,
+        "fake_crossed_out_price_threshold_eur": 1620.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Peralni-sas-sushilni/Peralnya-sas-Sushilnya-s-termopompa-AEG-LWR98165NXE/p/654006"
+        },
+        {
+          "store": "Техномаркет (София)",
+          "url": "https://www.technomarket.bg/sushilnq/aeg-lwr98165nxe-09228577"
+        },
+        {
+          "store": "Зора (София)",
+          "url": "https://zora.bg/product/lwr98165nxe-1000-kg-1600-obmin-6-kg-b-byal"
+        },
+        {
+          "store": "Техномикс (София)",
+          "url": "https://www.tehnomix.bg/peralnya-sas-sushilnya-aeg-lwr98165nxe-10-6-kg-prosteam-1600-ob-min"
+        },
+        {
+          "store": "Техмарт (София)",
+          "url": "https://techmart.bg/peralnq-sys-sushilnq-aeg-lwr98165nxe"
+        },
+        {
+          "store": "Вимакс (София)",
+          "url": "https://vimax.bg/peralnya-sas-sushilnya-aeg-lwr98165nxe-seria-9000-1600-obr-min-10-6-kg.html"
+        },
+        {
+          "store": "Релакс Техно (София)",
+          "url": "https://www.relaxbg.org/p/peralnya-sas-sushilnya-aeg-lwr98165nxe/"
+        },
+        {
+          "store": "eMAG Шоурум (София)",
+          "url": "https://www.emag.bg/peralnja-sys-sushilnja-aeg-series-9000-prane-10-kg-sushene-6-kg-1600-ob-min-klas-a-wi-fi-termopompa-absolutecare-sensidry-prosense-prosteam-invertoren-motor-tft-displej-bjal-lwr98165nxe/pd/DMTBV23BM/"
+        },
+        {
+          "store": "Technovision София [Транспортен дефект]",
+          "url": "https://technovision.bg/produkt/biala-tehnika/peralni/peralnq-sus-sushilnq-aeg-lwr98165nxe-9000-absolutecare-s-termopompa-10-6kg-1600-ob/"
+        }
+      ]
     }
   ]
 }

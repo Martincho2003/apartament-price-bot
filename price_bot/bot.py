@@ -266,66 +266,120 @@ async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
             import tempfile
             import time
 
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                s.bind(("127.0.0.1", 0))
-                debug_port = s.getsockname()[1]
+            os.environ["DBUS_SESSION_BUS_ADDRESS"] = "/dev/null"
+            for launch_attempt in range(1, 3):
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                    s.bind(("127.0.0.1", 0))
+                    debug_port = s.getsockname()[1]
 
-            profile_dir = tempfile.mkdtemp(prefix="uc_chrome_")
-            chrome_cmd = [
-                linux_chrome,
-                "--remote-debugging-host=127.0.0.1",
-                f"--remote-debugging-port={debug_port}",
-                f"--user-data-dir={profile_dir}",
-                "--remote-allow-origins=*",
-                "--no-first-run",
-                "--no-service-autorun",
-                "--no-default-browser-check",
-                "--homepage=about:blank",
-                "--no-pings",
-                "--password-store=basic",
-                "--disable-infobars",
-                "--disable-breakpad",
-                "--disable-dev-shm-usage",
-                "--disable-session-crashed-bubble",
-                "--disable-search-engine-choice-screen",
-                "--disable-features=IsolateOrigins,site-per-process",
-                "--no-sandbox",
-                "--disable-setuid-sandbox",
-                "--disable-gpu",
-                "--window-size=1280,960",
-                "about:blank",
-            ]
-            chrome_proc = subprocess.Popen(
-                chrome_cmd,
-                stdin=subprocess.DEVNULL,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.PIPE,
-            )
-            ready = False
-            for _ in range(60):
-                if chrome_proc.poll() is not None:
-                    err_out = (
-                        chrome_proc.stderr.read().decode("utf-8", errors="replace")
-                        if chrome_proc.stderr
-                        else ""
-                    )
-                    print(f"  ⚠️ Chrome процесът спря преждевременно: {err_out[:400]}")
-                    break
-                try:
-                    r = requests.get(f"http://127.0.0.1:{debug_port}/json/version", timeout=1)
-                    if r.status_code == 200:
-                        ready = True
+                profile_dir = tempfile.mkdtemp(prefix="uc_chrome_")
+                stderr_path = Path(profile_dir) / "chrome_stderr.log"
+                chrome_cmd = [
+                    linux_chrome,
+                    f"--remote-debugging-port={debug_port}",
+                    f"--user-data-dir={profile_dir}",
+                    "--remote-allow-origins=*",
+                    "--no-first-run",
+                    "--no-service-autorun",
+                    "--no-default-browser-check",
+                    "--homepage=about:blank",
+                    "--no-pings",
+                    "--password-store=basic",
+                    "--disable-infobars",
+                    "--disable-breakpad",
+                    "--disable-dev-shm-usage",
+                    "--disable-session-crashed-bubble",
+                    "--disable-search-engine-choice-screen",
+                    "--disable-background-networking",
+                    "--disable-component-update",
+                    "--disable-domain-reliability",
+                    "--disable-sync",
+                    "--metrics-recording-only",
+                    "--disable-features=IsolateOrigins,site-per-process,SecretPortalKeyProvider,UseFreedesktopSecretKeyProvider,OptimizationHints,MediaRouter,Translate",
+                    "--no-sandbox",
+                    "--disable-setuid-sandbox",
+                    "--disable-gpu",
+                    "--window-size=1280,960",
+                    "about:blank",
+                ]
+                stderr_handle = open(stderr_path, "wb")
+                chrome_proc = subprocess.Popen(
+                    chrome_cmd,
+                    stdin=subprocess.DEVNULL,
+                    stdout=subprocess.DEVNULL,
+                    stderr=stderr_handle,
+                    env=os.environ.copy(),
+                )
+                stderr_handle.close()
+                ready = False
+                for _ in range(40):
+                    if chrome_proc.poll() is not None:
+                        err_out = stderr_path.read_text(encoding="utf-8", errors="replace") if stderr_path.exists() else ""
+                        print(f"  ⚠️ Chrome процесът спря преждевременно (опит {launch_attempt}): {err_out[:400]}")
                         break
+                    try:
+                        r = requests.get(f"http://127.0.0.1:{debug_port}/json/version", timeout=1)
+                        if r.status_code == 200:
+                            ready = True
+                            break
+                    except Exception:
+                        pass
+                    time.sleep(0.5)
+                if ready:
+                    try:
+                        browser = await asyncio.wait_for(
+                            uc.start(host="127.0.0.1", port=debug_port),
+                            timeout=20,
+                        )
+                        break
+                    except Exception as start_exc:
+                        print(f"  ⚠️ Грешка при свързване с Chrome DevTools (опит {launch_attempt}): {start_exc}")
+                else:
+                    ver_out = ""
+                    try:
+                        ver_out = subprocess.run(
+                            [linux_chrome, "--version"],
+                            capture_output=True,
+                            text=True,
+                            timeout=3,
+                        ).stdout.strip()
+                    except Exception:
+                        pass
+                    err_out = stderr_path.read_text(encoding="utf-8", errors="replace") if stderr_path.exists() else ""
+                    print(
+                        f"  ⚠️ Chrome DevTools портът ({debug_port}) не стана активен за 20 сек "
+                        f"(опит {launch_attempt}/2, {ver_out}). Лог: {err_out[-350:].strip()}"
+                    )
+                try:
+                    chrome_proc.kill()
                 except Exception:
                     pass
-                time.sleep(0.5)
-            if ready:
-                browser = await asyncio.wait_for(
-                    uc.start(host="127.0.0.1", port=debug_port),
-                    timeout=20,
+                subprocess.run(
+                    ["pkill", "-9", "-f", "/opt/google/chrome"],
+                    check=False,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
                 )
-            else:
-                raise RuntimeError("Chrome DevTools портът не стана активен в рамките на 30 сек.")
+                time.sleep(1.0)
+
+            if browser is None:
+                print("  🔄 Проба на резервно стартиране чрез nodriver uc.start()...")
+                browser = await asyncio.wait_for(
+                    uc.start(
+                        browser_executable_path=linux_chrome,
+                        headless=False,
+                        sandbox=False,
+                        browser_args=[
+                            "--no-sandbox",
+                            "--disable-setuid-sandbox",
+                            "--disable-dev-shm-usage",
+                            "--disable-gpu",
+                            "--password-store=basic",
+                            "--window-size=1280,960",
+                        ],
+                    ),
+                    timeout=25,
+                )
         else:
             browser = await asyncio.wait_for(
                 uc.start(
@@ -431,8 +485,9 @@ def fetch_html_fast(url: str, cf_cache: dict[str, str], timeout: int = 15) -> st
             resp = cffi_requests.get(url, headers=HEADERS, impersonate="chrome124", timeout=timeout)
             if resp.status_code == 200 and len(resp.text) > 1000:
                 return resp.text
-        except Exception:
-            pass
+        except Exception as cffi_exc:
+            if any(t in str(cffi_exc).lower() for t in ("timed out", "timeout", "operation timed out")):
+                raise
     resp = requests.get(url, headers=HEADERS, timeout=timeout)
     resp.raise_for_status()
     return resp.text
@@ -996,7 +1051,11 @@ def main():
     def _fast_probe_host(host_urls: list[str]) -> dict[str, str | None]:
         out: dict[str, str | None] = {}
         consecutive_http_blocks = 0
+        consecutive_timeouts = 0
         for idx, target_url in enumerate(host_urls):
+            if consecutive_timeouts >= 2:
+                out[target_url] = "__TCP_TIMEOUT__"
+                continue
             if consecutive_http_blocks >= 2:
                 out[target_url] = None
                 continue
@@ -1008,11 +1067,16 @@ def main():
                 if (p_test is not None or not in_stock_test) and stock_reason_test != "EMAG_PAGE_INCOMPLETE":
                     out[target_url] = probe_html
                     consecutive_http_blocks = 0
+                    consecutive_timeouts = 0
                     continue
             except Exception as exc:
                 msg = str(exc)
                 if "404" in msg:
                     out[target_url] = "__HTTP_404__"
+                    continue
+                if any(t in msg.lower() for t in ("timed out", "timeout", "operation timed out")):
+                    consecutive_timeouts += 1
+                    out[target_url] = "__TCP_TIMEOUT__"
                     continue
                 if any(code in msg for code in ("403", "511", "503")):
                     consecutive_http_blocks += 1
@@ -1020,18 +1084,18 @@ def main():
         return out
 
     browser_fallback_urls = []
+    fast_results: dict[str, str | None] = {}
     if non_cf_urls:
         host_groups: dict[str, list[str]] = defaultdict(list)
         for u in non_cf_urls:
             host_groups[urlparse(u).netloc.lower()].append(u)
-        fast_results: dict[str, str | None] = {}
         with ThreadPoolExecutor(max_workers=4) as pool:
             futures = [pool.submit(_fast_probe_host, urls_for_host) for urls_for_host in host_groups.values()]
             for fut in as_completed(futures):
                 fast_results.update(fut.result())
         for u in non_cf_urls:
             val = fast_results.get(u)
-            if val == "__HTTP_404__":
+            if val in ("__HTTP_404__", "__TCP_TIMEOUT__"):
                 continue
             elif val:
                 cf_cache[u] = val
@@ -1095,6 +1159,12 @@ def main():
             state_key = f"{app_id}::{store}"
 
             try:
+                if url not in cf_cache:
+                    probe_flag = fast_results.get(url)
+                    if probe_flag == "__HTTP_404__":
+                        raise RuntimeError(f"404 Client Error: Not Found for url: {url}")
+                    if probe_flag == "__TCP_TIMEOUT__":
+                        raise ConnectionError(f"ConnectTimeoutError: Connection to {urlparse(url).netloc} timed out")
                 html = fetch_html_fast(url, cf_cache)
                 price_eur, claimed_old_eur, method, is_in_stock, stock_reason = extract_price_and_old_price(html, url)
             except Exception as exc:

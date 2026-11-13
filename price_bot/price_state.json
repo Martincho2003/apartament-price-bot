@@ -23,7 +23,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-13 13:51:31"
+    "last_checked": "2026-11-13 11:54:06"
   },
   "gorenje_bps6747a06x::Техномикс (София)": {
     "appliance_id": "gorenje_bps6747a06x",
@@ -114,7 +114,7 @@
     "bf_status": "OUT_OF_STOCK",
     "is_in_stock": false,
     "stock_reason": "JSON-LD (outofstock)",
-    "last_checked": "2026-11-13 13:51:31"
+    "last_checked": "2026-11-13 11:54:06"
   },
   "gorenje_bps6737e14x::Практис МЕГА (София) [Черна E04DBG]": {
     "appliance_id": "gorenje_bps6737e14x",
@@ -127,7 +127,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-13 13:51:31"
+    "last_checked": "2026-11-13 11:54:06"
   },
   "gorenje_bos6737e13x::Технополис (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -192,7 +192,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-13 13:51:31"
+    "last_checked": "2026-11-13 11:54:06"
   },
   "gorenje_bos6737e13x::Практис МЕГА (София) [Инокс 13X]": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -205,7 +205,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-13 13:51:31"
+    "last_checked": "2026-11-13 11:54:06"
   },
   "gorenje_bos6737e13x::Практис МЕГА (София) [Черна E06FBG]": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -218,7 +218,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-13 13:51:31"
+    "last_checked": "2026-11-13 11:54:06"
   },
   "gorenje_bos6737e13x::Вимакс (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -231,7 +231,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-13 13:51:31"
+    "last_checked": "2026-11-13 11:54:06"
   },
   "gorenje_bos6737e13x::eMAG Шоурум (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -348,7 +348,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-13 13:51:31"
+    "last_checked": "2026-11-13 11:54:06"
   },
   "aeg_ffb73527zm::eMAG Шоурум (София)": {
     "appliance_id": "aeg_ffb73527zm",
@@ -556,7 +556,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-13 13:51:31"
+    "last_checked": "2026-11-13 11:54:06"
   },
   "beko_b3rcne564hdxb1::Технополис (София)": {
     "appliance_id": "beko_b3rcne564hdxb1",
@@ -647,7 +647,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-13 13:51:31"
+    "last_checked": "2026-11-13 11:54:06"
   },
   "aeg_lwr98165nxe::Вимакс (София)": {
     "appliance_id": "aeg_lwr98165nxe",
@@ -660,7 +660,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-13 13:51:31"
+    "last_checked": "2026-11-13 11:54:06"
   },
   "aeg_lwr98165nxe::Релакс Техно (София)": {
     "appliance_id": "aeg_lwr98165nxe",
@@ -673,7 +673,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-13 13:51:31"
+    "last_checked": "2026-11-13 11:54:06"
   },
   "aeg_lwr98165nxe::eMAG Шоурум (София)": {
     "appliance_id": "aeg_lwr98165nxe",

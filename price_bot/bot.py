@@ -145,6 +145,7 @@ def is_hard_waf_block(html: str) -> bool:
             "<title>403 forbidden</title>",
             "<title>access denied</title>",
             "<title>attention required! | cloudflare</title>",
+            "<title>emag captcha</title>",
             "access to this page has been denied",
             "sorry, you have been blocked",
             "you don't have permission to access",
@@ -243,7 +244,7 @@ async def _fetch_single_cf_page(browser, u: str) -> str | None:
 
         if ready_state == "complete" and len(last_html) > 1000:
             complete_without_price_count += 1
-            if complete_without_price_count >= 3:
+            if complete_without_price_count >= 5:
                 return last_html
 
     if last_html and is_cf_challenge(last_html):
@@ -414,7 +415,10 @@ async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
                     if (p_chk is None and stock_chk) or stock_reason_chk == "EMAG_PAGE_INCOMPLETE":
                         domain_failures[host_u] += 1
                         snip = _extract_title_snippet(html)
-                        print(f"  ⚠️ [Cloudflare Browser] Непълна страница без цена при {target_u} ({snip})")
+                        print(
+                            f"  ⚠️ [Cloudflare Browser] Непълна страница без цена при {target_u} "
+                            f"({snip} | len={len(html)} ld={html.count('application/ld+json')} pdp={int('product-pdp__prices' in html)})"
+                        )
                         return False
                     results[target_u] = html
                     domain_failures[host_u] = 0
@@ -776,7 +780,18 @@ def extract_price_and_old_price(html: str, url: str) -> tuple[float | None, floa
             if current_price is not None:
                 break
 
-    # C. Специфични CSS селектори (eMAG и др.)
+    # C. Специфични CSS селектори (Технополис PDP, eMAG и др.)
+    if current_price is None and "technopolis.bg" in url_low:
+        for el in soup.select(".product-pdp__prices .price-value"):
+            if el.find_parent(class_="old-price") is not None:
+                continue
+            price_txt = (el.parent.get_text(" ", strip=True) if el.parent else "") or el.get_text(" ", strip=True)
+            amt = parse_eur_amount_from_text(price_txt, default_curr="EUR", min_val=50.0)
+            if amt is not None:
+                current_price = amt
+                method = "CSS (Technopolis PDP)"
+                break
+
     if current_price is None:
         for sel in (".product-new-price", "._product-details-price-new", ".special-price .price"):
             el = soup.select_one(sel)

@@ -489,6 +489,10 @@ def fetch_html_fast(url: str, cf_cache: dict[str, str], timeout: int = 15) -> st
             resp = cffi_requests.get(url, headers=HEADERS, impersonate="chrome124", timeout=timeout)
             if resp.status_code == 200 and len(resp.text) > 1000:
                 return resp.text
+            if resp.status_code == 511:
+                raise requests.HTTPError(f"511 Server Error: Network Authentication Required for url: {url}")
+        except requests.HTTPError:
+            raise
         except Exception as cffi_exc:
             if any(t in str(cffi_exc).lower() for t in ("timed out", "timeout", "operation timed out")):
                 raise
@@ -1011,9 +1015,9 @@ def classify_carryover_reason(err_msg: str, in_ci: bool | None = None) -> str:
     if in_ci is None:
         in_ci = os.environ.get("GITHUB_ACTIONS", "").lower() == "true"
     low_msg = (err_msg or "").lower()
-    if "503" in low_msg or "black friday" in low_msg or "emag_page_incomplete" in low_msg:
+    if "503" in low_msg or "black friday" in low_msg:
         return "сайтът временно връща 503 / профилактика"
-    if any(tok in low_msg for tok in ("403", "511", "waf", "forbidden", "denied")):
+    if any(tok in low_msg for tok in ("403", "511", "waf", "forbidden", "denied", "emag_page_incomplete")):
         if in_ci:
             return "сайтът блокира облачния сървър на GitHub – от България се отваря нормално"
         return "сайтът блокира автоматичната заявка (403/511)"

@@ -110,9 +110,14 @@ def is_cf_challenge(html: str) -> bool:
         m in low
         for m in (
             "<title>just a moment",
+            "<title>един момент",
+            "window._cf_chl_opt",
+            "/cdn-cgi/challenge-platform",
             "challenge-platform",
             "cf-browser-verification",
+            "cf-turnstile",
             "enable javascript and cookies to continue",
+            "verify you are human",
         )
     )
 
@@ -149,34 +154,98 @@ def is_hard_waf_block(html: str) -> bool:
     )
 
 
+async def _read_tab_state(page) -> tuple[str, str, str]:
+    """Бързо извлича (href, readyState, html) през CDP Runtime.evaluate без тежка DOM сериализация."""
+    try:
+        ro_meta, err_meta = await asyncio.wait_for(
+            page.send(
+                uc.cdp.runtime.evaluate(
+                    expression="JSON.stringify({href: location.href || '', ready: document.readyState || ''})",
+                    return_by_value=True,
+                )
+            ),
+            timeout=4,
+        )
+        href = ""
+        ready = ""
+        if not err_meta and ro_meta and ro_meta.value:
+            meta = json.loads(ro_meta.value)
+            href = meta.get("href", "")
+            ready = meta.get("ready", "")
+        ro_html, err_html = await asyncio.wait_for(
+            page.send(
+                uc.cdp.runtime.evaluate(
+                    expression="document.documentElement ? document.documentElement.outerHTML : ''",
+                    return_by_value=True,
+                )
+            ),
+            timeout=5,
+        )
+        if not err_html and ro_html and isinstance(ro_html.value, str):
+            return href, ready, ro_html.value
+    except Exception:
+        pass
+    try:
+        html_fallback = await asyncio.wait_for(page.get_content(), timeout=5)
+        return "", "", html_fallback or ""
+    except Exception:
+        return "", "", ""
+
+
 async def _fetch_single_cf_page(browser, u: str) -> str | None:
-    """Отваря единична Cloudflare страница с автоматична проверка дали цената или статусът за наличност вече са видими."""
+    """Отваря страница в Chrome, изчаква зареждането на DOM и кликва Cloudflare Turnstile САМО при реален challenge."""
+    target_host = urlparse(u).netloc.lower().replace("www.", "")
+    before_href = ""
+    try:
+        first_tab = next((t for t in browser.targets if t.target.type_ == "page"), None)
+        if first_tab is not None:
+            before_href, _, _ = await _read_tab_state(first_tab)
+    except Exception:
+        pass
+
     page = await browser.get(u)
     last_html = None
-    for attempt in range(3):
-        await page.sleep(1.5 if attempt == 0 else 2.5)
-        last_html = await page.get_content()
-        if last_html:
-            if is_hard_waf_block(last_html):
+    complete_without_price_count = 0
+    cf_verify_attempts = 0
+
+    for poll_idx in range(10):
+        await page.sleep(1.2 if poll_idx == 0 else 1.3)
+        cur_href, ready_state, html = await _read_tab_state(page)
+        if not html:
+            continue
+
+        if cur_href:
+            cur_host = urlparse(cur_href).netloc.lower().replace("www.", "")
+            if cur_href == "about:blank" or (cur_host and target_host not in cur_host and cur_host not in target_host):
+                continue
+            if before_href and before_href != u and cur_href == before_href and poll_idx < 4:
+                continue
+
+        last_html = html
+        if is_hard_waf_block(last_html):
+            return last_html
+
+        if is_cf_challenge(last_html):
+            complete_without_price_count = 0
+            if cf_verify_attempts < 2:
+                cf_verify_attempts += 1
+                try:
+                    await page.sleep(1.0)
+                    await asyncio.wait_for(page.verify_cf(), timeout=8)
+                    await page.sleep(1.5)
+                except Exception:
+                    pass
+            continue
+
+        p_check, _, _, in_stock, stock_reason = extract_price_and_old_price(last_html, u)
+        if (p_check is not None or not in_stock) and stock_reason != "EMAG_PAGE_INCOMPLETE":
+            return last_html
+
+        if ready_state == "complete" and len(last_html) > 1000:
+            complete_without_price_count += 1
+            if complete_without_price_count >= 3:
                 return last_html
-            if not is_cf_challenge(last_html):
-                p_check, _, _, in_stock, stock_reason = extract_price_and_old_price(last_html, u)
-                if (p_check is not None or not in_stock) and stock_reason != "EMAG_PAGE_INCOMPLETE":
-                    return last_html
-        try:
-            await asyncio.wait_for(page.verify_cf(), timeout=10)
-            for _ in range(4):
-                await page.sleep(1.5)
-                last_html = await page.get_content()
-                if last_html:
-                    if is_hard_waf_block(last_html):
-                        return last_html
-                    if not is_cf_challenge(last_html):
-                        p_check, _, _, in_stock, stock_reason = extract_price_and_old_price(last_html, u)
-                        if (p_check is not None or not in_stock) and stock_reason != "EMAG_PAGE_INCOMPLETE":
-                            return last_html
-        except Exception:
-            pass
+
     if last_html and is_cf_challenge(last_html):
         return None
     return last_html
@@ -300,7 +369,8 @@ async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
                 domain_failures[host_u] += 1
             except Exception as exc:
                 domain_failures[host_u] += 1
-                print(f"  ⚠️ [Cloudflare Browser] Таймаут/Грешка при {target_u}: {exc}")
+                err_label = str(exc) or type(exc).__name__
+                print(f"  ⚠️ [Cloudflare Browser] Таймаут/Грешка при {target_u}: {err_label}")
             return False
 
         for u in _interleave_by_host(urls):
@@ -308,20 +378,23 @@ async def fetch_cloudflare_pages_batch(urls: list[str]) -> dict[str, str]:
             if host in skipped_domains:
                 print(f"  ⏭️ [Cloudflare Browser] Пропускане на {u} ({host} блокира достъпа от този сървър)")
                 continue
-            is_cf_dom = any(d in host for d in CLOUDFLARE_DOMAINS)
-            per_page_timeout = 22 if is_cf_dom else 16
+            per_page_timeout = 24 if host not in domain_successes else 18
             ok = await _try_cf_fetch(u, per_page_timeout)
-            if not ok and is_cf_dom:
+            if not ok:
                 cf_retry_candidates.append(u)
-            if domain_failures[host] >= 2:
+            max_consecutive_failures = 3 if host in domain_successes else 2
+            if domain_failures[host] >= max_consecutive_failures:
                 skipped_domains.add(host)
-                print(f"  🛑 [Cloudflare Browser] Домейнът {host} отказа достъп 2 пъти поред; прескачане на останалите му линкове.")
+                print(
+                    f"  🛑 [Cloudflare Browser] Домейнът {host} отказа достъп {domain_failures[host]} пъти поред; "
+                    "прескачане на останалите му линкове."
+                )
 
         for u in cf_retry_candidates:
             host = urlparse(u).netloc.lower()
             if host in domain_successes and u not in results:
                 print(f"  🔄 [Cloudflare Browser] Повторен опит след успешно Cloudflare потвърждение: {u}")
-                await _try_cf_fetch(u, 15)
+                await _try_cf_fetch(u, 18)
     except Exception as exc:
         print(f"  ⚠️ Неуспешно стартиране на браузър за Cloudflare: {exc}")
     finally:
@@ -414,6 +487,8 @@ def check_stock_status(soup: BeautifulSoup, url: str, raw_html: str = "") -> tup
     # 1. Technovision София (technovision.bg)
     if "technovision.bg" in url_low:
         title_txt = (soup.title.get_text(strip=True).lower() if soup.title else "")
+        if any(m in title_txt for m in ("page not found", "страницата не е намерена", "404")):
+            return False, "Technovision (Изчерпан / Свален от сайта)"
         h1 = soup.find("h1")
         h1_text = h1.get_text(" ", strip=True).lower() if h1 else ""
         if "just a moment" not in title_txt and h1_text not in ("", "technovision.bg"):
@@ -936,6 +1011,9 @@ def main():
                     continue
             except Exception as exc:
                 msg = str(exc)
+                if "404" in msg:
+                    out[target_url] = "__HTTP_404__"
+                    continue
                 if any(code in msg for code in ("403", "511", "503")):
                     consecutive_http_blocks += 1
             out[target_url] = None
@@ -952,8 +1030,11 @@ def main():
             for fut in as_completed(futures):
                 fast_results.update(fut.result())
         for u in non_cf_urls:
-            if fast_results.get(u):
-                cf_cache[u] = fast_results[u]
+            val = fast_results.get(u)
+            if val == "__HTTP_404__":
+                continue
+            elif val:
+                cf_cache[u] = val
             else:
                 browser_fallback_urls.append(u)
 

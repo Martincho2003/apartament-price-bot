@@ -6,11 +6,11 @@
     "url": "https://www.technomarket.bg/furni/gorenje-bps6747a06x-09201197",
     "price_eur": 329.0,
     "price_bgn": 643.47,
-    "claimed_old_eur": 439.2,
-    "bf_status": "FAKE_DISCOUNT",
+    "claimed_old_eur": null,
+    "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_bps6747a06x::Практис МЕГА (София)": {
     "appliance_id": "gorenje_bps6747a06x",
@@ -23,7 +23,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_bps6747a06x::Техномикс (София)": {
     "appliance_id": "gorenje_bps6747a06x",
@@ -36,7 +36,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_bps6747a06x::Технополис (София)": {
     "appliance_id": "gorenje_bps6747a06x",
@@ -49,7 +49,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_bps6747a06x::eMAG Шоурум (София)": {
     "appliance_id": "gorenje_bps6747a06x",
@@ -75,7 +75,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_bps6737e14x::Техномаркет (София)": {
     "appliance_id": "gorenje_bps6737e14x",
@@ -88,7 +88,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_bps6737e14x::Техномикс (София)": {
     "appliance_id": "gorenje_bps6737e14x",
@@ -101,7 +101,7 @@
     "bf_status": "OUT_OF_STOCK",
     "is_in_stock": false,
     "stock_reason": "JSON-LD (outofstock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_bps6737e14x::Практис МЕГА (София) [Инокс 14X]": {
     "appliance_id": "gorenje_bps6737e14x",
@@ -114,7 +114,7 @@
     "bf_status": "OUT_OF_STOCK",
     "is_in_stock": false,
     "stock_reason": "JSON-LD (outofstock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_bps6737e14x::Практис МЕГА (София) [Черна E04DBG]": {
     "appliance_id": "gorenje_bps6737e14x",
@@ -127,7 +127,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_bos6737e13x::Технополис (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -140,7 +140,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_bos6737e13x::Техномаркет (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -153,7 +153,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_bos6737e13x::Зора (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -166,7 +166,7 @@
     "bf_status": "OUT_OF_STOCK",
     "is_in_stock": false,
     "stock_reason": "JSON-LD (outofstock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_bos6737e13x::Техномикс (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -179,7 +179,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_bos6737e13x::Техмарт (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -192,7 +192,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_bos6737e13x::Практис МЕГА (София) [Инокс 13X]": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -205,7 +205,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_bos6737e13x::Практис МЕГА (София) [Черна E06FBG]": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -218,7 +218,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_bos6737e13x::Вимакс (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -231,7 +231,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_bos6737e13x::eMAG Шоурум (София)": {
     "appliance_id": "gorenje_bos6737e13x",
@@ -257,7 +257,7 @@
     "bf_status": "OUT_OF_STOCK",
     "is_in_stock": false,
     "stock_reason": "Technovision (Пренасочване към друг модел / Изчерпан)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_gk5c64wf::Техномаркет (София)": {
     "appliance_id": "gorenje_gk5c64wf",
@@ -270,7 +270,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_gk5c64wf::Техномикс (София)": {
     "appliance_id": "gorenje_gk5c64wf",
@@ -283,7 +283,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "gorenje_gk5c64wf::Технополис (София)": {
     "appliance_id": "gorenje_gk5c64wf",
@@ -296,7 +296,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "aeg_ffb73527zm::Технополис (София)": {
     "appliance_id": "aeg_ffb73527zm",
@@ -309,7 +309,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "aeg_ffb73527zm::Техномаркет (София)": {
     "appliance_id": "aeg_ffb73527zm",
@@ -322,7 +322,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "aeg_ffb73527zm::Зора (София)": {
     "appliance_id": "aeg_ffb73527zm",
@@ -331,11 +331,11 @@
     "url": "https://zora.bg/product/ffb73527zm",
     "price_eur": 479.0,
     "price_bgn": 936.84,
-    "claimed_old_eur": null,
-    "bf_status": "REAL_DEAL",
+    "claimed_old_eur": 1306.84,
+    "bf_status": "FAKE_DISCOUNT",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "aeg_ffb73527zm::Техмарт (София)": {
     "appliance_id": "aeg_ffb73527zm",
@@ -348,7 +348,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "aeg_ffb73527zm::eMAG Шоурум (София)": {
     "appliance_id": "aeg_ffb73527zm",
@@ -374,7 +374,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "haier_xf_1c3tb1::Технополис (София) [Инокс FX]": {
     "appliance_id": "haier_xf_1c3tb1",
@@ -387,7 +387,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "haier_xf_1c3tb1::eMAG Шоурум (София) [Бяла FW]": {
     "appliance_id": "haier_xf_1c3tb1",
@@ -413,7 +413,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "bosch_kge49aica::Зора (София)": {
     "appliance_id": "bosch_kge49aica",
@@ -422,11 +422,11 @@
     "url": "https://zora.bg/product/kge49aica",
     "price_eur": 727.0,
     "price_bgn": 1421.89,
-    "claimed_old_eur": null,
+    "claimed_old_eur": 849.99,
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "bosch_kge49aica::Техномикс (София)": {
     "appliance_id": "bosch_kge49aica",
@@ -439,7 +439,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "bosch_kge49aica::eMAG Шоурум (София)": {
     "appliance_id": "bosch_kge49aica",
@@ -465,7 +465,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "bosch_kgn49xlea::Зора (София)": {
     "appliance_id": "bosch_kgn49xlea",
@@ -474,11 +474,11 @@
     "url": "https://zora.bg/product/kgn49xlea-438-l-e-no-frost-inoks",
     "price_eur": 779.0,
     "price_bgn": 1523.59,
-    "claimed_old_eur": 1277.72,
-    "bf_status": "FAKE_DISCOUNT",
+    "claimed_old_eur": null,
+    "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "bosch_kgn49xlea::Техномикс (София)": {
     "appliance_id": "bosch_kgn49xlea",
@@ -491,7 +491,7 @@
     "bf_status": "OUT_OF_STOCK",
     "is_in_stock": false,
     "stock_reason": "DOM (изчерпан онлайн)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "bosch_kgn49xlea::eMAG Шоурум (София)": {
     "appliance_id": "bosch_kgn49xlea",
@@ -517,7 +517,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "haier_hfr7720dwmp::eMAG Шоурум (София)": {
     "appliance_id": "haier_hfr7720dwmp",
@@ -543,7 +543,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "lg_gbbw726cev::Техмарт (София)": {
     "appliance_id": "lg_gbbw726cev",
@@ -556,7 +556,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "beko_b3rcne564hdxb1::Технополис (София)": {
     "appliance_id": "beko_b3rcne564hdxb1",
@@ -569,7 +569,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "beko_b3rcne564hdxb1::eMAG Шоурум (София)": {
     "appliance_id": "beko_b3rcne564hdxb1",
@@ -595,7 +595,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "aeg_lwr98165nxe::Техномаркет (София)": {
     "appliance_id": "aeg_lwr98165nxe",
@@ -608,7 +608,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "aeg_lwr98165nxe::Зора (София)": {
     "appliance_id": "aeg_lwr98165nxe",
@@ -621,20 +621,20 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "aeg_lwr98165nxe::Техномикс (София)": {
     "appliance_id": "aeg_lwr98165nxe",
     "appliance_name": "AEG Series 9000 LWR98165NXE (10/6 кг, 1600 об/мин, SensiDry термопомпа, Клас A/B, Wi-Fi)",
     "store": "Техномикс (София)",
     "url": "https://www.tehnomix.bg/peralnya-sas-sushilnya-aeg-lwr98165nxe-10-6-kg-prosteam-1600-ob-min",
-    "price_eur": 1299.0,
-    "price_bgn": 2540.62,
+    "price_eur": 1399.0,
+    "price_bgn": 2736.21,
     "claimed_old_eur": null,
-    "bf_status": "REAL_DEAL",
+    "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "aeg_lwr98165nxe::Техмарт (София)": {
     "appliance_id": "aeg_lwr98165nxe",
@@ -647,7 +647,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "aeg_lwr98165nxe::Вимакс (София)": {
     "appliance_id": "aeg_lwr98165nxe",
@@ -660,7 +660,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "aeg_lwr98165nxe::Релакс Техно (София)": {
     "appliance_id": "aeg_lwr98165nxe",
@@ -673,7 +673,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   },
   "aeg_lwr98165nxe::eMAG Шоурум (София)": {
     "appliance_id": "aeg_lwr98165nxe",
@@ -699,6 +699,6 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-14 08:11:45"
+    "last_checked": "2026-11-14 13:42:30"
   }
 }

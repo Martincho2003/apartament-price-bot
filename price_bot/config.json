@@ -255,78 +255,16 @@
       ]
     },
     {
-      "id": "bosch_kge49aica",
-      "category": "Хладилник с фризер (70 см)",
-      "name": "Bosch Serie 6 KGE49AICA (70.0 x 65.0 x 201.0 см, 419 л, LowFrost, VitaFresh 0°C, Клас C)",
-      "step2_baseline": {
-        "october_avg_eur": 827.00,
-        "november_initial_avg_eur": 800.00,
-        "real_regular_price_eur": 827.00,
-        "target_deal_trigger_eur": 769.00,
-        "target_deal_trigger_defect_eur": 680.00,
-        "fake_crossed_out_price_threshold_eur": 870.00
-      },
-      "urls": [
-        {
-          "store": "Технополис (София)",
-          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-BOSCH-KGE49AICA/p/662866"
-        },
-        {
-          "store": "Зора (София)",
-          "url": "https://zora.bg/product/kge49aica"
-        },
-        {
-          "store": "Техномикс (София)",
-          "url": "https://www.tehnomix.bg/hladilnik-s-frizer-bosch-kge49aica"
-        },
-        {
-          "store": "eMAG Шоурум (София)",
-          "url": "https://www.emag.bg/hladilnik-s-frizer-bosch-419-l-klas-c-low-frost-vitafresh-h-201-sm-inox-s-pokritie-protiv-otpechatyci-kge49aica/pd/DFYKW2MBM/"
-        }
-      ]
-    },
-    {
-      "id": "bosch_kgn49xlea",
-      "category": "Хладилник с фризер (70 см)",
-      "name": "Bosch Serie 4 KGN49XLEA (70.0 x 66.7 x 203.0 см, 438 л, NoFrost, VitaFresh XXL, Клас E)",
-      "step2_baseline": {
-        "october_avg_eur": 879.00,
-        "november_initial_avg_eur": 849.00,
-        "real_regular_price_eur": 879.00,
-        "target_deal_trigger_eur": 829.00,
-        "target_deal_trigger_defect_eur": 740.00,
-        "fake_crossed_out_price_threshold_eur": 920.00
-      },
-      "urls": [
-        {
-          "store": "Технополис (София)",
-          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-BOSCH-KGN49XLEA/p/662825"
-        },
-        {
-          "store": "Зора (София)",
-          "url": "https://zora.bg/product/kgn49xlea-438-l-e-no-frost-inoks"
-        },
-        {
-          "store": "Техномикс (София)",
-          "url": "https://www.tehnomix.bg/hladilnik-s-frizer-bosch-kgn49xlea"
-        },
-        {
-          "store": "eMAG Шоурум (София)",
-          "url": "https://www.emag.bg/hladilnik-s-frizer-bosch-435-l-klas-e-nofrost-vitafresh-h-203-sm-srebrist-kgn49xlea/pd/D9F772MBM/"
-        }
-      ]
-    },
-    {
       "id": "haier_hfr7720dwmp",
       "category": "Хладилник с фризер (70 см)",
-      "name": "Haier FD 70 Series 7 HFR 7720 DWMP (French Door 4 нива, 70.0 x 67.5 x 200.6 см, 477 л, Total No Frost)",
+      "name": "Haier FD 70 Series 7 HFR 7720 DWMP (French Door 4 врати, 70.0 x 67.5 x 200.6 см, 477 л, Total No Frost, 37 dB, Клас D)",
       "step2_baseline": {
-        "october_avg_eur": 1022.00,
-        "november_initial_avg_eur": 949.00,
-        "real_regular_price_eur": 1022.00,
+        "october_avg_eur": 974.00,
+        "november_initial_avg_eur": 899.00,
+        "real_regular_price_eur": 974.00,
         "target_deal_trigger_eur": 899.00,
         "target_deal_trigger_defect_eur": 800.00,
-        "fake_crossed_out_price_threshold_eur": 1080.00
+        "fake_crossed_out_price_threshold_eur": 1030.00
       },
       "urls": [
         {
@@ -340,48 +278,59 @@
       ]
     },
     {
-      "id": "lg_gbbw726cev",
+      "id": "haier_hfr3718engb",
       "category": "Хладилник с фризер (70 см)",
-      "name": "LG GBBW726CEV (Черен мат, 69.7 x 70.4 x 203.0 см, 465 л, DoorCooling+, 35 dB, Клас C)",
+      "name": "Haier FD 70 Series 3 HFR 3718 ENGB (Черен French Door 4 врати, 70.0 x 68.8 x 177.5 см, 402 л, Total No Frost, 37 dB, Клас E)",
       "step2_baseline": {
-        "october_avg_eur": 999.00,
-        "november_initial_avg_eur": 949.00,
-        "real_regular_price_eur": 999.00,
-        "target_deal_trigger_eur": 910.00,
-        "target_deal_trigger_defect_eur": 820.00,
-        "fake_crossed_out_price_threshold_eur": 1050.00
-      },
-      "urls": [
-        {
-          "store": "Техномаркет (София)",
-          "url": "https://www.technomarket.bg/hladilnitzi/lg-gbbw726cev-09240403"
-        },
-        {
-          "store": "Техмарт (София)",
-          "url": "https://techmart.bg/hladilnik-s-frizer-lg-gbbw726cev"
-        }
-      ]
-    },
-    {
-      "id": "beko_b3rcne564hdxb1",
-      "category": "Хладилник с фризер (70 см)",
-      "name": "Beko Beyond B3RCNE564HDXB1 / B3RCNE564HXBR (70.0 x 74.5 x 192.0 см, 490 л, AeroFlow Total No Frost, HarvestFresh)",
-      "step2_baseline": {
-        "october_avg_eur": 779.00,
-        "november_initial_avg_eur": 715.00,
-        "real_regular_price_eur": 779.00,
-        "target_deal_trigger_eur": 650.00,
-        "target_deal_trigger_defect_eur": 580.00,
-        "fake_crossed_out_price_threshold_eur": 820.00
+        "october_avg_eur": 819.00,
+        "november_initial_avg_eur": 659.00,
+        "real_regular_price_eur": 819.00,
+        "target_deal_trigger_eur": 699.00,
+        "target_deal_trigger_defect_eur": 590.00,
+        "fake_crossed_out_price_threshold_eur": 850.00
       },
       "urls": [
         {
           "store": "Технополис (София)",
-          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-BEKO-B3RCNE-564-HDXB1/p/654251"
-        },
+          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-HAIER-HFR-3718-ENGB/p/654504"
+        }
+      ]
+    },
+    {
+      "id": "hisense_rf632n4wie1",
+      "category": "Хладилник с фризер (70 см)",
+      "name": "Hisense RF632N4WIE1 (Инокс French Door, 70.4 x 69.4 x 200.0 см, 485 л, Total No Frost, 36 dB, Диспенсър, Клас E)",
+      "step2_baseline": {
+        "october_avg_eur": 899.00,
+        "november_initial_avg_eur": 899.00,
+        "real_regular_price_eur": 899.00,
+        "target_deal_trigger_eur": 829.00,
+        "target_deal_trigger_defect_eur": 740.00,
+        "fake_crossed_out_price_threshold_eur": 950.00
+      },
+      "urls": [
         {
-          "store": "eMAG Шоурум (София)",
-          "url": "https://www.emag.bg/hladilnik-beko-b3rcne564hxbr-490-l-no-frost-v-192-sm-senzorno-upravlenie-obryshtashti-se-vrati-klas-e-tymen-inoks-271328/pd/DCSYCN3BM/"
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-HISENSE-RF632N4WIE1/p/653316"
+        }
+      ]
+    },
+    {
+      "id": "hisense_rf632n4wfe1",
+      "category": "Хладилник с фризер (70 см)",
+      "name": "Hisense RF632N4WFE1 (Черен French Door, 70.4 x 69.4 x 200.0 см, 485 л, Total No Frost, 36 dB, Диспенсър, Клас E)",
+      "step2_baseline": {
+        "october_avg_eur": 929.00,
+        "november_initial_avg_eur": 929.00,
+        "real_regular_price_eur": 929.00,
+        "target_deal_trigger_eur": 849.00,
+        "target_deal_trigger_defect_eur": 760.00,
+        "fake_crossed_out_price_threshold_eur": 980.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-HISENSE-RF632N4WFE1/p/653317"
         }
       ]
     },

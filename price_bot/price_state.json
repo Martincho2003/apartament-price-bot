@@ -9,8 +9,8 @@
     "claimed_old_eur": null,
     "bf_status": "NORMAL",
     "is_in_stock": true,
-    "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "stock_reason": "IN_STOCK",
+    "last_checked": "2026-11-27 20:32:11"
   },
   "aeg_ffb73527zm::Техномаркет (София)": {
     "appliance_id": "aeg_ffb73527zm",
@@ -23,7 +23,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "aeg_ffb73527zm::Зора (София)": {
     "appliance_id": "aeg_ffb73527zm",
@@ -36,7 +36,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "aeg_ffb73527zm::Техмарт (София)": {
     "appliance_id": "aeg_ffb73527zm",
@@ -49,7 +49,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "aeg_ffb73527zm::eMAG Шоурум (София)": {
     "appliance_id": "aeg_ffb73527zm",
@@ -75,7 +75,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "haier_xf_1c3tb1::Технополис (София) [Инокс FX]": {
     "appliance_id": "haier_xf_1c3tb1",
@@ -87,8 +87,8 @@
     "claimed_old_eur": null,
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
-    "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "stock_reason": "IN_STOCK",
+    "last_checked": "2026-11-27 20:32:11"
   },
   "haier_xf_1c3tb1::eMAG Шоурум (София) [Бяла FW]": {
     "appliance_id": "haier_xf_1c3tb1",
@@ -113,8 +113,8 @@
     "claimed_old_eur": null,
     "bf_status": "NORMAL",
     "is_in_stock": true,
-    "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "stock_reason": "IN_STOCK",
+    "last_checked": "2026-11-27 20:32:11"
   },
   "aeg_lwr98165nxe::Техномаркет (София)": {
     "appliance_id": "aeg_lwr98165nxe",
@@ -127,7 +127,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "aeg_lwr98165nxe::Зора (София)": {
     "appliance_id": "aeg_lwr98165nxe",
@@ -140,7 +140,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "aeg_lwr98165nxe::Техномикс (София)": {
     "appliance_id": "aeg_lwr98165nxe",
@@ -153,7 +153,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "aeg_lwr98165nxe::Техмарт (София)": {
     "appliance_id": "aeg_lwr98165nxe",
@@ -166,7 +166,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "aeg_lwr98165nxe::Вимакс (София)": {
     "appliance_id": "aeg_lwr98165nxe",
@@ -179,7 +179,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "aeg_lwr98165nxe::Релакс Техно (София)": {
     "appliance_id": "aeg_lwr98165nxe",
@@ -192,7 +192,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "aeg_lwr98165nxe::eMAG Шоурум (София)": {
     "appliance_id": "aeg_lwr98165nxe",
@@ -218,7 +218,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "haier_hw90_b14939_s8s::Технополис (София)": {
     "appliance_id": "haier_hw90_b14939_s8s",
@@ -231,7 +231,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "haier_hw90_b14939_s8s::eMAG Шоурум (София)": {
     "appliance_id": "haier_hw90_b14939_s8s",
@@ -257,7 +257,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "samsung_ww90cgc04dable::Техномаркет (София)": {
     "appliance_id": "samsung_ww90cgc04dable",
@@ -270,7 +270,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "samsung_ww90cgc04dable::Зора (София)": {
     "appliance_id": "samsung_ww90cgc04dable",
@@ -283,7 +283,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "samsung_ww90cgc04dable::Техномикс (София)": {
     "appliance_id": "samsung_ww90cgc04dable",
@@ -296,7 +296,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "samsung_ww90cgc04dable::Техмарт (София)": {
     "appliance_id": "samsung_ww90cgc04dable",
@@ -309,7 +309,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "samsung_ww90cgc04dable::eMAG Шоурум (София)": {
     "appliance_id": "samsung_ww90cgc04dable",
@@ -335,7 +335,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wgg244z5by::Техномикс (София) [Z5BY]": {
     "appliance_id": "bosch_wgg244z5by",
@@ -348,7 +348,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wgg244z5by::Вимакс (София) [Z5BY]": {
     "appliance_id": "bosch_wgg244z5by",
@@ -361,7 +361,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wgg244z5by::Релакс Техно (София) [Z5BY]": {
     "appliance_id": "bosch_wgg244z5by",
@@ -374,7 +374,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wgg244z5by::Техномаркет (София) [Z2BY]": {
     "appliance_id": "bosch_wgg244z5by",
@@ -387,7 +387,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wgg244z5by::Зора (София) [Z2BY]": {
     "appliance_id": "bosch_wgg244z5by",
@@ -400,7 +400,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wgg244z5by::Техмарт (София) [Z2BY]": {
     "appliance_id": "bosch_wgg244z5by",
@@ -413,7 +413,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wgg244z5by::Вимакс (София) [Z2BY]": {
     "appliance_id": "bosch_wgg244z5by",
@@ -426,7 +426,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wgg244z5by::eMAG Шоурум (София) [Z2BY]": {
     "appliance_id": "bosch_wgg244z5by",
@@ -452,7 +452,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "lg_f4wr509sww::Технополис (София)": {
     "appliance_id": "lg_f4wr509sww",
@@ -465,7 +465,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "lg_f4wr509sww::Техномаркет (София)": {
     "appliance_id": "lg_f4wr509sww",
@@ -478,7 +478,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "lg_f4wr509sww::Техмарт (София)": {
     "appliance_id": "lg_f4wr509sww",
@@ -491,7 +491,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "lg_f4wr509sww::eMAG Шоурум (София)": {
     "appliance_id": "lg_f4wr509sww",
@@ -529,8 +529,8 @@
     "claimed_old_eur": 520.0,
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
-    "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "stock_reason": "IN_STOCK",
+    "last_checked": "2026-11-27 20:32:11"
   },
   "samsung_dv90dg6845::Технополис (София) [LKU4 Бяла]": {
     "appliance_id": "samsung_dv90dg6845",
@@ -543,7 +543,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "samsung_dv90dg6845::Технополис (София) [LBU4 Черна]": {
     "appliance_id": "samsung_dv90dg6845",
@@ -556,7 +556,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "samsung_dv90dg6845::Технополис (София) [LHU4 Бяла]": {
     "appliance_id": "samsung_dv90dg6845",
@@ -569,7 +569,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "samsung_dv90dg6845::Техномаркет (София) [LKU4 Бяла]": {
     "appliance_id": "samsung_dv90dg6845",
@@ -582,7 +582,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "samsung_dv90dg6845::Техномаркет (София) [LBU4 Черна]": {
     "appliance_id": "samsung_dv90dg6845",
@@ -595,7 +595,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "samsung_dv90dg6845::Зора (София) [LKU4 Бяла]": {
     "appliance_id": "samsung_dv90dg6845",
@@ -608,7 +608,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "samsung_dv90dg6845::Техномикс (София) [LBU4 Черна]": {
     "appliance_id": "samsung_dv90dg6845",
@@ -621,7 +621,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "samsung_dv90dg6845::Техмарт (София) [LHU4 Бяла]": {
     "appliance_id": "samsung_dv90dg6845",
@@ -634,7 +634,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "samsung_dv90dg6845::Техмарт (София) [LBU4 Черна]": {
     "appliance_id": "samsung_dv90dg6845",
@@ -647,7 +647,7 @@
     "bf_status": "OUT_OF_STOCK",
     "is_in_stock": false,
     "stock_reason": "JSON-LD (outofstock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "samsung_dv90dg6845::eMAG Шоурум (София) [LKU4 Бяла]": {
     "appliance_id": "samsung_dv90dg6845",
@@ -672,8 +672,8 @@
     "claimed_old_eur": null,
     "bf_status": "NORMAL",
     "is_in_stock": true,
-    "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "stock_reason": "IN_STOCK",
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wth85209by::Техномаркет (София)": {
     "appliance_id": "bosch_wth85209by",
@@ -686,7 +686,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wth85209by::Зора (София)": {
     "appliance_id": "bosch_wth85209by",
@@ -699,7 +699,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wth85209by::Техмарт (София)": {
     "appliance_id": "bosch_wth85209by",
@@ -712,7 +712,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wth85209by::Вимакс (София)": {
     "appliance_id": "bosch_wth85209by",
@@ -725,7 +725,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wth85209by::Релакс Техно (София)": {
     "appliance_id": "bosch_wth85209by",
@@ -738,7 +738,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wth85209by::eMAG Шоурум (София)": {
     "appliance_id": "bosch_wth85209by",
@@ -764,7 +764,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wqg24101by::Технополис (София)": {
     "appliance_id": "bosch_wqg24101by",
@@ -777,7 +777,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wqg24101by::Техномаркет (София)": {
     "appliance_id": "bosch_wqg24101by",
@@ -790,7 +790,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wqg24101by::Зора (София)": {
     "appliance_id": "bosch_wqg24101by",
@@ -803,7 +803,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wqg24101by::Техномикс (София)": {
     "appliance_id": "bosch_wqg24101by",
@@ -816,7 +816,7 @@
     "bf_status": "ABOVE_OCTOBER",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wqg24101by::Вимакс (София)": {
     "appliance_id": "bosch_wqg24101by",
@@ -829,7 +829,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "IN_STOCK",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wqg24101by::Релакс Техно (София)": {
     "appliance_id": "bosch_wqg24101by",
@@ -842,7 +842,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_wqg24101by::eMAG Шоурум (София)": {
     "appliance_id": "bosch_wqg24101by",
@@ -868,7 +868,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "lg_rhx5008twb::Технополис (София)": {
     "appliance_id": "lg_rhx5008twb",
@@ -881,7 +881,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "lg_rhx5008twb::Зора (София)": {
     "appliance_id": "lg_rhx5008twb",
@@ -894,7 +894,7 @@
     "bf_status": "REAL_DEAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "aeg_set_l6fbf50498_tr7c40698::Technovision София [Транспортен дефект]": {
     "appliance_id": "aeg_set_l6fbf50498_tr7c40698",
@@ -907,7 +907,7 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   },
   "bosch_set_wan28127_wth83v04::Technovision София [Транспортен дефект]": {
     "appliance_id": "bosch_set_wan28127_wth83v04",
@@ -920,6 +920,6 @@
     "bf_status": "NORMAL",
     "is_in_stock": true,
     "stock_reason": "JSON-LD (instock)",
-    "last_checked": "2026-11-27 22:21:15"
+    "last_checked": "2026-11-27 20:32:11"
   }
 }

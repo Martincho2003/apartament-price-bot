@@ -26,12 +26,12 @@
       "category": "Миялна машина (45 см)",
       "name": "AEG FFB73527ZM (45 см, Inox, 3-та въртяща се таванна перка Deckensprüharm, AirDry, SatelliteClean)",
       "step2_baseline": {
-        "october_avg_eur": 589.00,
-        "november_initial_avg_eur": 559.00,
-        "real_regular_price_eur": 589.00,
-        "target_deal_trigger_eur": 529.00,
-        "target_deal_trigger_defect_eur": 470.00,
-        "fake_crossed_out_price_threshold_eur": 620.00
+        "october_avg_eur": 589.0,
+        "november_initial_avg_eur": 559.0,
+        "real_regular_price_eur": 589.0,
+        "target_deal_trigger_eur": 529.0,
+        "target_deal_trigger_defect_eur": 470.0,
+        "fake_crossed_out_price_threshold_eur": 620.0
       },
       "urls": [
         {
@@ -61,12 +61,12 @@
       "category": "Миялна машина (45 см)",
       "name": "Haier XF 1C3TB1 FW / FX (45 см, Клас C, Auto Open Door, 11 компл., 43 dB, Wi-Fi hOn)",
       "step2_baseline": {
-        "october_avg_eur": 449.00,
-        "november_initial_avg_eur": 429.00,
-        "real_regular_price_eur": 449.00,
-        "target_deal_trigger_eur": 399.00,
-        "target_deal_trigger_defect_eur": 350.00,
-        "fake_crossed_out_price_threshold_eur": 470.00
+        "october_avg_eur": 449.0,
+        "november_initial_avg_eur": 429.0,
+        "real_regular_price_eur": 449.0,
+        "target_deal_trigger_eur": 399.0,
+        "target_deal_trigger_defect_eur": 350.0,
+        "fake_crossed_out_price_threshold_eur": 470.0
       },
       "urls": [
         {
@@ -88,12 +88,12 @@
       "category": "Пералня със сушилня (Термопомпа)",
       "name": "AEG Series 9000 LWR98165NXE (10/6 кг, 1600 об/мин, SensiDry термопомпа, Клас A/B, Wi-Fi)",
       "step2_baseline": {
-        "october_avg_eur": 1543.00,
-        "november_initial_avg_eur": 1299.00,
-        "real_regular_price_eur": 1549.00,
-        "target_deal_trigger_eur": 1349.00,
-        "target_deal_trigger_defect_eur": 1190.00,
-        "fake_crossed_out_price_threshold_eur": 1620.00
+        "october_avg_eur": 1543.0,
+        "november_initial_avg_eur": 1299.0,
+        "real_regular_price_eur": 1549.0,
+        "target_deal_trigger_eur": 1349.0,
+        "target_deal_trigger_defect_eur": 1190.0,
+        "fake_crossed_out_price_threshold_eur": 1620.0
       },
       "urls": [
         {
@@ -135,93 +135,16 @@
       ]
     },
     {
-      "id": "lg_f4dv709s1e_f4dr509sbw",
-      "category": "Пералня със сушилня (2-в-1)",
-      "name": "LG F4DV709S1E / F4DR509SBW (9/6 кг, 1400 об/мин, Direct Drive, Steam, плитка 56.5 см)",
-      "step2_baseline": {
-        "october_avg_eur": 680.00,
-        "november_initial_avg_eur": 649.00,
-        "real_regular_price_eur": 715.00,
-        "target_deal_trigger_eur": 619.00,
-        "target_deal_trigger_defect_eur": 540.00,
-        "fake_crossed_out_price_threshold_eur": 740.00
-      },
-      "urls": [
-        {
-          "store": "Техномаркет (София) [F4DV709S1E]",
-          "url": "https://www.technomarket.bg/sushilnq/lg-f4dv709s1e-09188103"
-        },
-        {
-          "store": "Техномаркет (София) [F4DR509SBW]",
-          "url": "https://www.technomarket.bg/sushilnq/lg-f4dr509sbw-09217272"
-        },
-        {
-          "store": "Техмарт (София) [F4DR509SBW]",
-          "url": "https://techmart.bg/peralnq-sys-sushilnq-lg-f4dr509sbw"
-        },
-        {
-          "store": "eMAG Шоурум (София) [F4DR509SBW]",
-          "url": "https://www.emag.bg/peralnja-sys-sushilnja-lg-9-kg-prane-6-kg-sushene-1400-ob-min-klas-b-motor-direct-drive-bjal-f4dr509sbw/pd/DPY0B3YBM/"
-        }
-      ]
-    },
-    {
-      "id": "bosch_wng24401by",
-      "category": "Пералня със сушилня (2-в-1)",
-      "name": "Bosch Serie 6 WNG24401BY (9/6 кг, 1400 об/мин, EcoSilence Drive, AutoDry, Iron Assist)",
-      "step2_baseline": {
-        "october_avg_eur": 829.00,
-        "november_initial_avg_eur": 770.00,
-        "real_regular_price_eur": 849.00,
-        "target_deal_trigger_eur": 729.00,
-        "target_deal_trigger_defect_eur": 640.00,
-        "fake_crossed_out_price_threshold_eur": 880.00
-      },
-      "urls": [
-        {
-          "store": "Зора (София)",
-          "url": "https://zora.bg/product/wng24401by-1400-obmin-6-kg-900-kg-d-bial"
-        },
-        {
-          "store": "Техномикс (София)",
-          "url": "https://www.tehnomix.bg/peralnya-sas-sushilnya-bosch-wng24401by-9-6-kg-antistain-iron-assist-1400-ob-min"
-        },
-        {
-          "store": "eMAG Шоурум (София)",
-          "url": "https://www.emag.bg/peralnja-sys-sushilnja-bosch-9-kg-prane-6-kg-sushene-1400-ob-min-avtomatichno-sushene-asistent-za-gladene-ecosilence-drive-14-programi-klas-a-bjalo-wng24401by/pd/DP77M73BM/"
-        }
-      ]
-    },
-    {
-      "id": "lg_v7wd107h2e",
-      "category": "Пералня със сушилня (2-в-1, Дефект)",
-      "name": "LG V7WD107H2E (10.5/7 кг, 1400 об/мин, TurboWash 360°, EcoHybrid, Wi-Fi)",
-      "step2_baseline": {
-        "october_avg_eur": 600.00,
-        "november_initial_avg_eur": 566.95,
-        "real_regular_price_eur": 820.00,
-        "target_deal_trigger_eur": 580.00,
-        "target_deal_trigger_defect_eur": 560.00,
-        "fake_crossed_out_price_threshold_eur": 850.00
-      },
-      "urls": [
-        {
-          "store": "Technovision София [Транспортен дефект]",
-          "url": "https://technovision.bg/produkt/biala-tehnika/peralni/peralnq-sus-sushilnq-lg-v7wd107h2e-turbowash-wifi-10-5-7kg-1400-ob-min-ai-dd-thinq/"
-        }
-      ]
-    },
-    {
       "id": "haier_hw90_b14939_s8s",
       "category": "Пералня (9 кг)",
       "name": "Haier HW90-B14939 S8-S (9 кг, 1400 об/мин, Direct Motion 67 dB, Клас A, Пара)",
       "step2_baseline": {
-        "october_avg_eur": 469.00,
-        "november_initial_avg_eur": 449.90,
-        "real_regular_price_eur": 479.00,
-        "target_deal_trigger_eur": 429.00,
-        "target_deal_trigger_defect_eur": 380.00,
-        "fake_crossed_out_price_threshold_eur": 510.00
+        "october_avg_eur": 469.0,
+        "november_initial_avg_eur": 449.9,
+        "real_regular_price_eur": 479.0,
+        "target_deal_trigger_eur": 429.0,
+        "target_deal_trigger_defect_eur": 380.0,
+        "fake_crossed_out_price_threshold_eur": 510.0
       },
       "urls": [
         {
@@ -239,12 +162,12 @@
       "category": "Пералня (9 кг)",
       "name": "Samsung WW90CGC04DABLE (9 кг, 1400 об/мин, 55 см дълбочина, EcoBubble, SmartThings, Клас A)",
       "step2_baseline": {
-        "october_avg_eur": 549.00,
-        "november_initial_avg_eur": 519.00,
+        "october_avg_eur": 549.0,
+        "november_initial_avg_eur": 519.0,
         "real_regular_price_eur": 551.68,
-        "target_deal_trigger_eur": 459.00,
-        "target_deal_trigger_defect_eur": 400.00,
-        "fake_crossed_out_price_threshold_eur": 580.00
+        "target_deal_trigger_eur": 459.0,
+        "target_deal_trigger_defect_eur": 400.0,
+        "fake_crossed_out_price_threshold_eur": 580.0
       },
       "urls": [
         {
@@ -278,12 +201,12 @@
       "category": "Пералня (9 кг)",
       "name": "Bosch Serie 6 WGG244Z5BY / WGG244Z2BY (9 кг, 1400 об/мин, EcoSilence Drive, Iron Assist, Клас A)",
       "step2_baseline": {
-        "october_avg_eur": 619.00,
-        "november_initial_avg_eur": 579.00,
-        "real_regular_price_eur": 659.00,
-        "target_deal_trigger_eur": 550.00,
-        "target_deal_trigger_defect_eur": 510.00,
-        "fake_crossed_out_price_threshold_eur": 670.00
+        "october_avg_eur": 619.0,
+        "november_initial_avg_eur": 579.0,
+        "real_regular_price_eur": 659.0,
+        "target_deal_trigger_eur": 550.0,
+        "target_deal_trigger_defect_eur": 510.0,
+        "fake_crossed_out_price_threshold_eur": 670.0
       },
       "urls": [
         {
@@ -333,12 +256,12 @@
       "category": "Пералня (9 кг)",
       "name": "LG F4WR509SWW (9 кг, 1400 об/мин, Direct Drive, AI DD, Steam, 56 см дълбочина, Клас A)",
       "step2_baseline": {
-        "october_avg_eur": 519.00,
-        "november_initial_avg_eur": 499.00,
-        "real_regular_price_eur": 529.00,
-        "target_deal_trigger_eur": 469.00,
-        "target_deal_trigger_defect_eur": 410.00,
-        "fake_crossed_out_price_threshold_eur": 560.00
+        "october_avg_eur": 519.0,
+        "november_initial_avg_eur": 499.0,
+        "real_regular_price_eur": 529.0,
+        "target_deal_trigger_eur": 469.0,
+        "target_deal_trigger_defect_eur": 410.0,
+        "fake_crossed_out_price_threshold_eur": 560.0
       },
       "urls": [
         {
@@ -364,12 +287,12 @@
       "category": "Сушилня с термопомпа (8 кг)",
       "name": "Beko B5T68243 (8 кг, 59x60x84 см, Термопомпа, ProSmart Инвертор, IronFinish)",
       "step2_baseline": {
-        "october_avg_eur": 569.00,
+        "october_avg_eur": 569.0,
         "november_initial_avg_eur": 549.04,
-        "real_regular_price_eur": 579.00,
-        "target_deal_trigger_eur": 519.00,
-        "target_deal_trigger_defect_eur": 440.00,
-        "fake_crossed_out_price_threshold_eur": 610.00
+        "real_regular_price_eur": 579.0,
+        "target_deal_trigger_eur": 519.0,
+        "target_deal_trigger_defect_eur": 440.0,
+        "fake_crossed_out_price_threshold_eur": 610.0
       },
       "urls": [
         {
@@ -383,12 +306,12 @@
       "category": "Сушилня с термопомпа (8 кг, Дефект)",
       "name": "Beko B5T4824IF (8 кг, 59.8x60.5x84.6 см, Термопомпа, ProSmart, SteamCure)",
       "step2_baseline": {
-        "october_avg_eur": 440.00,
-        "november_initial_avg_eur": 414.00,
-        "real_regular_price_eur": 520.00,
-        "target_deal_trigger_eur": 415.00,
-        "target_deal_trigger_defect_eur": 399.00,
-        "fake_crossed_out_price_threshold_eur": 540.00
+        "october_avg_eur": 440.0,
+        "november_initial_avg_eur": 414.0,
+        "real_regular_price_eur": 520.0,
+        "target_deal_trigger_eur": 415.0,
+        "target_deal_trigger_defect_eur": 399.0,
+        "fake_crossed_out_price_threshold_eur": 540.0
       },
       "urls": [
         {
@@ -402,12 +325,12 @@
       "category": "Сушилня с термопомпа (9 кг)",
       "name": "Samsung DV90DG6845LHU4 / LKU4 / LBU4 (9 кг, 60x60x85 см, AI Dry+, SmartThings, Клас A)",
       "step2_baseline": {
-        "october_avg_eur": 729.00,
-        "november_initial_avg_eur": 619.00,
-        "real_regular_price_eur": 749.00,
-        "target_deal_trigger_eur": 619.00,
-        "target_deal_trigger_defect_eur": 540.00,
-        "fake_crossed_out_price_threshold_eur": 780.00
+        "october_avg_eur": 729.0,
+        "november_initial_avg_eur": 619.0,
+        "real_regular_price_eur": 749.0,
+        "target_deal_trigger_eur": 619.0,
+        "target_deal_trigger_defect_eur": 540.0,
+        "fake_crossed_out_price_threshold_eur": 780.0
       },
       "urls": [
         {
@@ -457,12 +380,12 @@
       "category": "Сушилня с термопомпа (8 кг)",
       "name": "Bosch Serie 4 WTH85209BY (8 кг, 59.8x61x84.2 см, EasyClean долен филтър, AutoDry, 63 dB)",
       "step2_baseline": {
-        "october_avg_eur": 649.00,
-        "november_initial_avg_eur": 579.00,
-        "real_regular_price_eur": 689.00,
-        "target_deal_trigger_eur": 569.00,
-        "target_deal_trigger_defect_eur": 510.00,
-        "fake_crossed_out_price_threshold_eur": 710.00
+        "october_avg_eur": 649.0,
+        "november_initial_avg_eur": 579.0,
+        "real_regular_price_eur": 689.0,
+        "target_deal_trigger_eur": 569.0,
+        "target_deal_trigger_defect_eur": 510.0,
+        "fake_crossed_out_price_threshold_eur": 710.0
       },
       "urls": [
         {
@@ -504,12 +427,12 @@
       "category": "Сушилня с термопомпа (9 кг)",
       "name": "Bosch Serie 6 WQG24101BY (9 кг, 59.8x61x84.2 см, EasyClean долен филтър, AutoDry)",
       "step2_baseline": {
-        "october_avg_eur": 749.00,
-        "november_initial_avg_eur": 669.00,
-        "real_regular_price_eur": 799.00,
-        "target_deal_trigger_eur": 659.00,
-        "target_deal_trigger_defect_eur": 590.00,
-        "fake_crossed_out_price_threshold_eur": 820.00
+        "october_avg_eur": 749.0,
+        "november_initial_avg_eur": 669.0,
+        "real_regular_price_eur": 799.0,
+        "target_deal_trigger_eur": 659.0,
+        "target_deal_trigger_defect_eur": 590.0,
+        "fake_crossed_out_price_threshold_eur": 820.0
       },
       "urls": [
         {
@@ -551,12 +474,12 @@
       "category": "Сушилня с термопомпа (8 кг)",
       "name": "LG RHX5008TWB (8 кг, Dual Inverter 62 dB, 66 см дълбочина, Wi-Fi ThinQ, Клас B)",
       "step2_baseline": {
-        "october_avg_eur": 715.00,
-        "november_initial_avg_eur": 625.00,
-        "real_regular_price_eur": 715.00,
-        "target_deal_trigger_eur": 625.00,
-        "target_deal_trigger_defect_eur": 540.00,
-        "fake_crossed_out_price_threshold_eur": 760.00
+        "october_avg_eur": 715.0,
+        "november_initial_avg_eur": 625.0,
+        "real_regular_price_eur": 715.0,
+        "target_deal_trigger_eur": 625.0,
+        "target_deal_trigger_defect_eur": 540.0,
+        "fake_crossed_out_price_threshold_eur": 760.0
       },
       "urls": [
         {
@@ -574,12 +497,12 @@
       "category": "Комплект Пералня + Сушилня (2в1, Дефект)",
       "name": "AEG 2в1 комплект (Пералня L6FBF50498 + Сушилня TR7C40698, 9+9 кг)",
       "step2_baseline": {
-        "october_avg_eur": 1200.00,
-        "november_initial_avg_eur": 1149.00,
-        "real_regular_price_eur": 1350.00,
-        "target_deal_trigger_eur": 1120.00,
-        "target_deal_trigger_defect_eur": 1090.00,
-        "fake_crossed_out_price_threshold_eur": 1400.00
+        "october_avg_eur": 1200.0,
+        "november_initial_avg_eur": 1149.0,
+        "real_regular_price_eur": 1350.0,
+        "target_deal_trigger_eur": 1120.0,
+        "target_deal_trigger_defect_eur": 1090.0,
+        "fake_crossed_out_price_threshold_eur": 1400.0
       },
       "urls": [
         {
@@ -593,12 +516,12 @@
       "category": "Комплект Пералня + Сушилня (2в1, Дефект)",
       "name": "Bosch 2в1 комплект (Пералня WAN28127 + Сушилня WTH83V04, 8+8 кг, EasyClean)",
       "step2_baseline": {
-        "october_avg_eur": 1100.00,
-        "november_initial_avg_eur": 1049.00,
-        "real_regular_price_eur": 1200.00,
-        "target_deal_trigger_eur": 1020.00,
-        "target_deal_trigger_defect_eur": 990.00,
-        "fake_crossed_out_price_threshold_eur": 1250.00
+        "october_avg_eur": 1100.0,
+        "november_initial_avg_eur": 1049.0,
+        "real_regular_price_eur": 1200.0,
+        "target_deal_trigger_eur": 1020.0,
+        "target_deal_trigger_defect_eur": 990.0,
+        "fake_crossed_out_price_threshold_eur": 1250.0
       },
       "urls": [
         {

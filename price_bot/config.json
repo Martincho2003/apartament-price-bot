@@ -22,177 +22,6 @@
   ],
   "appliances": [
     {
-      "id": "gorenje_bps6747a06x",
-      "category": "Фурна за вграждане",
-      "name": "Gorenje BPS6747A06X (77 л, IconTouch, BakeSensor термосонда, 22 AutoBake програми, Пиролиза, A+)",
-      "step2_baseline": {
-        "october_avg_eur": 369.00,
-        "november_initial_avg_eur": 349.00,
-        "real_regular_price_eur": 379.00,
-        "target_deal_trigger_eur": 349.00,
-        "target_deal_trigger_defect_eur": 310.00,
-        "fake_crossed_out_price_threshold_eur": 399.00
-      },
-      "urls": [
-        {
-          "store": "Техномаркет (София)",
-          "url": "https://www.technomarket.bg/furni/gorenje-bps6747a06x-09201197"
-        },
-        {
-          "store": "Практис МЕГА (София)",
-          "url": "https://praktis.bg/furna-za-vgrazhdane-gorenje-bps6747a06x-icontouch-77l"
-        },
-        {
-          "store": "Техномикс (София)",
-          "url": "https://www.tehnomix.bg/furna-za-vgrazhdane-gorenje-bps6747a06x"
-        },
-        {
-          "store": "Технополис (София)",
-          "url": "https://www.technopolis.bg/bg/Furni-za-vgrazhdane/Furna-za-vgrazhdane-GORENJE-BPS6747A06X/p/651512"
-        },
-        {
-          "store": "eMAG Шоурум (София)",
-          "url": "https://www.emag.bg/furna-za-vgrazhdane-gorenje-pirolitichno-pochistvane-77-l-energien-klas-c-inox-bps6747a06x/pd/DV1XYSMBM/"
-        }
-      ]
-    },
-    {
-      "id": "gorenje_bps6737e14x",
-      "category": "Фурна за вграждане",
-      "name": "Gorenje BPS6737E14X / BPS6737E04DBG (77 л, Пиролиза, Push-Pull, 4-слойно стъкло, A+)",
-      "step2_baseline": {
-        "october_avg_eur": 407.40,
-        "november_initial_avg_eur": 389.00,
-        "real_regular_price_eur": 409.00,
-        "target_deal_trigger_eur": 379.00,
-        "target_deal_trigger_defect_eur": 340.00,
-        "fake_crossed_out_price_threshold_eur": 420.00
-      },
-      "urls": [
-        {
-          "store": "Технополис (София)",
-          "url": "https://www.technopolis.bg/bg/Furni-za-vgrazhdane/Furna-za-vgrazhdane-GORENJE-BPS6737E14X/p/651513"
-        },
-        {
-          "store": "Техномаркет (София)",
-          "url": "https://www.technomarket.bg/furni/gorenje-bps6737e14x-09213573"
-        },
-        {
-          "store": "Техномикс (София)",
-          "url": "https://www.tehnomix.bg/furna-za-vgrazhdane-gorenje-bps6737e14x"
-        },
-        {
-          "store": "Практис МЕГА (София) [Инокс 14X]",
-          "url": "https://praktis.bg/furna-za-vgrazhdane-gorenje-bps6737e14x-inoks-77l"
-        },
-        {
-          "store": "Практис МЕГА (София) [Черна E04DBG]",
-          "url": "https://praktis.bg/furna-za-vgrazhdane-gorenje-bps6737e04dbg"
-        }
-      ]
-    },
-    {
-      "id": "gorenje_bos6737e13x",
-      "category": "Фурна за вграждане",
-      "name": "Gorenje BOS6737E13X / BOS6737E06FBG (77 л, AquaClean, AirFry, Pizza 300°C)",
-      "step2_baseline": {
-        "october_avg_eur": 334.17,
-        "november_initial_avg_eur": 308.30,
-        "real_regular_price_eur": 331.83,
-        "target_deal_trigger_eur": 299.00,
-        "target_deal_trigger_defect_eur": 260.00,
-        "fake_crossed_out_price_threshold_eur": 345.00
-      },
-      "urls": [
-        {
-          "store": "Технополис (София)",
-          "url": "https://www.technopolis.bg/bg/Furni-za-vgrazhdane/Furna-za-vgrazhdane-GORENJE-BOS6737E13X/p/702415"
-        },
-        {
-          "store": "Техномаркет (София)",
-          "url": "https://www.technomarket.bg/furni/gorenje-bos6737e13x-09201200"
-        },
-        {
-          "store": "Зора (София)",
-          "url": "https://zora.bg/product/bos6737e13x-77-push-butoni-a-vodno-pochistvane"
-        },
-        {
-          "store": "Техномикс (София)",
-          "url": "https://www.tehnomix.bg/furna-za-vgrazhdane-gorenje-bos6737e13x"
-        },
-        {
-          "store": "Техмарт (София)",
-          "url": "https://techmart.bg/furna-za-vgrazhdane-gorenje-bos6737e13x"
-        },
-        {
-          "store": "Практис МЕГА (София) [Инокс 13X]",
-          "url": "https://praktis.bg/furna-za-vgrazhdane-s-para-gorenje-bos6737e13x-77l"
-        },
-        {
-          "store": "Практис МЕГА (София) [Черна E06FBG]",
-          "url": "https://praktis.bg/furna-za-vgrazhdane-gorenje-bos6737e06fbg"
-        },
-        {
-          "store": "Вимакс (София)",
-          "url": "https://vimax.bg/furna-za-vgrajdane-gorenje-bos6737e13x.html"
-        },
-        {
-          "store": "eMAG Шоурум (София)",
-          "url": "https://www.emag.bg/furna-za-vgrazhdane-gorenje-elektricheska-airfry-gotvene-s-para-12-funkcii-teleskopichen-raft-77-l-klas-a-inox-bos6737e13x/pd/D61XYSMBM/"
-        }
-      ]
-    },
-    {
-      "id": "aeg_bps33102zm",
-      "category": "Фурна за вграждане",
-      "name": "AEG BPS33102ZM (72 л, Пиролиза Pyroluxe®Plus, SurroundCook, Anti-Fingerprint)",
-      "step2_baseline": {
-        "october_avg_eur": 397.40,
-        "november_initial_avg_eur": 391.94,
-        "real_regular_price_eur": 400.00,
-        "target_deal_trigger_eur": 360.00,
-        "target_deal_trigger_defect_eur": 320.00,
-        "fake_crossed_out_price_threshold_eur": 410.00
-      },
-      "urls": [
-        {
-          "store": "Technovision София [Транспортен дефект]",
-          "url": "https://technovision.bg/produkt/furna-za-vgrazhdane-aeg-bps33102zm/"
-        },
-        {
-          "store": "Релакс Техно София [Транспортен дефект]",
-          "url": "https://www.relaxbg.org/p/furna-aeg-bps33102zm/"
-        }
-      ]
-    },
-    {
-      "id": "gorenje_gk5c64wf",
-      "category": "Готварска печка (комбинирана)",
-      "name": "Gorenje GK5C64WF (50 см, Комбинирана 2 газ + 2 ток, 70 л HomeMade фурна, Pizza 275°C, AirFry, A)",
-      "step2_baseline": {
-        "october_avg_eur": 365.00,
-        "november_initial_avg_eur": 344.70,
-        "real_regular_price_eur": 382.96,
-        "target_deal_trigger_eur": 330.00,
-        "target_deal_trigger_defect_eur": 290.00,
-        "fake_crossed_out_price_threshold_eur": 390.00
-      },
-      "urls": [
-        {
-          "store": "Техномаркет (София)",
-          "url": "https://www.technomarket.bg/pechka/gorenje-gk5c64wf-09229767"
-        },
-        {
-          "store": "Техномикс (София)",
-          "url": "https://www.tehnomix.bg/kombinirana-gotvarska-pechka-gorenje-gk5c64wf"
-        },
-        {
-          "store": "Технополис (София)",
-          "url": "https://www.technopolis.bg/bg/Kombinirani-gotvarski-pechki/Kombinirana-pechka-GORENJE-GK5C64WF/p/653842"
-        }
-      ]
-    },
-    {
       "id": "aeg_ffb73527zm",
       "category": "Миялна машина (45 см)",
       "name": "AEG FFB73527ZM (45 см, Inox, 3-та въртяща се таванна перка Deckensprüharm, AirDry, SatelliteClean)",
@@ -255,86 +84,6 @@
       ]
     },
     {
-      "id": "haier_hfr7720dwmp",
-      "category": "Хладилник с фризер (70 см)",
-      "name": "Haier FD 70 Series 7 HFR 7720 DWMP (French Door 4 врати, 70.0 x 67.5 x 200.6 см, 477 л, Total No Frost, 37 dB, Клас D)",
-      "step2_baseline": {
-        "october_avg_eur": 974.00,
-        "november_initial_avg_eur": 899.00,
-        "real_regular_price_eur": 974.00,
-        "target_deal_trigger_eur": 899.00,
-        "target_deal_trigger_defect_eur": 800.00,
-        "fake_crossed_out_price_threshold_eur": 1030.00
-      },
-      "urls": [
-        {
-          "store": "Технополис (София)",
-          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-HAIER-HFR-7720-DWMP/p/651876"
-        },
-        {
-          "store": "eMAG Шоурум (София)",
-          "url": "https://www.emag.bg/hladilnik-s-frizer-haier-477-l-no-frost-air-surround-humidity-zone-my-zone-dispensyr-za-voda-supercooling-superfreezing-raft-za-butilki-klas-d-h-201-sm-stainless-steel-hfr7720dwmp/pd/DXJHG3YBM/"
-        }
-      ]
-    },
-    {
-      "id": "haier_hfr3718engb",
-      "category": "Хладилник с фризер (70 см)",
-      "name": "Haier FD 70 Series 3 HFR 3718 ENGB (Черен French Door 4 врати, 70.0 x 68.8 x 177.5 см, 402 л, Total No Frost, 37 dB, Клас E)",
-      "step2_baseline": {
-        "october_avg_eur": 819.00,
-        "november_initial_avg_eur": 659.00,
-        "real_regular_price_eur": 819.00,
-        "target_deal_trigger_eur": 699.00,
-        "target_deal_trigger_defect_eur": 590.00,
-        "fake_crossed_out_price_threshold_eur": 850.00
-      },
-      "urls": [
-        {
-          "store": "Технополис (София)",
-          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-HAIER-HFR-3718-ENGB/p/654504"
-        }
-      ]
-    },
-    {
-      "id": "hisense_rf632n4wie1",
-      "category": "Хладилник с фризер (70 см)",
-      "name": "Hisense RF632N4WIE1 (Инокс French Door, 70.4 x 69.4 x 200.0 см, 485 л, Total No Frost, 36 dB, Диспенсър, Клас E)",
-      "step2_baseline": {
-        "october_avg_eur": 899.00,
-        "november_initial_avg_eur": 899.00,
-        "real_regular_price_eur": 899.00,
-        "target_deal_trigger_eur": 829.00,
-        "target_deal_trigger_defect_eur": 740.00,
-        "fake_crossed_out_price_threshold_eur": 950.00
-      },
-      "urls": [
-        {
-          "store": "Технополис (София)",
-          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-HISENSE-RF632N4WIE1/p/653316"
-        }
-      ]
-    },
-    {
-      "id": "hisense_rf632n4wfe1",
-      "category": "Хладилник с фризер (70 см)",
-      "name": "Hisense RF632N4WFE1 (Черен French Door, 70.4 x 69.4 x 200.0 см, 485 л, Total No Frost, 36 dB, Диспенсър, Клас E)",
-      "step2_baseline": {
-        "october_avg_eur": 929.00,
-        "november_initial_avg_eur": 929.00,
-        "real_regular_price_eur": 929.00,
-        "target_deal_trigger_eur": 849.00,
-        "target_deal_trigger_defect_eur": 760.00,
-        "fake_crossed_out_price_threshold_eur": 980.00
-      },
-      "urls": [
-        {
-          "store": "Технополис (София)",
-          "url": "https://www.technopolis.bg/bg/Hladilnici-s-dolen-frizer/Hladilnik-s-dolen-frizer-HISENSE-RF632N4WFE1/p/653317"
-        }
-      ]
-    },
-    {
       "id": "aeg_lwr98165nxe",
       "category": "Пералня със сушилня (Термопомпа)",
       "name": "AEG Series 9000 LWR98165NXE (10/6 кг, 1600 об/мин, SensiDry термопомпа, Клас A/B, Wi-Fi)",
@@ -382,6 +131,479 @@
         {
           "store": "Technovision София [Транспортен дефект]",
           "url": "https://technovision.bg/produkt/biala-tehnika/peralni/peralnq-sus-sushilnq-aeg-lwr98165nxe-9000-absolutecare-s-termopompa-10-6kg-1600-ob/"
+        }
+      ]
+    },
+    {
+      "id": "lg_f4dv709s1e_f4dr509sbw",
+      "category": "Пералня със сушилня (2-в-1)",
+      "name": "LG F4DV709S1E / F4DR509SBW (9/6 кг, 1400 об/мин, Direct Drive, Steam, плитка 56.5 см)",
+      "step2_baseline": {
+        "october_avg_eur": 680.00,
+        "november_initial_avg_eur": 649.00,
+        "real_regular_price_eur": 715.00,
+        "target_deal_trigger_eur": 619.00,
+        "target_deal_trigger_defect_eur": 540.00,
+        "fake_crossed_out_price_threshold_eur": 740.00
+      },
+      "urls": [
+        {
+          "store": "Техномаркет (София) [F4DV709S1E]",
+          "url": "https://www.technomarket.bg/sushilnq/lg-f4dv709s1e-09188103"
+        },
+        {
+          "store": "Техномаркет (София) [F4DR509SBW]",
+          "url": "https://www.technomarket.bg/sushilnq/lg-f4dr509sbw-09217272"
+        },
+        {
+          "store": "Техмарт (София) [F4DR509SBW]",
+          "url": "https://techmart.bg/peralnq-sys-sushilnq-lg-f4dr509sbw"
+        },
+        {
+          "store": "eMAG Шоурум (София) [F4DR509SBW]",
+          "url": "https://www.emag.bg/peralnja-sys-sushilnja-lg-9-kg-prane-6-kg-sushene-1400-ob-min-klas-b-motor-direct-drive-bjal-f4dr509sbw/pd/DPY0B3YBM/"
+        }
+      ]
+    },
+    {
+      "id": "bosch_wng24401by",
+      "category": "Пералня със сушилня (2-в-1)",
+      "name": "Bosch Serie 6 WNG24401BY (9/6 кг, 1400 об/мин, EcoSilence Drive, AutoDry, Iron Assist)",
+      "step2_baseline": {
+        "october_avg_eur": 829.00,
+        "november_initial_avg_eur": 770.00,
+        "real_regular_price_eur": 849.00,
+        "target_deal_trigger_eur": 729.00,
+        "target_deal_trigger_defect_eur": 640.00,
+        "fake_crossed_out_price_threshold_eur": 880.00
+      },
+      "urls": [
+        {
+          "store": "Зора (София)",
+          "url": "https://zora.bg/product/wng24401by-1400-obmin-6-kg-900-kg-d-bial"
+        },
+        {
+          "store": "Техномикс (София)",
+          "url": "https://www.tehnomix.bg/peralnya-sas-sushilnya-bosch-wng24401by-9-6-kg-antistain-iron-assist-1400-ob-min"
+        },
+        {
+          "store": "eMAG Шоурум (София)",
+          "url": "https://www.emag.bg/peralnja-sys-sushilnja-bosch-9-kg-prane-6-kg-sushene-1400-ob-min-avtomatichno-sushene-asistent-za-gladene-ecosilence-drive-14-programi-klas-a-bjalo-wng24401by/pd/DP77M73BM/"
+        }
+      ]
+    },
+    {
+      "id": "lg_v7wd107h2e",
+      "category": "Пералня със сушилня (2-в-1, Дефект)",
+      "name": "LG V7WD107H2E (10.5/7 кг, 1400 об/мин, TurboWash 360°, EcoHybrid, Wi-Fi)",
+      "step2_baseline": {
+        "october_avg_eur": 600.00,
+        "november_initial_avg_eur": 566.95,
+        "real_regular_price_eur": 820.00,
+        "target_deal_trigger_eur": 580.00,
+        "target_deal_trigger_defect_eur": 560.00,
+        "fake_crossed_out_price_threshold_eur": 850.00
+      },
+      "urls": [
+        {
+          "store": "Technovision София [Транспортен дефект]",
+          "url": "https://technovision.bg/produkt/biala-tehnika/peralni/peralnq-sus-sushilnq-lg-v7wd107h2e-turbowash-wifi-10-5-7kg-1400-ob-min-ai-dd-thinq/"
+        }
+      ]
+    },
+    {
+      "id": "haier_hw90_b14939_s8s",
+      "category": "Пералня (9 кг)",
+      "name": "Haier HW90-B14939 S8-S (9 кг, 1400 об/мин, Direct Motion 67 dB, Клас A, Пара)",
+      "step2_baseline": {
+        "october_avg_eur": 469.00,
+        "november_initial_avg_eur": 449.90,
+        "real_regular_price_eur": 479.00,
+        "target_deal_trigger_eur": 429.00,
+        "target_deal_trigger_defect_eur": 380.00,
+        "fake_crossed_out_price_threshold_eur": 510.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Peralni-s-predno-zarezhdane/Peralnya-HAIER-HW90-B14939-S8-S-ANTHR-/p/680133"
+        },
+        {
+          "store": "eMAG Шоурум (София)",
+          "url": "https://www.emag.bg/peralnja-s-predno-zarezhdane-haier-para-9-kg-1400-ob-min-klas-a-antracit-hw90-b14939s8-s/pd/DQHMZRYBM/"
+        }
+      ]
+    },
+    {
+      "id": "samsung_ww90cgc04dable",
+      "category": "Пералня (9 кг)",
+      "name": "Samsung WW90CGC04DABLE (9 кг, 1400 об/мин, 55 см дълбочина, EcoBubble, SmartThings, Клас A)",
+      "step2_baseline": {
+        "october_avg_eur": 549.00,
+        "november_initial_avg_eur": 519.00,
+        "real_regular_price_eur": 551.68,
+        "target_deal_trigger_eur": 459.00,
+        "target_deal_trigger_defect_eur": 400.00,
+        "fake_crossed_out_price_threshold_eur": 580.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Peralni-s-predno-zarezhdane/Peralnya-SAMSUNG-WW90CGC04DABLE/p/653541"
+        },
+        {
+          "store": "Техномаркет (София)",
+          "url": "https://www.technomarket.bg/peralni/samsung-ww90cgc04dable-09218177"
+        },
+        {
+          "store": "Зора (София)",
+          "url": "https://zora.bg/product/ww90cgc04dable"
+        },
+        {
+          "store": "Техномикс (София)",
+          "url": "https://www.tehnomix.bg/peralnya-samsung-ww90cgc04dable-9-kg-wi-fi-klas-a-1400-ob-min"
+        },
+        {
+          "store": "Техмарт (София)",
+          "url": "https://techmart.bg/peralnq-samsung-ww90cgc04dable"
+        },
+        {
+          "store": "eMAG Шоурум (София)",
+          "url": "https://www.emag.bg/peralnja-samsung-9-kg-1400-ob-min-invertoren-motor-wi-fi-cheren-ww90cgc04dable/pd/DCLH27YBM/"
+        }
+      ]
+    },
+    {
+      "id": "bosch_wgg244z5by",
+      "category": "Пералня (9 кг)",
+      "name": "Bosch Serie 6 WGG244Z5BY / WGG244Z2BY (9 кг, 1400 об/мин, EcoSilence Drive, Iron Assist, Клас A)",
+      "step2_baseline": {
+        "october_avg_eur": 619.00,
+        "november_initial_avg_eur": 579.00,
+        "real_regular_price_eur": 659.00,
+        "target_deal_trigger_eur": 550.00,
+        "target_deal_trigger_defect_eur": 510.00,
+        "fake_crossed_out_price_threshold_eur": 670.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София) [Z5BY]",
+          "url": "https://www.technopolis.bg/bg/Peralni-s-predno-zarezhdane/Peralnya-BOSCH-WGG244Z5BY/p/652644"
+        },
+        {
+          "store": "Техномикс (София) [Z5BY]",
+          "url": "https://www.tehnomix.bg/peralnya-bosch-wgg244z5by-9-kg-speed-perfect-antistain-1400-ob-min"
+        },
+        {
+          "store": "Вимакс (София) [Z5BY]",
+          "url": "https://vimax.bg/peralnya-bosch-wgg244z5by-seria-6-1400-obr-min-9-kg.html"
+        },
+        {
+          "store": "Релакс Техно (София) [Z5BY]",
+          "url": "https://www.relaxbg.org/p/peralnya-bosch-wgg244z5by/"
+        },
+        {
+          "store": "Техномаркет (София) [Z2BY]",
+          "url": "https://www.technomarket.bg/peralni/bosch-wgg244z2by-09223819"
+        },
+        {
+          "store": "Зора (София) [Z2BY]",
+          "url": "https://zora.bg/product/wgg244z2by"
+        },
+        {
+          "store": "Техмарт (София) [Z2BY]",
+          "url": "https://techmart.bg/product/product/details/39162/category/709"
+        },
+        {
+          "store": "Вимакс (София) [Z2BY]",
+          "url": "https://vimax.bg/peralnya-bosch-wgg244z2by-seria-6-1400-obr-min-9-kg.html"
+        },
+        {
+          "store": "eMAG Шоурум (София) [Z2BY]",
+          "url": "https://www.emag.bg/peralnja-bosch-9-kg-1400-ob-min-klas-a-motor-ecosilence-drive-bjal-wgg244z2by/pd/DC2JXPYBM/"
+        },
+        {
+          "store": "Technovision София [Транспортен дефект, Z2BY]",
+          "url": "https://technovision.bg/produkt/biala-tehnika/peralni/peralnq-bosch-wgg244z2by-seriq-6-9kg-1400-ob-min-iron-assist-activewater-plus/"
+        }
+      ]
+    },
+    {
+      "id": "lg_f4wr509sww",
+      "category": "Пералня (9 кг)",
+      "name": "LG F4WR509SWW (9 кг, 1400 об/мин, Direct Drive, AI DD, Steam, 56 см дълбочина, Клас A)",
+      "step2_baseline": {
+        "october_avg_eur": 519.00,
+        "november_initial_avg_eur": 499.00,
+        "real_regular_price_eur": 529.00,
+        "target_deal_trigger_eur": 469.00,
+        "target_deal_trigger_defect_eur": 410.00,
+        "fake_crossed_out_price_threshold_eur": 560.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Peralni-s-predno-zarezhdane/Peralnya-LG-F4WR509SWW/p/652057"
+        },
+        {
+          "store": "Техномаркет (София)",
+          "url": "https://www.technomarket.bg/peralni/lg-f4wr509sww-09217278"
+        },
+        {
+          "store": "Техмарт (София)",
+          "url": "https://techmart.bg/peralnq-lg-f4wr509sww"
+        },
+        {
+          "store": "eMAG Шоурум (София)",
+          "url": "https://www.emag.bg/peralnja-lg-9-kg-klas-a-1400-rpm-tehnologija-ai-dd-steam-motor-inverter-direct-drive-bjal-f4wr509sww/pd/DGLHJXYBM/"
+        }
+      ]
+    },
+    {
+      "id": "beko_b5t68243",
+      "category": "Сушилня с термопомпа (8 кг)",
+      "name": "Beko B5T68243 (8 кг, 59x60x84 см, Термопомпа, ProSmart Инвертор, IronFinish)",
+      "step2_baseline": {
+        "october_avg_eur": 569.00,
+        "november_initial_avg_eur": 549.04,
+        "real_regular_price_eur": 579.00,
+        "target_deal_trigger_eur": 519.00,
+        "target_deal_trigger_defect_eur": 440.00,
+        "fake_crossed_out_price_threshold_eur": 610.00
+      },
+      "urls": [
+        {
+          "store": "eMAG Шоурум (София)",
+          "url": "https://www.emag.bg/sushilnja-beko-termopompa-8-kg-15-programi-klas-c-eco-gentle-optisense-aquawave-ironfinish-bjal-b5t68243/pd/DB7RSFMBM/"
+        }
+      ]
+    },
+    {
+      "id": "beko_b5t4824if",
+      "category": "Сушилня с термопомпа (8 кг, Дефект)",
+      "name": "Beko B5T4824IF (8 кг, 59.8x60.5x84.6 см, Термопомпа, ProSmart, SteamCure)",
+      "step2_baseline": {
+        "october_avg_eur": 440.00,
+        "november_initial_avg_eur": 414.00,
+        "real_regular_price_eur": 520.00,
+        "target_deal_trigger_eur": 415.00,
+        "target_deal_trigger_defect_eur": 399.00,
+        "fake_crossed_out_price_threshold_eur": 540.00
+      },
+      "urls": [
+        {
+          "store": "Technovision София [Транспортен дефект]",
+          "url": "https://technovision.bg/produkt/biala-tehnika/sushilni/sushilnq-s-termopompa-beko-b5t4824if-8kg-steamcure-aquawave-prosmart/"
+        }
+      ]
+    },
+    {
+      "id": "samsung_dv90dg6845",
+      "category": "Сушилня с термопомпа (9 кг)",
+      "name": "Samsung DV90DG6845LHU4 / LKU4 / LBU4 (9 кг, 60x60x85 см, AI Dry+, SmartThings, Клас A)",
+      "step2_baseline": {
+        "october_avg_eur": 729.00,
+        "november_initial_avg_eur": 619.00,
+        "real_regular_price_eur": 749.00,
+        "target_deal_trigger_eur": 619.00,
+        "target_deal_trigger_defect_eur": 540.00,
+        "fake_crossed_out_price_threshold_eur": 780.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София) [LKU4 Бяла]",
+          "url": "https://www.technopolis.bg/bg/Sushilni/Sushilnya-SAMSUNG-DV90DG6845LKU4/p/654047"
+        },
+        {
+          "store": "Технополис (София) [LBU4 Черна]",
+          "url": "https://www.technopolis.bg/bg/Sushilni/Sushilnya-SAMSUNG-DV90DG6845LBU4/p/654046"
+        },
+        {
+          "store": "Технополис (София) [LHU4 Бяла]",
+          "url": "https://www.technopolis.bg/bg/Sushilni/Sushilnya-SAMSUNG-DV90DG6845LHU4/p/654048"
+        },
+        {
+          "store": "Техномаркет (София) [LKU4 Бяла]",
+          "url": "https://www.technomarket.bg/sushilni/samsung-dv90dg6845lku4-blackpanelai-09236656"
+        },
+        {
+          "store": "Техномаркет (София) [LBU4 Черна]",
+          "url": "https://www.technomarket.bg/sushilni/samsung-dv90dg6845lbu4-blackpanelai-09236655"
+        },
+        {
+          "store": "Зора (София) [LKU4 Бяла]",
+          "url": "https://zora.bg/product/dv90dg6845lku4-9-kg-a-bial"
+        },
+        {
+          "store": "Техномикс (София) [LBU4 Черна]",
+          "url": "https://www.tehnomix.bg/sushilnya-samsung-dv90dg6845lbu4-9-kg-ai-dry-black"
+        },
+        {
+          "store": "Техмарт (София) [LHU4 Бяла]",
+          "url": "https://techmart.bg/sushilnq-samsung-dv90dg6845lhu4"
+        },
+        {
+          "store": "Техмарт (София) [LBU4 Черна]",
+          "url": "https://techmart.bg/product/product/details/44232/category/712"
+        },
+        {
+          "store": "eMAG Шоурум (София) [LKU4 Бяла]",
+          "url": "https://www.emag.bg/sushilnja-samsung-termopompa-9-kg-klas-a-ai-dry-invertoren-kompresor-air-refresh-wifi-bjal-dv90dg6845lku4/pd/DY443V3BM/"
+        }
+      ]
+    },
+    {
+      "id": "bosch_wth85209by",
+      "category": "Сушилня с термопомпа (8 кг)",
+      "name": "Bosch Serie 4 WTH85209BY (8 кг, 59.8x61x84.2 см, EasyClean долен филтър, AutoDry, 63 dB)",
+      "step2_baseline": {
+        "october_avg_eur": 649.00,
+        "november_initial_avg_eur": 579.00,
+        "real_regular_price_eur": 689.00,
+        "target_deal_trigger_eur": 569.00,
+        "target_deal_trigger_defect_eur": 510.00,
+        "fake_crossed_out_price_threshold_eur": 710.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Sushilni/Sushilnya-BOSCH-WTH85209BY/p/653830"
+        },
+        {
+          "store": "Техномаркет (София)",
+          "url": "https://www.technomarket.bg/sushilni/bosch-wth85209by-09236649"
+        },
+        {
+          "store": "Зора (София)",
+          "url": "https://zora.bg/product/wth85209by-8-kg-d-bial"
+        },
+        {
+          "store": "Техмарт (София)",
+          "url": "https://techmart.bg/sushilnq-bosch-wth85209by"
+        },
+        {
+          "store": "Вимакс (София)",
+          "url": "https://vimax.bg/sushilnya-s-termopompa-bosch-wth85209by.html"
+        },
+        {
+          "store": "Релакс Техно (София)",
+          "url": "https://www.relaxbg.org/p/sushilnya-bosch-wth85209by/"
+        },
+        {
+          "store": "eMAG Шоурум (София)",
+          "url": "https://www.emag.bg/sushilnja-bosch-termopompa-8-kg-15-programi-tehnologija-autodry-antivibracionna-filtyr-easyclean-klas-d-bjala-wth85209by/pd/DN77M73BM/"
+        },
+        {
+          "store": "Technovision София [Транспортен дефект]",
+          "url": "https://technovision.bg/produkt/biala-tehnika/sushilni/sushilnya-s-termopompa-bosch-wth85209by-seriya-4-8kg-autodry-sensitive-drying-easyclean/"
+        }
+      ]
+    },
+    {
+      "id": "bosch_wqg24101by",
+      "category": "Сушилня с термопомпа (9 кг)",
+      "name": "Bosch Serie 6 WQG24101BY (9 кг, 59.8x61x84.2 см, EasyClean долен филтър, AutoDry)",
+      "step2_baseline": {
+        "october_avg_eur": 749.00,
+        "november_initial_avg_eur": 669.00,
+        "real_regular_price_eur": 799.00,
+        "target_deal_trigger_eur": 659.00,
+        "target_deal_trigger_defect_eur": 590.00,
+        "fake_crossed_out_price_threshold_eur": 820.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Sushilni/Sushilnya-BOSCH-WQG24101BY/p/653826"
+        },
+        {
+          "store": "Техномаркет (София)",
+          "url": "https://www.technomarket.bg/sushilni/bosch-wqg24101by-09232065"
+        },
+        {
+          "store": "Зора (София)",
+          "url": "https://zora.bg/product/wqg24101by-9-kg-a-byal"
+        },
+        {
+          "store": "Техномикс (София)",
+          "url": "https://www.tehnomix.bg/sushilnya-bosch-wqg24101by-9-kg-a"
+        },
+        {
+          "store": "Вимакс (София)",
+          "url": "https://vimax.bg/sushilnya-s-termopompa-bosch-wqg24101by.html"
+        },
+        {
+          "store": "Релакс Техно (София)",
+          "url": "https://www.relaxbg.org/p/sushilnya-bosch-wqg24101by/"
+        },
+        {
+          "store": "eMAG Шоурум (София)",
+          "url": "https://www.emag.bg/sushilnja-bosch-termopompa-9-kg-18-programi-tehnologija-autodry-antivibracionna-zashtita-filtyr-easyclean-klas-d-bjal-wqg24101by/pd/DT77M73BM/"
+        },
+        {
+          "store": "Technovision София [Транспортен дефект]",
+          "url": "https://technovision.bg/produkt/biala-tehnika/sushilni/sushilnq-s-termopompa-bosch-wqg24101by-seriq-6-9kg-autodry-sensitive-drying-easyclean/"
+        }
+      ]
+    },
+    {
+      "id": "lg_rhx5008twb",
+      "category": "Сушилня с термопомпа (8 кг)",
+      "name": "LG RHX5008TWB (8 кг, Dual Inverter 62 dB, 66 см дълбочина, Wi-Fi ThinQ, Клас B)",
+      "step2_baseline": {
+        "october_avg_eur": 715.00,
+        "november_initial_avg_eur": 625.00,
+        "real_regular_price_eur": 715.00,
+        "target_deal_trigger_eur": 625.00,
+        "target_deal_trigger_defect_eur": 540.00,
+        "fake_crossed_out_price_threshold_eur": 760.00
+      },
+      "urls": [
+        {
+          "store": "Технополис (София)",
+          "url": "https://www.technopolis.bg/bg/Sushilni/Sushilnya-LG-RHX5008TWB/p/655506"
+        },
+        {
+          "store": "Зора (София)",
+          "url": "https://zora.bg/product/rhx5008twb-8-kg-b-bial"
+        }
+      ]
+    },
+    {
+      "id": "aeg_set_l6fbf50498_tr7c40698",
+      "category": "Комплект Пералня + Сушилня (2в1, Дефект)",
+      "name": "AEG 2в1 комплект (Пералня L6FBF50498 + Сушилня TR7C40698, 9+9 кг)",
+      "step2_baseline": {
+        "october_avg_eur": 1200.00,
+        "november_initial_avg_eur": 1149.00,
+        "real_regular_price_eur": 1350.00,
+        "target_deal_trigger_eur": 1120.00,
+        "target_deal_trigger_defect_eur": 1090.00,
+        "fake_crossed_out_price_threshold_eur": 1400.00
+      },
+      "urls": [
+        {
+          "store": "Technovision София [Транспортен дефект]",
+          "url": "https://technovision.bg/produkt/biala-tehnika/peralni/promocionalen-paket-aeg-2v1-peralnq-aeg-l6fbf50498-7000-i-sushilnq-s-termopompa-aeg-tr7c40698-7000/"
+        }
+      ]
+    },
+    {
+      "id": "bosch_set_wan28127_wth83v04",
+      "category": "Комплект Пералня + Сушилня (2в1, Дефект)",
+      "name": "Bosch 2в1 комплект (Пералня WAN28127 + Сушилня WTH83V04, 8+8 кг, EasyClean)",
+      "step2_baseline": {
+        "october_avg_eur": 1100.00,
+        "november_initial_avg_eur": 1049.00,
+        "real_regular_price_eur": 1200.00,
+        "target_deal_trigger_eur": 1020.00,
+        "target_deal_trigger_defect_eur": 990.00,
+        "fake_crossed_out_price_threshold_eur": 1250.00
+      },
+      "urls": [
+        {
+          "store": "Technovision София [Транспортен дефект]",
+          "url": "https://technovision.bg/produkt/biala-tehnika/peralni/promocionalen-paket-bosch-2v1-peralnq-bosch-wan28127-i-sushilnq-s-termopompa-bosch-wth83v04/"
         }
       ]
     }

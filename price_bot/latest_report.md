@@ -1,6 +1,6 @@
-# Последен отчет от Ценовия Бот – Магазини в София (2026-11-27 22:48:00)
+# Последен отчет от Ценовия Бот – Магазини в София (2026-11-28 15:44:13)
 
-- **Проверени оферти в София:** 60 актуални + 11 запазени от предходна проверка
+- **Проверени оферти в София:** 59 актуални + 12 запазени от предходна проверка
 - **Засечени промени в цените / наличностите (спрямо предходната проверка):** 0
 
 | Уред | Магазин в София | Текуща цена | Средна Октомври (Т.2) | Статус / Наличност (Черен Петък) |
@@ -11,7 +11,7 @@
 | **AEG FFB73527ZM (45 см, Inox, 3-та въртяща се таванна перка Deckensprüharm, AirDry, SatelliteClean)** | [Техмарт (София)](https://techmart.bg/sydomiqlna-45sm-aeg-ffb73527zm) | **589.00 €** *(1151.98 лв.)* | 589.00 € | Нормална цена (+0.00 € / +0.0% спрямо октомври: 589.00 €) |
 | **AEG FFB73527ZM (45 см, Inox, 3-та въртяща се таванна перка Deckensprüharm, AirDry, SatelliteClean)** | [eMAG Шоурум (София)](https://www.emag.bg/sydomijalna-aeg-10-komplekta-9-programi-invertoren-motor-klas-d-airdry-pro-clean-digitalen-displej-neryzhdaema-stomana-ffb73527zm/pd/D5VQGRMBM/) | **815.99 €** *(1595.94 лв.)* <br>*(⏸️ Изчерпан в магазина)* | 589.00 € | ⏳ Последна проверка от 2026-11-27 22:21:15 (сайтът блокира облачния сървър на GitHub – от България се отваря нормално) |
 | **Haier XF 1C3TB1 FW / FX (45 см, Клас C, Auto Open Door, 11 компл., 43 dB, Wi-Fi hOn)** | [Технополис (София) [Бяла FW]](https://www.technopolis.bg/bg/Svobodnostoyashti-sadomiyalni/Sadomiyalna-HAIER-XF-1C3TB1-FW/p/654484) | **459.90 €** *(899.49 лв.)* | 449.00 € | 📈 Над октомврийската средна с +10.90 € (+2.4% спрямо 449.00 €) |
-| **Haier XF 1C3TB1 FW / FX (45 см, Клас C, Auto Open Door, 11 компл., 43 dB, Wi-Fi hOn)** | [Технополис (София) [Инокс FX]](https://www.technopolis.bg/bg/Svobodnostoyashti-sadomiyalni/Sadomiyalna-HAIER-XF-1-C3TB1-FX/p/652944) | **511.00 €** *(999.43 лв.)* | 449.00 € | 📈 Над октомврийската средна с +62.00 € (+13.8% спрямо 449.00 €) |
+| **Haier XF 1C3TB1 FW / FX (45 см, Клас C, Auto Open Door, 11 компл., 43 dB, Wi-Fi hOn)** | [Технополис (София) [Инокс FX]](https://www.technopolis.bg/bg/Svobodnostoyashti-sadomiyalni/Sadomiyalna-HAIER-XF-1-C3TB1-FX/p/652944) | **511.00 €** *(999.43 лв.)* | 449.00 € | ⏳ Последна проверка от 2026-11-27 22:48:00 (сайтът блокира облачния сървър на GitHub – от България се отваря нормално) |
 | **Haier XF 1C3TB1 FW / FX (45 см, Клас C, Auto Open Door, 11 компл., 43 dB, Wi-Fi hOn)** | [eMAG Шоурум (София) [Бяла FW]](https://www.emag.bg/sydomijalna-mashina-haier-i-pro-shine-5-xf1c3tb1fw-11-komplekta-bjala-44-8x84-6x60-5sm-6925777875054/pd/D3YR143BM/) | **513.08 €** *(1003.50 лв.)* <br>*(⏸️ Изчерпан в магазина)* | 449.00 € | ⏳ Последна проверка от 2026-11-27 22:21:15 (сайтът блокира облачния сървър на GitHub – от България се отваря нормално) |
 | **AEG Series 9000 LWR98165NXE (10/6 кг, 1600 об/мин, SensiDry термопомпа, Клас A/B, Wi-Fi)** | [Технополис (София)](https://www.technopolis.bg/bg/Peralni-sas-sushilni/Peralnya-sas-Sushilnya-s-termopompa-AEG-LWR98165NXE/p/654006) | **1543.00 €** *(3017.85 лв.)* | 1543.00 € | Нормална цена (+0.00 € / +0.0% спрямо октомври: 1543.00 €) |
 | **AEG Series 9000 LWR98165NXE (10/6 кг, 1600 об/мин, SensiDry термопомпа, Клас A/B, Wi-Fi)** | [Техномаркет (София)](https://www.technomarket.bg/sushilnq/aeg-lwr98165nxe-09228577) | **1539.00 €** *(3010.02 лв.)* | 1543.00 € | Нормална цена (-4.00 € / -0.3% спрямо октомври: 1543.00 €) |
